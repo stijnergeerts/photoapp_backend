@@ -6,7 +6,7 @@
     <groupId>com.globeshanghai</groupId>
     <artifactId>photoapp_backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>Photoapp_Backend</name>
     <description>Photoapp project for Spring Boot</description>
