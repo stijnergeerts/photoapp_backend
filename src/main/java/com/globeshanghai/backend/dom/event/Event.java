@@ -24,6 +24,8 @@ public final class Event implements Serializable {
 
     private String eventName;
 
+    private String eventLogo;
+
     private Date eventStartDate;
 
     private Date eventEndDate;
@@ -48,6 +50,7 @@ public final class Event implements Serializable {
 
     private Event(Builder builder) {
         this.eventName = builder.eventName;
+        this.eventLogo = builder.eventLogo;
         this.eventStartDate = builder.eventStartDate;
         this.eventEndDate = builder.eventEndDate;
         this.eventLocation = builder.eventLocation;
@@ -64,10 +67,11 @@ public final class Event implements Serializable {
     }
 
 
-    public Event(String eventName, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress,
+    public Event(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress,
                  String company, String companyAddress, String contact, String contactPhone, Config config,
                  DetailLayout detailLayout, OverviewLayout overviewLayout) {
         this.eventName = eventName;
+        this.eventLogo = eventLogo;
         this.eventStartDate = eventStartDate;
         this.eventEndDate = eventEndDate;
         this.eventLocation = eventLocation;
@@ -100,6 +104,14 @@ public final class Event implements Serializable {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public String getEventLogo() {
+        return eventLogo;
+    }
+
+    public void setEventLogo(String eventLogo) {
+        this.eventLogo = eventLogo;
     }
 
     public Date getEventStartDate() {
@@ -190,15 +202,16 @@ public final class Event implements Serializable {
         this.overviewLayout = overviewLayout;
     }
 
-    public void update(String eventName, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress,
+    public void update(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress,
                        String company, String companyAddress, String contact, String contactPhone, Config config,
                        DetailLayout detailLayout, OverviewLayout overviewLayout) {
 
-        checkAll(eventName, eventStartDate, eventEndDate, eventLocation, eventAddress,
+        checkAll(eventName, eventLogo, eventStartDate, eventEndDate, eventLocation, eventAddress,
                 company,  companyAddress,  contact,  contactPhone,  config,
                 detailLayout,  overviewLayout);
 
         this.eventName = eventName;
+        this.eventLogo = eventLogo;
         this.eventStartDate = eventStartDate;
         this.eventEndDate = eventEndDate;
         this.eventLocation = eventLocation;
@@ -216,6 +229,8 @@ public final class Event implements Serializable {
     public static class Builder {
 
         private String eventName;
+
+        private String eventLogo;
 
         private Date eventStartDate;
 
@@ -244,6 +259,11 @@ public final class Event implements Serializable {
 
         public Event.Builder eventName(String eventName) {
             this.eventName = eventName;
+            return this;
+        }
+
+        public Event.Builder eventLogo(String eventLogo) {
+            this.eventLogo = eventLogo;
             return this;
         }
 
@@ -299,7 +319,7 @@ public final class Event implements Serializable {
         public Event build() {
             Event build = new Event(this);
 
-            build.checkAll(build.getEventName(), build.getEventStartDate(), build.getEventEndDate(),
+            build.checkAll(build.getEventName(), build.getEventLogo(), build.getEventStartDate(), build.getEventEndDate(),
                     build.getEventLocation(), build.getEventAddress(),build.getCompany(),build.getCompanyAddress(),
                     build.getContact(),build.getContactPhone(),build.getConfig(), build.getDetailLayout(), build.getOverviewLayout());
 
@@ -307,11 +327,14 @@ public final class Event implements Serializable {
         }
     }
 
-    private void checkAll(String eventName, Date eventStartDate,  Date eventEndDate, String eventLocation,String eventAddress,String company,
+    private void checkAll(String eventName, String eventLogo, Date eventStartDate,  Date eventEndDate, String eventLocation,String eventAddress,String company,
                           String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout,
                           OverviewLayout overviewLayout) {
         notNull(eventName, "eventName cannot be null");
         notEmpty(eventName, "eventName cannot be empty");
+
+        notNull(eventLogo, "eventLogo cannot be null");
+        notEmpty(eventLogo, "eventLogo cannot be empty");
 
         notNull(eventStartDate, "eventStartDate cannot be null");
 

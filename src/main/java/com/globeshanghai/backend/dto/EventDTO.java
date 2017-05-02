@@ -15,6 +15,8 @@ public class EventDTO {
 
     private String eventName;
 
+    private String eventLogo;
+
     private Date eventStartDate;
 
     private Date eventEndDate;
@@ -37,10 +39,11 @@ public class EventDTO {
 
     private OverviewLayout overviewLayout;
 
-    public EventDTO(String eventName, Date eventStartDate, Date eventEndDate, String eventLocation,
+    public EventDTO(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation,
                     String eventAddress, String company, String companyAddress, String contact,
                     String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout) {
         this.eventName = eventName;
+        this.eventLogo = eventLogo;
         this.eventStartDate = eventStartDate;
         this.eventEndDate = eventEndDate;
         this.eventLocation = eventLocation;
@@ -54,11 +57,12 @@ public class EventDTO {
         this.overviewLayout = overviewLayout;
     }
 
-    public EventDTO(String eventId, String eventName, Date eventStartDate, Date eventEndDate, String eventLocation,
+    public EventDTO(String eventId, String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation,
                     String eventAddress, String company, String companyAddress, String contact, String contactPhone,
                     Config config, DetailLayout detailLayout, OverviewLayout overviewLayout) {
         this.eventId = eventId;
         this.eventName = eventName;
+        this.eventLogo = eventLogo;
         this.eventStartDate = eventStartDate;
         this.eventEndDate = eventEndDate;
         this.eventLocation = eventLocation;
@@ -89,6 +93,14 @@ public class EventDTO {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public String getEventLogo() {
+        return eventLogo;
+    }
+
+    public void setEventLogo(String eventLogo) {
+        this.eventLogo = eventLogo;
     }
 
     public Date getEventStartDate() {

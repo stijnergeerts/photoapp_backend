@@ -8,13 +8,17 @@ public class ShortEventDTO {
 
     private String eventName;
 
-    public ShortEventDTO(String eventId, String eventName) {
+    private String eventLogo;
+
+    public ShortEventDTO(String eventId, String eventName, String eventLogo) {
         this.eventId = eventId;
         this.eventName = eventName;
+        this.eventLogo = eventLogo;
     }
 
-    public ShortEventDTO(String eventName) {
+    public ShortEventDTO(String eventName, String eventLogo) {
         this.eventName = eventName;
+        this.eventLogo = eventLogo;
     }
 
     public ShortEventDTO() {
@@ -34,5 +38,13 @@ public class ShortEventDTO {
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public String getEventLogo() {
+        return eventLogo;
+    }
+
+    public void setEventLogo(String eventLogo) {
+        this.eventLogo = eventLogo;
     }
 }

@@ -30,6 +30,7 @@ import java.util.stream.Collectors;
     public EventDTO create(EventDTO event) {
         Event persisted =  Event.getBuilder()
                 .eventName(event.getEventName())
+                .eventLogo(event.getEventLogo())
                 .eventStartDate(event.getEventStartDate())
                 .eventEndDate(event.getEventEndDate())
                 .eventLocation(event.getEventLocation())
@@ -68,7 +69,7 @@ import java.util.stream.Collectors;
     @Override
     public EventDTO update(EventDTO event) {
         Event updated = findEventById(event.getEventId());
-        updated.update(event.getEventName(),event.getEventStartDate(),event.getEventEndDate(),event.getEventLocation(),
+        updated.update(event.getEventName(),event.getEventLogo(),event.getEventStartDate(),event.getEventEndDate(),event.getEventLocation(),
                 event.getEventAddress(), event.getCompany(),event.getCompanyAddress(),event.getContact(),event.getContactPhone(),
                 event.getConfig(),event.getDetailLayout(),event.getOverviewLayout());
         updated = eventRepository.save(updated);
@@ -80,6 +81,7 @@ import java.util.stream.Collectors;
         EventDTO dto = new EventDTO();
         dto.setEventId(model.getEventId());
         dto.setEventName(model.getEventName());
+        dto.setEventLogo(model.getEventLogo());
         dto.setEventStartDate(model.getEventStartDate());
         dto.setEventEndDate(model.getEventEndDate());
         dto.setEventLocation(model.getEventLocation());

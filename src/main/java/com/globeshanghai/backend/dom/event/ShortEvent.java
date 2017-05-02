@@ -13,12 +13,12 @@ public final class ShortEvent {
 
     private String eventName;
 
-    private String eventImage;
+    private String eventLogo;
 
     public ShortEvent(String eventId, String eventName, String eventImage) {
         this.eventId = eventId;
         this.eventName = eventName;
-        this.eventImage = eventImage;
+        this.eventLogo = eventImage;
     }
 
     public ShortEvent() {
@@ -40,11 +40,11 @@ public final class ShortEvent {
         this.eventName = eventName;
     }
 
-    public String getEventImage() {
-        return eventImage;
+    public String getEventLogo() {
+        return eventLogo;
     }
 
-    public void setEventImage(String eventImage) {
-        this.eventImage = eventImage;
+    public void setEventLogo(String eventLogo) {
+        this.eventLogo = eventLogo;
     }
 }

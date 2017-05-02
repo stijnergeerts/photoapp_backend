@@ -44,7 +44,7 @@ final class EventController {
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
         EventDTO created = eventService.create(eventEntry);
         List<ShortEvent> userEvents = userEntry.getUserEvents();
-        userEvents.add(new ShortEvent(created.getEventId(),created.getEventName(),created.getOverviewLayout().getBackgroundImage()));
+        userEvents.add(new ShortEvent(created.getEventId(),created.getEventName(),created.getEventLogo()));
         userEntry.setUserEvents(userEvents);
         userService.update(userEntry);
         LOGGER.info("Created a new event entry with information: {}", created);
@@ -67,12 +67,13 @@ final class EventController {
             throw new EventNotFoundException("Event with ID "+ id +" not found!");
         EventDTO deleted = eventService.delete(id);
         for (int i=0; i<userEvents.size(); i++){
-            if (deleted.getEventId()==userEvents.get(i).getEventId())
+            if (deleted.getEventId().equals(userEvents.get(i).getEventId())) {
                 userEvents.remove(userEvents.get(i));
+            }
         }
         userEntry.setUserEvents(userEvents);
         userService.update(userEntry);
-        LOGGER.info("Deleted event entry with information: {}", deleted);
+        LOGGER.info("Deleted event entry with information: {}", deleted.getEventName());
 
         return deleted;
     }
@@ -107,7 +108,7 @@ final class EventController {
         if (!eventIds.contains(id))
             throw new EventNotFoundException("Event with ID "+ id +" not found!");
         EventDTO eventEntry = eventService.findById(id);
-        LOGGER.info("Found event entry with information: {}", eventEntry);
+        LOGGER.info("Found event entry with information: {}", eventEntry.getEventName());
 
         return eventEntry;
     }
@@ -120,11 +121,13 @@ final class EventController {
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
         List<ShortEvent> userEvents = userEntry.getUserEvents();
         List<String> eventIds = new LinkedList<>();
-        for (int i=0; i<userEvents.size(); i++){
-            eventIds.add(userEvents.get(i).getEventId());
+        for (ShortEvent userEvent : userEvents) {
+            eventIds.add(userEvent.getEventId());
         }
+        updateUserEvents(eventEntry.getEventId(),eventEntry.getEventName(),eventEntry.getEventLogo(), userEntry);
         if (!eventIds.contains(eventEntry.getEventId()))
             throw new EventNotFoundException("Event with ID "+ eventEntry.getEventId() +" not found!");
+        userService.update(userEntry);
         EventDTO updated = eventService.update(eventEntry);
         LOGGER.info("Updated event entry with information: {}", updated);
 
@@ -135,5 +138,18 @@ final class EventController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleTodoNotFound(EventNotFoundException ex) {
         LOGGER.error("Handling error with message: {}", ex.getMessage());
+    }
+    public void updateUserEvents(String userEventId, String userEventName, String userEventLogo, UserDTO userEntry){
+        List<ShortEvent> shortEvents = new LinkedList<>();
+        shortEvents = userEntry.getUserEvents();
+        for (int i = 0; i < shortEvents.size(); i++){
+            if (userEventId.equals(shortEvents.get(i).getEventId())){
+                shortEvents.get(i).setEventId(userEventId);
+                shortEvents.get(i).setEventName(userEventName);
+                shortEvents.get(i).setEventLogo(userEventLogo);
+            }
+        }
+        userEntry.setUserEvents(shortEvents);
+        userService.update(userEntry);
     }
 }

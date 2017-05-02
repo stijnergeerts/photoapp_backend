@@ -47,8 +47,8 @@ final class UserController {
         return created;
     }
 
-    @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
-    UserDTO delete(@RequestHeader("token") String token) {
+    @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
+    UserDTO delete(@RequestHeader("token") String token, @PathVariable("id") String id) {
         LOGGER.info("Deleting user entry with authId: {}", JWT.decode(token).getSubject());
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
@@ -57,7 +57,7 @@ final class UserController {
         for (int i = 0; i<userEvents.size(); i++){
             eventService.delete(userEvents.get(i).getEventId());
         }
-        UserDTO deleted = userService.delete(userEntry.getUserId());
+        UserDTO deleted = userService.delete(id);
         LOGGER.info("Deleted user entry with information: {}", deleted);
 
         return deleted;
@@ -69,9 +69,12 @@ final class UserController {
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
-        List<UserDTO> eventEntries = userService.findAll();
+        List<UserDTO> userEntries = userService.findAll();
+        for (int i = 0; i<userEntries.size(); i++){
+            userEntries.get(i).setAuthId("");
+        }
 
-        return eventEntries;
+        return userEntries;
 
     }
 
@@ -87,13 +90,16 @@ final class UserController {
     }
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
-    UserDTO update(@RequestHeader("token") String token, @RequestBody @Valid UserDTO eventEntry) {
+    UserDTO update(@RequestHeader("token") String token, @RequestBody @Valid UserDTO userDTO) {
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
-        LOGGER.info("Updating user entry with information: {}", eventEntry);
-        UserDTO updated = userService.update(eventEntry);
-        LOGGER.info("Updated user entry with information: {}", updated);
+        LOGGER.info("Updating user entry with information: {}", userDTO);
+        if (userDTO.getUserEvents()==null){
+            userDTO.setUserEvents(new LinkedList<>());
+        }
+        UserDTO updated = userService.update(userDTO);
+        LOGGER.info("Updated user entry with information: {}", updated.getUsername());
 
         return updated;
     }
