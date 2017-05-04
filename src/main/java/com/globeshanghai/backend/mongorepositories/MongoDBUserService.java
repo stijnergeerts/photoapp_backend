@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * Created by stijnergeerts on 23/04/17.
  */
 @Service
-final class MongoDBUserService implements UserService {
+public class MongoDBUserService implements UserService {
 
     private final UserRepository userRepository;
 
@@ -58,12 +58,25 @@ final class MongoDBUserService implements UserService {
 
     @Override
     public UserDTO findUserByAuthId(String authId) {
-        User user = this.userRepository.findUserByAuthId(String.valueOf(authId));
-        if (user!=null)
-            return convertToDTO(user);
+        List<User> users = userRepository.findAll();
+        for (User user : users){
+            if (user.getAuthId().equals(authId)){
+                return convertToDTO(user);
+            }
+        }
         return null;
     }
 
+    @Override
+    public UserDTO findUserByUsername(String username) {
+        List<User> users = userRepository.findAll();
+        for (User user : users){
+            if (user.getUsername().equals(username)){
+                return convertToDTO(user);
+            }
+        }
+        return null;
+    }
 
     @Override
     public UserDTO update(UserDTO user) {

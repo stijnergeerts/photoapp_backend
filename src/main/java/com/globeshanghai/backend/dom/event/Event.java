@@ -85,6 +85,22 @@ public final class Event implements Serializable {
         this.overviewLayout = overviewLayout;
     }
 
+    public Event(String eventId, String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress, String company, String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout) {
+        this.eventId = eventId;
+        this.eventName = eventName;
+        this.eventLogo = eventLogo;
+        this.eventStartDate = eventStartDate;
+        this.eventEndDate = eventEndDate;
+        this.eventLocation = eventLocation;
+        this.eventAddress = eventAddress;
+        this.company = company;
+        this.companyAddress = companyAddress;
+        this.contact = contact;
+        this.contactPhone = contactPhone;
+        this.config = config;
+        this.detailLayout = detailLayout;
+        this.overviewLayout = overviewLayout;
+    }
 
     public static Builder getBuilder() {
         return new Builder();

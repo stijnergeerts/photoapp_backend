@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  */
 
 @Service
- final class MongoDBEventService implements EventService {
+ public class MongoDBEventService implements EventService {
 
     private final EventRepository eventRepository;
 
@@ -55,6 +55,14 @@ import java.util.stream.Collectors;
     }
 
     @Override
+    public EventDTO deleteByEventName(String eventName) {
+        EventDTO eventDTO = findByEventName(eventName);
+        Event event = convertToObject(eventDTO);
+        eventRepository.delete(event);
+        return convertToDTO(event);
+    }
+
+    @Override
     public List<EventDTO> findAll() {
         List<Event> configurationEntries = eventRepository.findAll();
         return convertToDTOs(configurationEntries);
@@ -64,6 +72,14 @@ import java.util.stream.Collectors;
     public EventDTO findById(String id) {
         Event found = findEventById(id);
         return convertToDTO(found);
+    }
+
+    @Override
+    public EventDTO findByEventName(String eventName) {
+        Event event = this.eventRepository.findEventByEventName(String.valueOf(eventName));
+        if (event!=null)
+            return convertToDTO(event);
+        return null;
     }
 
     @Override
@@ -95,6 +111,26 @@ import java.util.stream.Collectors;
         dto.setOverviewLayout(model.getOverviewLayout());
         return dto;
     }
+
+    private Event convertToObject(EventDTO model) {
+        Event event = new Event();
+        event.setEventId(model.getEventId());
+        event.setEventName(model.getEventName());
+        event.setEventLogo(model.getEventLogo());
+        event.setEventStartDate(model.getEventStartDate());
+        event.setEventEndDate(model.getEventEndDate());
+        event.setEventLocation(model.getEventLocation());
+        event.setEventAddress(model.getEventAddress());
+        event.setCompany(model.getCompany());
+        event.setCompanyAddress(model.getCompanyAddress());
+        event.setContact(model.getContact());
+        event.setContactPhone(model.getContactPhone());
+        event.setConfig(model.getConfig());
+        event.setDetailLayout(model.getDetailLayout());
+        event.setOverviewLayout(model.getOverviewLayout());
+        return event;
+    }
+
     private List<EventDTO> convertToDTOs(List<Event> models) {
         return models.stream()
                 .map(this::convertToDTO)

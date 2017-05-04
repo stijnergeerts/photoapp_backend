@@ -5,6 +5,7 @@ import com.globeshanghai.backend.dom.event.ShortEvent;
 import com.globeshanghai.backend.dto.EventDTO;
 import com.globeshanghai.backend.dto.UserDTO;
 import com.globeshanghai.backend.exceptions.EventNotFoundException;
+import com.globeshanghai.backend.exceptions.UserAlreadyExcistsException;
 import com.globeshanghai.backend.exceptions.UserNotFoundException;
 import com.globeshanghai.backend.services.EventService;
 import com.globeshanghai.backend.services.UserService;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,12 +38,19 @@ final class EventController {
     }
 
     @RequestMapping(value = "/createEvent",method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    EventDTO create(@RequestHeader("token") String token, @RequestBody @Valid EventDTO eventEntry) {
+    ResponseEntity<?> create(@RequestHeader("token") String token, @RequestBody @Valid EventDTO eventEntry) {
         LOGGER.info("Creating a new event entry with information: {}", eventEntry);
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
+        List<ShortEvent> shortEvents = new LinkedList<>();
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
+        for (ShortEvent shortEvent : userEntry.getUserEvents()){
+            if (shortEvent.getEventName().equals(eventEntry.getEventName())){
+                return new ResponseEntity("A Event with name " + eventEntry.getEventName()+" already exists!",
+                        HttpStatus.CONFLICT
+                );
+            }
+        }
         EventDTO created = eventService.create(eventEntry);
         List<ShortEvent> userEvents = userEntry.getUserEvents();
         userEvents.add(new ShortEvent(created.getEventId(),created.getEventName(),created.getEventLogo()));
@@ -49,11 +58,11 @@ final class EventController {
         userService.update(userEntry);
         LOGGER.info("Created a new event entry with information: {}", created);
 
-        return created;
+        return new ResponseEntity<EventDTO>(created, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/deleteEvent/{id}", method = RequestMethod.DELETE)
-    EventDTO delete(@RequestHeader("token") String token, @PathVariable("id") String id) {
+    @RequestMapping(value = "/deleteEventById/{id}", method = RequestMethod.DELETE)
+    ResponseEntity<?> deleteById(@RequestHeader("token") String token, @PathVariable("id") String id) {
         LOGGER.info("Deleting event entry with id: {}", id);
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
@@ -75,11 +84,37 @@ final class EventController {
         userService.update(userEntry);
         LOGGER.info("Deleted event entry with information: {}", deleted.getEventName());
 
-        return deleted;
+        return new ResponseEntity<EventDTO>(deleted, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/deleteEventByName/{eventName}", method = RequestMethod.DELETE)
+    ResponseEntity<?> deleteByName(@RequestHeader("token") String token, @PathVariable("eventName") String eventName) {
+        LOGGER.info("Deleting event entry with id: {}", eventName);
+        UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
+        if (userEntry == null)
+            throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
+        List<ShortEvent> userEvents = userEntry.getUserEvents();
+        List<String> eventNames = new LinkedList<>();
+        for (int i=0; i<userEvents.size(); i++){
+            eventNames.add(userEvents.get(i).getEventName());
+        }
+        if (!eventNames.contains(eventName))
+            throw new EventNotFoundException("Event with name "+ eventName +" not found!");
+        EventDTO deleted = eventService.deleteByEventName(eventName);
+        for (int i=0; i<userEvents.size(); i++){
+            if (deleted.getEventId().equals(userEvents.get(i).getEventId())) {
+                userEvents.remove(userEvents.get(i));
+            }
+        }
+        userEntry.setUserEvents(userEvents);
+        userService.update(userEntry);
+        LOGGER.info("Deleted event entry with information: {}", deleted.getEventName());
+
+        return new ResponseEntity<EventDTO>(deleted, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getEvents", method = RequestMethod.GET)
-    List<EventDTO> findAll(@RequestHeader("token") String token) {
+    ResponseEntity<?> findAll(@RequestHeader("token") String token) {
         LOGGER.info("Finding all event entries");
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
@@ -90,12 +125,12 @@ final class EventController {
             eventEntries.add(i,eventService.findById(userEvents.get(i).getEventId()));
         }
 
-        return eventEntries;
+        return new  ResponseEntity<List<EventDTO>>(eventEntries, HttpStatus.OK);
 
     }
 
-    @RequestMapping(value = "/getEvent/{id}", method = RequestMethod.GET)
-    EventDTO findById(@RequestHeader("token") String token, @PathVariable("id") String id) {
+    @RequestMapping(value = "/getEventById/{id}", method = RequestMethod.GET)
+    ResponseEntity<?> findById(@RequestHeader("token") String token, @PathVariable("id") String id) {
         LOGGER.info("Finding event entry with id: {}", id);
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
@@ -110,17 +145,46 @@ final class EventController {
         EventDTO eventEntry = eventService.findById(id);
         LOGGER.info("Found event entry with information: {}", eventEntry.getEventName());
 
-        return eventEntry;
+        return new ResponseEntity<EventDTO>(eventEntry, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
-    EventDTO update(@RequestHeader("token") String token, @RequestBody @Valid EventDTO eventEntry) {
-        LOGGER.info("Updating event entry with information: {}", eventEntry);
+    @RequestMapping(value = "/getEventByName/{eventName}", method = RequestMethod.GET)
+    ResponseEntity<?> findByEventName(@RequestHeader("token") String token, @PathVariable("eventName") String eventName) {
+        LOGGER.info("Finding event entry with name: {}", eventName);
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
         List<ShortEvent> userEvents = userEntry.getUserEvents();
         List<String> eventIds = new LinkedList<>();
+        for (int i=0; i<userEvents.size(); i++){
+            eventIds.add(userEvents.get(i).getEventName());
+        }
+        if (!eventIds.contains(eventName))
+            throw new EventNotFoundException("Event with name "+ eventName +" not found!");
+        EventDTO eventEntry = eventService.findByEventName(eventName);
+        LOGGER.info("Found event entry with information: {}", eventEntry.getEventName());
+
+        return new ResponseEntity<EventDTO>(eventEntry, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
+    ResponseEntity<?> update(@RequestHeader("token") String token, @RequestBody @Valid EventDTO eventEntry) {
+        LOGGER.info("Updating event entry with information: {}", eventEntry);
+        UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
+        EventDTO currentEvent = eventService.findById(eventEntry.getEventId());
+        if (userEntry == null)
+            throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
+        List<ShortEvent> userEvents = userEntry.getUserEvents();
+        List<String> eventIds = new LinkedList<>();
+        if (!currentEvent.getEventName().equals(eventEntry.getEventName())) {
+            for (ShortEvent shortEvent : userEntry.getUserEvents()) {
+                if (shortEvent.getEventName().equals(eventEntry.getEventName())) {
+                        return new ResponseEntity(new UserAlreadyExcistsException("Could not update Event! Eventname " + eventEntry.getEventName() + " already exists!"),
+                                HttpStatus.CONFLICT
+                        );
+                }
+            }
+        }
         for (ShortEvent userEvent : userEvents) {
             eventIds.add(userEvent.getEventId());
         }
@@ -131,7 +195,7 @@ final class EventController {
         EventDTO updated = eventService.update(eventEntry);
         LOGGER.info("Updated event entry with information: {}", updated);
 
-        return updated;
+        return new ResponseEntity<EventDTO>(updated, HttpStatus.OK);
     }
 
     @ExceptionHandler

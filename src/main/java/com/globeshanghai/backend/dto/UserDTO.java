@@ -40,6 +40,15 @@ public class UserDTO {
         this.userEvents = userEvents;
     }
 
+    public UserDTO(UserDTO userEntry) {
+        this.userId = userEntry.getUserId();
+        this.username = userEntry.getUsername();
+        this.authId = userEntry.getAuthId();
+        this.firstname = userEntry.getFirstname();
+        this.lastname = userEntry.getLastname();
+        this.userEvents = userEntry.getUserEvents();
+    }
+
     public String getUserId() {
         return userId;
     }

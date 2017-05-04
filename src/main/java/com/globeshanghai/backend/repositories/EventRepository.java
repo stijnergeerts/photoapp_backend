@@ -13,9 +13,13 @@ public interface EventRepository extends Repository<Event, String> {
 
     void delete(Event deleted);
 
+    void delete(String eventName);
+
     List<Event> findAll();
 
     Optional<Event> findOne(String id);
+
+    Event findEventByEventName(String eventName);
 
     Event save(Event saved);
 }

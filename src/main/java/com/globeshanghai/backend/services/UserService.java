@@ -18,5 +18,7 @@ public interface UserService {
 
     UserDTO findUserByAuthId(String authId);
 
+    UserDTO findUserByUsername(String username);
+
     UserDTO update(UserDTO user);
 }
