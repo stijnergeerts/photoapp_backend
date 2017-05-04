@@ -4,8 +4,8 @@ import com.auth0.jwt.JWT;
 import com.globeshanghai.backend.dom.event.ShortEvent;
 import com.globeshanghai.backend.dto.EventDTO;
 import com.globeshanghai.backend.dto.UserDTO;
+import com.globeshanghai.backend.exceptions.EventAlreadyExcistsException;
 import com.globeshanghai.backend.exceptions.EventNotFoundException;
-import com.globeshanghai.backend.exceptions.UserAlreadyExcistsException;
 import com.globeshanghai.backend.exceptions.UserNotFoundException;
 import com.globeshanghai.backend.services.EventService;
 import com.globeshanghai.backend.services.UserService;
@@ -179,7 +179,7 @@ final class EventController {
         if (!currentEvent.getEventName().equals(eventEntry.getEventName())) {
             for (ShortEvent shortEvent : userEntry.getUserEvents()) {
                 if (shortEvent.getEventName().equals(eventEntry.getEventName())) {
-                        return new ResponseEntity(new UserAlreadyExcistsException("Could not update Event! Eventname " + eventEntry.getEventName() + " already exists!"),
+                        return new ResponseEntity(new EventAlreadyExcistsException(eventEntry.getEventName()),
                                 HttpStatus.CONFLICT
                         );
                 }
