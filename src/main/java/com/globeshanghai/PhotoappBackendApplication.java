@@ -1,5 +1,11 @@
 package com.globeshanghai;
 
+import com.globeshanghai.backend.dom.configuration.Config;
+import com.globeshanghai.backend.dom.configuration.PhotoQuality;
+import com.globeshanghai.backend.dom.event.Event;
+import com.globeshanghai.backend.dom.event.EventText;
+import com.globeshanghai.backend.dom.layout.DetailLayout;
+import com.globeshanghai.backend.dom.layout.OverviewLayout;
 import com.globeshanghai.backend.repositories.EventRepository;
 import com.globeshanghai.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +14,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Date;
 
 
 //@SpringBootApplication
@@ -43,7 +51,7 @@ public class PhotoappBackendApplication implements CommandLineRunner{// implemen
 				"ftpUsername","ftpPassword","printername",true,
 				false,34,true,false,"JES"));
 
-		*//*eventRepository.save(new Event("Rolls Royce",new Date(2014,12,3),
+		*/eventRepository.save(new Event("Rolls Royce","EventLogo",new Date(2014,12,3),
 				new Date(2014,12,4),"eventLoc","eventAdd","comp",
 				"compAdd","contact","contactPhone",
 				new Config("MEDIASTORAGE", PhotoQuality.HIGH,"ftpIpAddress","ftpPort",
@@ -52,8 +60,9 @@ public class PhotoappBackendApplication implements CommandLineRunner{// implemen
 				new DetailLayout("backgroundColorTEST","backgroundImage","btnColor",
 						"btnPressedColor","printBtnImage","shareBtnImage","backBtnImage","finishBtnImage"),
 				new OverviewLayout("backgroundColorOverv","backgroundImageOverv","btnColorOverv",
-						"btnPressedColorOverv","selectBtnImage","selectionColor")));
-		userRepository.save(new User("stijnergeerts", "", "Stijn", "Ergeerts", events));*/
+						"btnPressedColorOverv","selectBtnImage","selectionColor"),
+				new EventText("Title", "Follow on social media","Links")));
+		//userRepository.save(new User("stijnergeerts", "", "Stijn", "Ergeerts",events));
 		};
 		}
 

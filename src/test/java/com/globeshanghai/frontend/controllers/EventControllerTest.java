@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.globeshanghai.backend.dom.configuration.Config;
 import com.globeshanghai.backend.dom.configuration.PhotoQuality;
 import com.globeshanghai.backend.dom.event.Event;
+import com.globeshanghai.backend.dom.event.EventText;
 import com.globeshanghai.backend.dom.layout.DetailLayout;
 import com.globeshanghai.backend.dom.layout.OverviewLayout;
 import com.globeshanghai.backend.dom.user.User;
@@ -126,6 +127,12 @@ public class EventControllerTest {
     private String overviewBtnColor;
     @Value("TestOverviewBPI")
     private String overviewBtnPressedColor;
+    @Value("Title")
+    private String textUpper;
+    @Value("Follow on social media")
+    private String textUnderPhoto;
+    @Value("Links")
+    private String textBottom;
 
     private String testToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODY" +
             "3MzE5MzgsImV4cCI6MTUxODI2NzkzOCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoidGVz" +
@@ -154,7 +161,8 @@ public class EventControllerTest {
                 new DetailLayout(detailBackgroundColor, detailBackgroundImage, detailBtnColor,
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,
-                        overviewBtnPressedColor, selectBtnImage, selectionColor));
+                        overviewBtnPressedColor, selectBtnImage, selectionColor),
+                new EventText(textUpper,textUnderPhoto,textBottom));
 
         Event testEvent2 = new Event("TestEvent2", eventLogo, new Date(2014, 12, 3),
                 new Date(2014, 12, 4), eventLocation, eventAddress, company,
@@ -165,7 +173,8 @@ public class EventControllerTest {
                 new DetailLayout(detailBackgroundColor, detailBackgroundImage, detailBtnColor,
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,
-                        overviewBtnPressedColor, selectBtnImage, selectionColor));
+                        overviewBtnPressedColor, selectBtnImage, selectionColor),
+                new EventText(textUpper,textUnderPhoto,textBottom));
 
         this.mockMvc.perform(post("/api/user/createUser").content(mapper.writeValueAsString(testUser)).header("token", testToken).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -195,7 +204,8 @@ public class EventControllerTest {
                 new DetailLayout(detailBackgroundColor, detailBackgroundImage, detailBtnColor,
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,
-                        overviewBtnPressedColor, selectBtnImage, selectionColor));
+                        overviewBtnPressedColor, selectBtnImage, selectionColor),
+                new EventText(textUpper,textUnderPhoto,textBottom));
 
         this.mockMvc.perform(post("/api/event/createEvent").header("token", testToken).content(mapper.writeValueAsString(testEvent)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isConflict());

@@ -3,6 +3,7 @@ package com.globeshanghai.backend.persistence;
 import com.globeshanghai.backend.dom.configuration.Config;
 import com.globeshanghai.backend.dom.configuration.PhotoQuality;
 import com.globeshanghai.backend.dom.event.Event;
+import com.globeshanghai.backend.dom.event.EventText;
 import com.globeshanghai.backend.dom.layout.DetailLayout;
 import com.globeshanghai.backend.dom.layout.OverviewLayout;
 import com.globeshanghai.backend.dom.user.User;
@@ -112,6 +113,12 @@ public class MongoDbTest {
     private String overviewBtnColor;
     @Value("TestOverviewBPI")
     private String overviewBtnPressedColor;
+    @Value("Title")
+    private String textUpper;
+    @Value("Follow on social media")
+    private String textUnderPhoto;
+    @Value("Links")
+    private String textBottom;
 
     @Autowired
     private UserRepository userRepository;
@@ -165,7 +172,8 @@ public class MongoDbTest {
                 new DetailLayout(detailBackgroundColor,detailBackgroundImage,detailBtnColor,
                         detailBtnPressedColor,printBtnImage,shareBtnImage,backBtnImage,finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor,overviewBackgroundImage,overviewBtnColor,
-                        overviewBtnPressedColor,selectBtnImage,selectionColor));
+                        overviewBtnPressedColor,selectBtnImage,selectionColor),
+                new EventText(textUpper,textUnderPhoto,textBottom));
         eventRepository.save(e);
         assertEquals((eventRepository.findEventByEventName(eventName).getEventName() + eventRepository.findEventByEventName(eventName).getEventLogo()), (e.getEventName() + e.getEventLogo()));
     }

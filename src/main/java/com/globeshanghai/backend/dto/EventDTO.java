@@ -1,6 +1,7 @@
 package com.globeshanghai.backend.dto;
 
 import com.globeshanghai.backend.dom.configuration.Config;
+import com.globeshanghai.backend.dom.event.EventText;
 import com.globeshanghai.backend.dom.layout.DetailLayout;
 import com.globeshanghai.backend.dom.layout.OverviewLayout;
 
@@ -39,9 +40,11 @@ public class EventDTO {
 
     private OverviewLayout overviewLayout;
 
+    private EventText eventText;
+
     public EventDTO(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation,
                     String eventAddress, String company, String companyAddress, String contact,
-                    String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout) {
+                    String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
         this.eventName = eventName;
         this.eventLogo = eventLogo;
         this.eventStartDate = eventStartDate;
@@ -55,11 +58,12 @@ public class EventDTO {
         this.config = config;
         this.detailLayout = detailLayout;
         this.overviewLayout = overviewLayout;
+        this.eventText = eventText;
     }
 
     public EventDTO(String eventId, String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation,
                     String eventAddress, String company, String companyAddress, String contact, String contactPhone,
-                    Config config, DetailLayout detailLayout, OverviewLayout overviewLayout) {
+                    Config config, DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventLogo = eventLogo;
@@ -74,6 +78,7 @@ public class EventDTO {
         this.config = config;
         this.detailLayout = detailLayout;
         this.overviewLayout = overviewLayout;
+        this.eventText = eventText;
     }
 
     public EventDTO() {
@@ -189,5 +194,13 @@ public class EventDTO {
 
     public void setOverviewLayout(OverviewLayout overviewLayout) {
         this.overviewLayout = overviewLayout;
+    }
+
+    public EventText getEventText() {
+        return eventText;
+    }
+
+    public void setEventText(EventText eventText) {
+        this.eventText = eventText;
     }
 }

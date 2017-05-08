@@ -42,6 +42,7 @@ import java.util.stream.Collectors;
                 .config(event.getConfig())
                 .detailLayout(event.getDetailLayout())
                 .overviewLayout(event.getOverviewLayout())
+                .eventText(event.getEventText())
                 .build();
         eventRepository.save(persisted);
         return convertToDTO(persisted);
@@ -87,7 +88,7 @@ import java.util.stream.Collectors;
         Event updated = findEventById(event.getEventId());
         updated.update(event.getEventName(),event.getEventLogo(),event.getEventStartDate(),event.getEventEndDate(),event.getEventLocation(),
                 event.getEventAddress(), event.getCompany(),event.getCompanyAddress(),event.getContact(),event.getContactPhone(),
-                event.getConfig(),event.getDetailLayout(),event.getOverviewLayout());
+                event.getConfig(),event.getDetailLayout(),event.getOverviewLayout(),event.getEventText());
         updated = eventRepository.save(updated);
         return convertToDTO(updated);
     }
@@ -109,6 +110,7 @@ import java.util.stream.Collectors;
         dto.setConfig(model.getConfig());
         dto.setDetailLayout(model.getDetailLayout());
         dto.setOverviewLayout(model.getOverviewLayout());
+        dto.setEventText(model.getEventText());
         return dto;
     }
 
@@ -128,6 +130,7 @@ import java.util.stream.Collectors;
         event.setConfig(model.getConfig());
         event.setDetailLayout(model.getDetailLayout());
         event.setOverviewLayout(model.getOverviewLayout());
+        event.setEventText(model.getEventText());
         return event;
     }
 

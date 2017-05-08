@@ -1,6 +1,7 @@
 package com.globeshanghai.frontend.controllers;
 
 import com.auth0.jwt.JWT;
+import com.globeshanghai.backend.dom.event.EventText;
 import com.globeshanghai.backend.dom.event.ShortEvent;
 import com.globeshanghai.backend.dto.EventDTO;
 import com.globeshanghai.backend.dto.UserDTO;
@@ -165,6 +166,40 @@ final class EventController {
         LOGGER.info("Found event entry with information: {}", eventEntry.getEventName());
 
         return new ResponseEntity<EventDTO>(eventEntry, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getEventTextByName/{eventName}", method = RequestMethod.GET)
+    ResponseEntity<?> findEventTextByEventName(@PathVariable("eventName") String eventName) {
+        LOGGER.info("Finding eventText entry with name: {}", eventName);
+        List<EventDTO> events = eventService.findAll();
+        EventDTO eventDTO = new EventDTO();
+        for (int i=0; i<events.size(); i++){
+            if (events.get(i).getEventName().equals(eventName)){
+                eventDTO=events.get(i);
+            }
+        }
+        if (eventDTO.getEventId()==null){
+            throw new EventNotFoundException("Event with name "+ eventName +" not found!");
+        }
+
+        return new ResponseEntity<EventText>(eventDTO.getEventText(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getEventTextById/{id}", method = RequestMethod.GET)
+    ResponseEntity<?> findEventTextById(@PathVariable("id") String id) {
+        LOGGER.info("Finding eventText entry with id: {}", id);
+        List<EventDTO> events = eventService.findAll();
+        EventDTO eventDTO = new EventDTO();
+        for (int i=0; i<events.size(); i++){
+            if (events.get(i).getEventId().equals(id)){
+                eventDTO=events.get(i);
+            }
+        }
+        if (eventDTO.getEventId()==null){
+            throw new EventNotFoundException("Event with id "+ id +" not found!");
+        }
+
+        return new ResponseEntity<EventText>(eventDTO.getEventText(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)

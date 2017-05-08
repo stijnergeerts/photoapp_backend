@@ -48,6 +48,8 @@ public final class Event implements Serializable {
 
     private OverviewLayout overviewLayout;
 
+    private EventText eventText;
+
     private Event(Builder builder) {
         this.eventName = builder.eventName;
         this.eventLogo = builder.eventLogo;
@@ -62,6 +64,7 @@ public final class Event implements Serializable {
         this.config = builder.config;
         this.detailLayout = builder.detailLayout;
         this.overviewLayout = builder.overviewLayout;
+        this.eventText = builder.eventText;
     }
     public Event() {
     }
@@ -69,7 +72,7 @@ public final class Event implements Serializable {
 
     public Event(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress,
                  String company, String companyAddress, String contact, String contactPhone, Config config,
-                 DetailLayout detailLayout, OverviewLayout overviewLayout) {
+                 DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
         this.eventName = eventName;
         this.eventLogo = eventLogo;
         this.eventStartDate = eventStartDate;
@@ -83,9 +86,10 @@ public final class Event implements Serializable {
         this.config = config;
         this.detailLayout = detailLayout;
         this.overviewLayout = overviewLayout;
+        this.eventText = eventText;
     }
 
-    public Event(String eventId, String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress, String company, String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout) {
+    public Event(String eventId, String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress, String company, String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventLogo = eventLogo;
@@ -100,6 +104,7 @@ public final class Event implements Serializable {
         this.config = config;
         this.detailLayout = detailLayout;
         this.overviewLayout = overviewLayout;
+        this.eventText = eventText;
     }
 
     public static Builder getBuilder() {
@@ -218,13 +223,21 @@ public final class Event implements Serializable {
         this.overviewLayout = overviewLayout;
     }
 
+    public EventText getEventText() {
+        return eventText;
+    }
+
+    public void setEventText(EventText eventText) {
+        this.eventText = eventText;
+    }
+
     public void update(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress,
                        String company, String companyAddress, String contact, String contactPhone, Config config,
-                       DetailLayout detailLayout, OverviewLayout overviewLayout) {
+                       DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
 
         checkAll(eventName, eventLogo, eventStartDate, eventEndDate, eventLocation, eventAddress,
                 company,  companyAddress,  contact,  contactPhone,  config,
-                detailLayout,  overviewLayout);
+                detailLayout,  overviewLayout, eventText);
 
         this.eventName = eventName;
         this.eventLogo = eventLogo;
@@ -239,6 +252,7 @@ public final class Event implements Serializable {
         this.config = config;
         this.detailLayout = detailLayout;
         this.overviewLayout = overviewLayout;
+        this.eventText = eventText;
     }
 
 
@@ -269,6 +283,8 @@ public final class Event implements Serializable {
         private DetailLayout detailLayout;
 
         private OverviewLayout overviewLayout;
+
+        private EventText eventText;
 
 
         private Builder() {}
@@ -329,6 +345,10 @@ public final class Event implements Serializable {
             this.overviewLayout = overviewLayout;
             return this;
         }
+        public Event.Builder eventText(EventText eventText) {
+            this.eventText = eventText;
+            return this;
+        }
 
 
 
@@ -337,7 +357,7 @@ public final class Event implements Serializable {
 
             build.checkAll(build.getEventName(), build.getEventLogo(), build.getEventStartDate(), build.getEventEndDate(),
                     build.getEventLocation(), build.getEventAddress(),build.getCompany(),build.getCompanyAddress(),
-                    build.getContact(),build.getContactPhone(),build.getConfig(), build.getDetailLayout(), build.getOverviewLayout());
+                    build.getContact(),build.getContactPhone(),build.getConfig(), build.getDetailLayout(), build.getOverviewLayout(), build.getEventText());
 
             return build;
         }
@@ -345,7 +365,7 @@ public final class Event implements Serializable {
 
     private void checkAll(String eventName, String eventLogo, Date eventStartDate,  Date eventEndDate, String eventLocation,String eventAddress,String company,
                           String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout,
-                          OverviewLayout overviewLayout) {
+                          OverviewLayout overviewLayout, EventText eventText) {
         notNull(eventName, "eventName cannot be null");
         notEmpty(eventName, "eventName cannot be empty");
 
@@ -379,5 +399,7 @@ public final class Event implements Serializable {
         notNull(detailLayout, "detailLayout cannot be null");
 
         notNull(overviewLayout, "overviewLayout cannot be null");
+
+        notNull(eventText, "eventText cannot be null");
     }
 }
