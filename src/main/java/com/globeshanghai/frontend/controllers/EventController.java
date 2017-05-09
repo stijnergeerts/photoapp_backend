@@ -25,6 +25,7 @@ import java.util.List;
  * Created by stijnergeerts on 20/04/17.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("api/event")
 final class EventController {
     private static final Logger LOGGER = LoggerFactory.getLogger(EventController.class);

@@ -14,6 +14,8 @@ public final class EventText {
 
     private String textBottom;
 
+    private String textColor;
+
     public EventText(String textUpper) {
         this.textUpper = textUpper;
     }
@@ -27,6 +29,13 @@ public final class EventText {
     public EventText(String textUnderPhoto, String textBottom) {
         this.textUnderPhoto = textUnderPhoto;
         this.textBottom = textBottom;
+    }
+
+    public EventText(String textUpper, String textUnderPhoto, String textBottom, String textColor) {
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
     }
 
     public EventText() {
@@ -54,5 +63,13 @@ public final class EventText {
 
     public void setTextBottom(String textBottom) {
         this.textBottom = textBottom;
+    }
+
+    public String getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(String textColor) {
+        this.textColor = textColor;
     }
 }

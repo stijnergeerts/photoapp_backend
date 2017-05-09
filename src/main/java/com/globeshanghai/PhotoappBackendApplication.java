@@ -61,7 +61,7 @@ public class PhotoappBackendApplication implements CommandLineRunner{// implemen
 						"btnPressedColor","printBtnImage","shareBtnImage","backBtnImage","finishBtnImage"),
 				new OverviewLayout("backgroundColorOverv","backgroundImageOverv","btnColorOverv",
 						"btnPressedColorOverv","selectBtnImage","selectionColor"),
-				new EventText("Title", "Follow on social media","Links")));
+				new EventText("Title", "Follow on social media","Links","#a48e7c")));
 		//userRepository.save(new User("stijnergeerts", "", "Stijn", "Ergeerts",events));
 		};
 		}

@@ -10,10 +10,13 @@ public class EventTextDTO {
 
     private String textBottom;
 
-    public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom) {
+    private String textColor;
+
+    public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom, String textColor) {
         this.textUpper = textUpper;
         this.textUnderPhoto = textUnderPhoto;
         this.textBottom = textBottom;
+        this.textColor = textColor;
     }
 
     public EventTextDTO(String textUpper, String textUnderPhoto) {
@@ -21,8 +24,16 @@ public class EventTextDTO {
         this.textUnderPhoto = textUnderPhoto;
     }
 
+    public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom) {
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+    }
+
     public EventTextDTO(String textUpper) {
         this.textUpper = textUpper;
+    }
+    public EventTextDTO() {
     }
 
     public String getTextUpper() {
@@ -47,5 +58,13 @@ public class EventTextDTO {
 
     public void setTextBottom(String textBottom) {
         this.textBottom = textBottom;
+    }
+
+    public String getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(String textColor) {
+        this.textColor = textColor;
     }
 }

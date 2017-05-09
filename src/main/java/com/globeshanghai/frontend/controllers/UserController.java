@@ -22,6 +22,7 @@ import java.util.List;
  * Created by stijnergeerts on 23/04/17.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("api/user")
 final class UserController {
 
