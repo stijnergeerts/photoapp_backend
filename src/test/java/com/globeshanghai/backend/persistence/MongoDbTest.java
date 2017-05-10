@@ -19,8 +19,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -51,6 +49,10 @@ public class MongoDbTest {
     private String eventName;
     @Value("TestLogo")
     private String eventLogo;
+    @Value("2017-05-09")
+    private String eventStartDate;
+    @Value("2017-05-11")
+    private String eventEndDate;
     @Value("TestLogoUpdate")
     private String updatedTestLogo;
     @Value("TestLocation")
@@ -163,8 +165,8 @@ public class MongoDbTest {
     @Test
     public void dCreateEvent()
     {
-        Event e = new Event(eventName, eventLogo, new Date(2014,12,3),
-                new Date(2014,12,4),eventLocation,eventAddress,company,
+        Event e = new Event(eventName, eventLogo, eventStartDate,
+                eventEndDate,eventLocation,eventAddress,company,
                 companyAddress,contact,contactPhone,
                 new Config(mediaStorage, PhotoQuality.HIGH,ftpIPAddress,ftpPort,
                         ftpUsername,ftpPassword,printerName,true,

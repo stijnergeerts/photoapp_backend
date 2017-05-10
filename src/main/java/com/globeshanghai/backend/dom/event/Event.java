@@ -7,8 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.Date;
 
+import static com.globeshanghai.frontend.util.PreCondition.isDate;
 import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
 import static com.globeshanghai.frontend.util.PreCondition.notNull;
 
@@ -26,9 +26,9 @@ public final class Event implements Serializable {
 
     private String eventLogo;
 
-    private Date eventStartDate;
+    private String eventStartDate;
 
-    private Date eventEndDate;
+    private String eventEndDate;
 
     private String eventLocation;
 
@@ -70,7 +70,7 @@ public final class Event implements Serializable {
     }
 
 
-    public Event(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress,
+    public Event(String eventName, String eventLogo, String eventStartDate, String eventEndDate, String eventLocation, String eventAddress,
                  String company, String companyAddress, String contact, String contactPhone, Config config,
                  DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
         this.eventName = eventName;
@@ -89,7 +89,7 @@ public final class Event implements Serializable {
         this.eventText = eventText;
     }
 
-    public Event(String eventId, String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress, String company, String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
+    public Event(String eventId, String eventName, String eventLogo, String eventStartDate, String eventEndDate, String eventLocation, String eventAddress, String company, String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.eventLogo = eventLogo;
@@ -135,19 +135,19 @@ public final class Event implements Serializable {
         this.eventLogo = eventLogo;
     }
 
-    public Date getEventStartDate() {
+    public String getEventStartDate() {
         return eventStartDate;
     }
 
-    public void setEventStartDate(Date eventStartDate) {
+    public void setEventStartDate(String eventStartDate) {
         this.eventStartDate = eventStartDate;
     }
 
-    public Date getEventEndDate() {
+    public String getEventEndDate() {
         return eventEndDate;
     }
 
-    public void setEventEndDate(Date eventEndDate) {
+    public void setEventEndDate(String eventEndDate) {
         this.eventEndDate = eventEndDate;
     }
 
@@ -231,7 +231,7 @@ public final class Event implements Serializable {
         this.eventText = eventText;
     }
 
-    public void update(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation, String eventAddress,
+    public void update(String eventName, String eventLogo, String eventStartDate, String eventEndDate, String eventLocation, String eventAddress,
                        String company, String companyAddress, String contact, String contactPhone, Config config,
                        DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
 
@@ -262,9 +262,9 @@ public final class Event implements Serializable {
 
         private String eventLogo;
 
-        private Date eventStartDate;
+        private String eventStartDate;
 
-        private Date eventEndDate;
+        private String eventEndDate;
 
         private String eventLocation;
 
@@ -299,12 +299,12 @@ public final class Event implements Serializable {
             return this;
         }
 
-        public Event.Builder eventStartDate(Date eventStartDate) {
+        public Event.Builder eventStartDate(String eventStartDate) {
             this.eventStartDate = eventStartDate;
             return this;
         }
 
-        public Event.Builder eventEndDate(Date eventEndDate) {
+        public Event.Builder eventEndDate(String eventEndDate) {
             this.eventEndDate = eventEndDate;
             return this;
         }
@@ -363,7 +363,7 @@ public final class Event implements Serializable {
         }
     }
 
-    private void checkAll(String eventName, String eventLogo, Date eventStartDate,  Date eventEndDate, String eventLocation,String eventAddress,String company,
+    private void checkAll(String eventName, String eventLogo, String eventStartDate,  String eventEndDate, String eventLocation,String eventAddress,String company,
                           String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout,
                           OverviewLayout overviewLayout, EventText eventText) {
         notNull(eventName, "eventName cannot be null");
@@ -373,8 +373,10 @@ public final class Event implements Serializable {
         notEmpty(eventLogo, "eventLogo cannot be empty");
 
         notNull(eventStartDate, "eventStartDate cannot be null");
+        isDate(eventStartDate,"eventStartDate has to be a YYYY-MM-DD dateformat");
 
         notNull(eventEndDate, "eventEndDate cannot be null");
+        isDate(eventEndDate,"eventEndDate has to be a YYYY-MM-DD dateformat");
 
         notNull(eventLocation, "eventLocation cannot be null");
         notEmpty(eventLocation, "eventLocation cannot be empty");

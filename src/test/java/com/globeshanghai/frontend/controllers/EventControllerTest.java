@@ -27,8 +27,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Date;
-
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -67,6 +65,10 @@ public class EventControllerTest {
     private String eventLogo;
     @Value("TestLogoUpdate")
     private String updatedTestLogo;
+    @Value("2017-05-09")
+    private String eventStartDate;
+    @Value("2017-05-11")
+    private String eventEndDate;
     @Value("TestLocation")
     private String eventLocation;
     @Value("TestAddress")
@@ -152,8 +154,8 @@ public class EventControllerTest {
         testUser.setLastname("User");
         testUser.setUsername("TestUser");
 
-        Event testEvent = new Event(eventName, eventLogo, new Date(2014, 12, 3),
-                new Date(2014, 12, 4), eventLocation, eventAddress, company,
+        Event testEvent = new Event(eventName, eventLogo, eventStartDate,
+                eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
                 new Config(mediaStorage, PhotoQuality.HIGH, ftpIPAddress, ftpPort,
                         ftpUsername, ftpPassword, printerName, true,
@@ -164,8 +166,8 @@ public class EventControllerTest {
                         overviewBtnPressedColor, selectBtnImage, selectionColor),
                 new EventText(textUpper,textUnderPhoto,textBottom));
 
-        Event testEvent2 = new Event("TestEvent2", eventLogo, new Date(2014, 12, 3),
-                new Date(2014, 12, 4), eventLocation, eventAddress, company,
+        Event testEvent2 = new Event("TestEvent2", eventLogo, eventStartDate,
+                eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
                 new Config(mediaStorage, PhotoQuality.HIGH, ftpIPAddress, ftpPort,
                         ftpUsername, ftpPassword, printerName, true,
@@ -195,8 +197,8 @@ public class EventControllerTest {
 
     @Test
     public void bTestCreateAlreadyExistingEvent() throws Exception {
-        Event testEvent = new Event(eventName, eventLogo, new Date(2014, 12, 3),
-                new Date(2014, 12, 4), eventLocation, eventAddress, company,
+        Event testEvent = new Event(eventName, eventLogo, eventStartDate,
+                eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
                 new Config(mediaStorage, PhotoQuality.HIGH, ftpIPAddress, ftpPort,
                         ftpUsername, ftpPassword, printerName, true,

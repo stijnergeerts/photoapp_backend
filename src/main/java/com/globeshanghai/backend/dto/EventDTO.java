@@ -5,8 +5,6 @@ import com.globeshanghai.backend.dom.event.EventText;
 import com.globeshanghai.backend.dom.layout.DetailLayout;
 import com.globeshanghai.backend.dom.layout.OverviewLayout;
 
-import java.util.Date;
-
 /**
  * Created by stijnergeerts on 19/04/17.
  */
@@ -18,9 +16,9 @@ public class EventDTO {
 
     private String eventLogo;
 
-    private Date eventStartDate;
+    private String eventStartDate;
 
-    private Date eventEndDate;
+    private String eventEndDate;
 
     private String eventLocation;
 
@@ -42,7 +40,7 @@ public class EventDTO {
 
     private EventText eventText;
 
-    public EventDTO(String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation,
+    public EventDTO(String eventName, String eventLogo, String eventStartDate, String eventEndDate, String eventLocation,
                     String eventAddress, String company, String companyAddress, String contact,
                     String contactPhone, Config config, DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
         this.eventName = eventName;
@@ -61,7 +59,7 @@ public class EventDTO {
         this.eventText = eventText;
     }
 
-    public EventDTO(String eventId, String eventName, String eventLogo, Date eventStartDate, Date eventEndDate, String eventLocation,
+    public EventDTO(String eventId, String eventName, String eventLogo, String eventStartDate, String eventEndDate, String eventLocation,
                     String eventAddress, String company, String companyAddress, String contact, String contactPhone,
                     Config config, DetailLayout detailLayout, OverviewLayout overviewLayout, EventText eventText) {
         this.eventId = eventId;
@@ -108,19 +106,19 @@ public class EventDTO {
         this.eventLogo = eventLogo;
     }
 
-    public Date getEventStartDate() {
+    public String getEventStartDate() {
         return eventStartDate;
     }
 
-    public void setEventStartDate(Date eventStartDate) {
+    public void setEventStartDate(String eventStartDate) {
         this.eventStartDate = eventStartDate;
     }
 
-    public Date getEventEndDate() {
+    public String getEventEndDate() {
         return eventEndDate;
     }
 
-    public void setEventEndDate(Date eventEndDate) {
+    public void setEventEndDate(String eventEndDate) {
         this.eventEndDate = eventEndDate;
     }
 
