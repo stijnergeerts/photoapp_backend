@@ -81,6 +81,8 @@ public class MongoDbTest {
     private String ftpPassword;
     @Value("TestPrinterName")
     private String printerName;
+    @Value("TestQrImage")
+    private String qrImage;
     @Value("TestWatermarkImage")
     private String watermarkImage;
     @Value("11223344")
@@ -170,7 +172,7 @@ public class MongoDbTest {
                 companyAddress,contact,contactPhone,
                 new Config(mediaStorage, PhotoQuality.HIGH,ftpIPAddress,ftpPort,
                         ftpUsername,ftpPassword,printerName,true,
-                        false,34,true,false,watermarkImage),
+                        false,34,true,false, qrImage, watermarkImage),
                 new DetailLayout(detailBackgroundColor,detailBackgroundImage,detailBtnColor,
                         detailBtnPressedColor,printBtnImage,shareBtnImage,backBtnImage,finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor,overviewBackgroundImage,overviewBtnColor,

@@ -41,6 +41,8 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
 
     private boolean qrPrinting;
 
+    private String qrImage;
+
     private String watermarkImage;
 
     private Config(Builder builder) {
@@ -56,13 +58,14 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.printerCopies = builder.printerCopies;
         this.watermark = builder.watermark;
         this.qrPrinting = builder.qrPrinting;
+        this.qrImage = builder.qrImage;
         this.watermarkImage = builder.watermarkImage;
     }
 
     public Config(){
     };
 
-    public Config(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress, String ftpPort, String ftpUsername, String ftpPassword, String printerName, boolean printerEnabled, boolean automaticPrinting, int printerCopies, boolean watermark, boolean qrPrinting, String watermarkImage) {
+    public Config(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress, String ftpPort, String ftpUsername, String ftpPassword, String printerName, boolean printerEnabled, boolean automaticPrinting, int printerCopies, boolean watermark, boolean qrPrinting,String qrImage, String watermarkImage) {
         this.mediaStorage = mediaStorage;
         this.photoQuality = photoQuality;
         this.ftpIPAddress = ftpIPAddress;
@@ -75,6 +78,7 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.printerCopies = printerCopies;
         this.watermark = watermark;
         this.qrPrinting = qrPrinting;
+        this.qrImage = qrImage;
         this.watermarkImage = watermarkImage;
     }
 
@@ -186,6 +190,14 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.qrPrinting = qrPrinting;
     }
 
+    public String getQrImage() {
+        return qrImage;
+    }
+
+    public void setQrImage(String qrImage) {
+        this.qrImage = qrImage;
+    }
+
     public String getWatermarkImage() {
         return watermarkImage;
     }
@@ -194,13 +206,15 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.watermarkImage = watermarkImage;
     }
 
-    public void update(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress,String ftpPort,String ftpUsername,
+
+
+    public void update(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress, String ftpPort, String ftpUsername,
                        String ftpPassword, String printerName, boolean printerEnabled, boolean automaticPrinting, int printerCopies,
-                       boolean watermark, boolean qrPrinting, String watermarkImage) {
+                       boolean watermark, boolean qrPrinting, String qrImage, String watermarkImage) {
 
         checkAll(mediaStorage, photoQuality, ftpIPAddress, ftpPort, ftpUsername,
                 ftpPassword,  printerName,  printerEnabled,  automaticPrinting,  printerCopies,
-                watermark,  qrPrinting,  watermarkImage);
+                watermark,  qrPrinting, qrImage,  watermarkImage);
 
         this.mediaStorage = mediaStorage;
         this.photoQuality = photoQuality;
@@ -214,6 +228,7 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.printerCopies = printerCopies;
         this.watermark = watermark;
         this.qrPrinting = qrPrinting;
+        this.qrImage = qrImage;
         this.watermarkImage = watermarkImage;
     }
 
@@ -243,6 +258,8 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         private boolean watermark;
 
         private boolean qrPrinting;
+
+        private String qrImage;
 
         private String watermarkImage;
 
@@ -299,6 +316,10 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
             this.qrPrinting = qrPrinting;
             return this;
         }
+        public Builder qrImage(String qrImage) {
+            this.qrImage = qrImage;
+            return this;
+        }
         public Builder waterMarkImage(String watermarkImage) {
             this.watermarkImage = watermarkImage;
             return this;
@@ -312,7 +333,7 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
             build.checkAll(build.getMediaStorage(), build.getPhotoQuality(),
                     build.getFtpIPAddress(), build.getFtpPort(),build.getFtpUsername(),build.getFtpPassword(),
                     build.getPrinterName(),build.isPrinterEnabled(),build.isAutomaticPrinting(),build.getPrinterCopies(),
-                    build.isWatermark(), build.isQrPrinting(),build.getWatermarkImage());
+                    build.isWatermark(), build.isQrPrinting(),build.getQrImage(),build.getWatermarkImage());
 
             return build;
         }
@@ -320,37 +341,40 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
 
     private void checkAll(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress,String ftpPort,String ftpUsername,
                           String ftpPassword, String printerName, boolean printerEnabled, boolean automaticPrinting, int printerCopies,
-                          boolean watermark, boolean qrPrinting, String watermarkImage) {
+                          boolean watermark, boolean qrPrinting, String qrImage, String watermarkImage) {
         notNull(mediaStorage, "mediaStorage cannot be null");
         notEmpty(mediaStorage, "mediaStorage cannot be empty");
 
         notNull(photoQuality, "photoquality cannot be null");
-        
+
         notNull(ftpIPAddress, "ftpIPAddress cannot be null");
         notEmpty(ftpIPAddress, "ftpIPAddress cannot be empty");
-        
+
         notNull(ftpPort, "ftpPort cannot be null");
         notEmpty(ftpPort, "ftpPort cannot be empty");
 
         notNull(ftpUsername, "ftpUsername cannot be null");
         notEmpty(ftpUsername, "ftpUsername cannot be empty");
-        
+
         notNull(ftpPassword, "ftpPassword cannot be null");
         notEmpty(ftpPassword, "ftpPassword cannot be empty");
-        
+
         notNull(printerName, "printerName cannot be null");
         notEmpty(printerName, "printerName cannot be empty");
-        
+
         notNull(printerEnabled, "printerEnabled cannot be null");
-        
+
         notNull(automaticPrinting, "automaticPrinting cannot be null");
-        
+
         notNull(printerCopies, "printerCopies cannot be null");
-        
+
         notNull(watermark, "watermark cannot be null");
-        
+
         notNull(qrPrinting, "qrPrinting cannot be null");
-        
+
+        notEmpty(qrImage, "qrPrinting cannot be empty");
+        notNull(qrImage, "qrPrinting cannot be null");
+
         notNull(watermarkImage, "watermarkImage cannot be null");
         notEmpty(watermarkImage, "watermarkImage cannot be empty");
 

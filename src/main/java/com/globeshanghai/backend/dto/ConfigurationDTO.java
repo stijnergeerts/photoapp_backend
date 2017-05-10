@@ -33,13 +33,15 @@ public class ConfigurationDTO {
 
     private boolean qrPrinting;
 
+    private String qrImage;
+
     private String watermarkImage;
 
 
     public ConfigurationDTO(String configurationId, String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress,
                             String ftpPort, String ftpUsername, String ftpPassword, String printerName,
                             boolean printerEnabled, boolean automaticPrinting, int printerCopies, boolean watermark,
-                            boolean qrPrinting, String watermarkImage) {
+                            boolean qrPrinting, String qrImage, String watermarkImage) {
         this.configurationId = configurationId;
         this.mediaStorage = mediaStorage;
         this.photoQuality = photoQuality;
@@ -53,6 +55,7 @@ public class ConfigurationDTO {
         this.printerCopies = printerCopies;
         this.watermark = watermark;
         this.qrPrinting = qrPrinting;
+        this.qrImage = qrImage;
         this.watermarkImage = watermarkImage;
 
     }
@@ -60,7 +63,7 @@ public class ConfigurationDTO {
     public ConfigurationDTO(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress, String ftpPort,
                             String ftpUsername, String ftpPassword, String printerName, boolean printerEnabled,
                             boolean automaticPrinting, int printerCopies, boolean watermark,
-                            boolean qrPrinting, String watermarkImage) {
+                            boolean qrPrinting, String qrImage, String watermarkImage) {
         this.mediaStorage = mediaStorage;
         this.photoQuality = photoQuality;
         this.ftpIPAddress = ftpIPAddress;
@@ -73,6 +76,7 @@ public class ConfigurationDTO {
         this.printerCopies = printerCopies;
         this.watermark = watermark;
         this.qrPrinting = qrPrinting;
+        this.qrImage = qrImage;
         this.watermarkImage = watermarkImage;
 
     }
@@ -182,6 +186,14 @@ public class ConfigurationDTO {
 
     public void setQrPrinting(boolean qrPrinting) {
         this.qrPrinting = qrPrinting;
+    }
+
+    public String getQrImage() {
+        return qrImage;
+    }
+
+    public void setQrImage(String qrImage) {
+        this.qrImage = qrImage;
     }
 
     public String getWatermarkImage() {
