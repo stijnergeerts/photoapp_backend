@@ -368,7 +368,7 @@ public final class Event implements Serializable {
                           OverviewLayout overviewLayout, EventText eventText) {
         notNull(eventName, "eventName cannot be null");
         notEmpty(eventName, "eventName cannot be empty");
-
+/*
         notNull(eventLogo, "eventLogo cannot be null");
         notEmpty(eventLogo, "eventLogo cannot be empty");
 
@@ -402,6 +402,6 @@ public final class Event implements Serializable {
 
         notNull(overviewLayout, "overviewLayout cannot be null");
 
-        notNull(eventText, "eventText cannot be null");
+        notNull(eventText, "eventText cannot be null");*/
     }
 }

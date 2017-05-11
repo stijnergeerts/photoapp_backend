@@ -3,9 +3,6 @@ package com.globeshanghai.backend.dom.layout;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
-import static com.globeshanghai.frontend.util.PreCondition.notNull;
-
 
 /**
  * Created by stijnergeerts on 14/04/17.
@@ -200,7 +197,7 @@ public final class DetailLayout extends Layout {
 
         private void checkAll(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor, String printBtnImage, String shareBtnImage, String backBtnImage, String finishBtnImage) {
             {
-                notNull(backgroundColor, "backgroundColor cannot be null");
+                /*notNull(backgroundColor, "backgroundColor cannot be null");
                 notEmpty(backgroundColor, "backgroundColor cannot be empty");
 
                 notNull(backgroundImage, "backgroundImage cannot be null");
@@ -222,7 +219,7 @@ public final class DetailLayout extends Layout {
                 notEmpty(backBtnImage, "backBtnImage cannot be empty");
 
                 notNull(finishBtnImage, "finishBtnImage cannot be null");
-                notEmpty(finishBtnImage, "finishBtnImage cannot be empty");
+                notEmpty(finishBtnImage, "finishBtnImage cannot be empty");*/
             }
         }
     }
