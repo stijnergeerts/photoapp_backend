@@ -3,9 +3,6 @@ package com.globeshanghai.backend.dom.configuration;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
-import static com.globeshanghai.frontend.util.PreCondition.notNull;
-
 
 /**
  * Created by stijnergeerts on 14/04/17.
@@ -21,65 +18,45 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
 
     private PhotoQuality photoQuality;
 
-    private String ftpIPAddress;
-
-    private String ftpPort;
-
-    private String ftpUsername;
-
-    private String ftpPassword;
-
     private String printerName;
-
-    private boolean printerEnabled;
-
-    private boolean automaticPrinting;
 
     private int printerCopies;
 
-    private boolean watermark;
+    private boolean watermarkPrinting;
+
+    private String watermarkImage;
 
     private boolean qrPrinting;
 
     private String qrImage;
 
-    private String watermarkImage;
+    private boolean watermarkSharing;
 
     private Config(Builder builder) {
         this.mediaStorage = builder.mediaStorage;
         this.photoQuality = builder.photoQuality;
-        this.ftpIPAddress = builder.ftpIPAddress;
-        this.ftpPort = builder.ftpPort;
-        this.ftpUsername = builder.ftpUsername;
-        this.ftpPassword = builder.ftpPassword;
         this.printerName = builder.printerName;
-        this.printerEnabled = builder.printerEnabled;
-        this.automaticPrinting = builder.automaticPrinting;
         this.printerCopies = builder.printerCopies;
-        this.watermark = builder.watermark;
+        this.watermarkPrinting = builder.watermarkPrinting;
+        this.watermarkImage = builder.watermarkImage;
         this.qrPrinting = builder.qrPrinting;
         this.qrImage = builder.qrImage;
-        this.watermarkImage = builder.watermarkImage;
+        this.watermarkSharing = builder.watermarkSharing;
     }
 
     public Config(){
     };
 
-    public Config(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress, String ftpPort, String ftpUsername, String ftpPassword, String printerName, boolean printerEnabled, boolean automaticPrinting, int printerCopies, boolean watermark, boolean qrPrinting,String qrImage, String watermarkImage) {
+    public Config(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies, boolean watermarkPrinting, String watermarkImage, boolean qrPrinting, String qrImage, boolean watermarkSharing) {
         this.mediaStorage = mediaStorage;
         this.photoQuality = photoQuality;
-        this.ftpIPAddress = ftpIPAddress;
-        this.ftpPort = ftpPort;
-        this.ftpUsername = ftpUsername;
-        this.ftpPassword = ftpPassword;
         this.printerName = printerName;
-        this.printerEnabled = printerEnabled;
-        this.automaticPrinting = automaticPrinting;
         this.printerCopies = printerCopies;
-        this.watermark = watermark;
+        this.watermarkPrinting = watermarkPrinting;
+        this.watermarkImage = watermarkImage;
         this.qrPrinting = qrPrinting;
         this.qrImage = qrImage;
-        this.watermarkImage = watermarkImage;
+        this.watermarkSharing = watermarkSharing;
     }
 
     public static Builder getBuilder() {
@@ -110,37 +87,6 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.photoQuality = photoQuality;
     }
 
-    public String getFtpIPAddress() {
-        return ftpIPAddress;
-    }
-
-    public void setFtpIPAddress(String ftpIPAddress) {
-        this.ftpIPAddress = ftpIPAddress;
-    }
-
-    public String getFtpPort() {
-        return ftpPort;
-    }
-
-    public void setFtpPort(String ftpPort) {
-        this.ftpPort = ftpPort;
-    }
-
-    public String getFtpUsername() {
-        return ftpUsername;
-    }
-
-    public void setFtpUsername(String ftpUsername) {
-        this.ftpUsername = ftpUsername;
-    }
-
-    public String getFtpPassword() {
-        return ftpPassword;
-    }
-
-    public void setFtpPassword(String ftpPassword) {
-        this.ftpPassword = ftpPassword;
-    }
 
     public String getPrinterName() {
         return printerName;
@@ -150,21 +96,6 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.printerName = printerName;
     }
 
-    public boolean isPrinterEnabled() {
-        return printerEnabled;
-    }
-
-    public void setPrinterEnabled(boolean printerEnabled) {
-        this.printerEnabled = printerEnabled;
-    }
-
-    public boolean isAutomaticPrinting() {
-        return automaticPrinting;
-    }
-
-    public void setAutomaticPrinting(boolean automaticPrinting) {
-        this.automaticPrinting = automaticPrinting;
-    }
 
     public int getPrinterCopies() {
         return printerCopies;
@@ -174,15 +105,23 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.printerCopies = printerCopies;
     }
 
-    public boolean isWatermark() {
-        return watermark;
+    public boolean getWatermarkPrinting() {
+        return watermarkPrinting;
     }
 
-    public void setWatermark(boolean watermark) {
-        this.watermark = watermark;
+    public void setWatermarkPrinting(boolean watermarkPrinting) {
+        this.watermarkPrinting = watermarkPrinting;
     }
 
-    public boolean isQrPrinting() {
+    public String getWatermarkImage() {
+        return watermarkImage;
+    }
+
+    public void setWatermarkImage(String watermarkImage) {
+        this.watermarkImage = watermarkImage;
+    }
+
+    public boolean getQrPrinting() {
         return qrPrinting;
     }
 
@@ -198,38 +137,29 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         this.qrImage = qrImage;
     }
 
-    public String getWatermarkImage() {
-        return watermarkImage;
+    public boolean getWatermarkSharing() {
+        return watermarkSharing;
     }
 
-    public void setWatermarkImage(String watermarkImage) {
-        this.watermarkImage = watermarkImage;
+    public void setWatermarkSharing(boolean watermarkSharing) {
+        this.watermarkSharing = watermarkSharing;
     }
 
+    public void update(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies,
+                       boolean watermarkPrinting, String watermarkImage, boolean qrPrinting, String qrImage, boolean watermarkSharing) {
 
-
-    public void update(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress, String ftpPort, String ftpUsername,
-                       String ftpPassword, String printerName, boolean printerEnabled, boolean automaticPrinting, int printerCopies,
-                       boolean watermark, boolean qrPrinting, String qrImage, String watermarkImage) {
-
-        checkAll(mediaStorage, photoQuality, ftpIPAddress, ftpPort, ftpUsername,
-                ftpPassword,  printerName,  printerEnabled,  automaticPrinting,  printerCopies,
-                watermark,  qrPrinting, qrImage,  watermarkImage);
+        checkAll(mediaStorage, photoQuality, printerName, printerCopies, watermarkPrinting,
+                watermarkImage,  qrPrinting, qrImage, watermarkSharing);
 
         this.mediaStorage = mediaStorage;
         this.photoQuality = photoQuality;
-        this.ftpIPAddress = ftpIPAddress;
-        this.ftpPort = ftpPort;
-        this.ftpUsername = ftpUsername;
-        this.ftpPassword = ftpPassword;
         this.printerName = printerName;
-        this.printerEnabled = printerEnabled;
-        this.automaticPrinting = automaticPrinting;
         this.printerCopies = printerCopies;
-        this.watermark = watermark;
+        this.watermarkPrinting = watermarkPrinting;
+        this.watermarkImage = watermarkImage;
         this.qrPrinting = qrPrinting;
         this.qrImage = qrImage;
-        this.watermarkImage = watermarkImage;
+        this.watermarkSharing = watermarkSharing;
     }
 
 
@@ -239,30 +169,19 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
 
         private PhotoQuality photoQuality;
 
-        private String ftpIPAddress;
-
-        private String ftpPort;
-
-        private String ftpUsername;
-
-        private String ftpPassword;
-
         private String printerName;
-
-        private boolean printerEnabled;
-
-        private boolean automaticPrinting;
 
         private int printerCopies;
 
-        private boolean watermark;
+        private boolean watermarkPrinting;
+
+        private String watermarkImage;
 
         private boolean qrPrinting;
 
         private String qrImage;
 
-        private String watermarkImage;
-
+        private boolean watermarkSharing;
 
         private Builder() {}
 
@@ -276,52 +195,38 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
             return this;
         }
 
-        public Builder ftpIPAddress(String ftpIPAddress) {
-            this.ftpIPAddress = ftpIPAddress;
-            return this;
-        }
-        public Builder ftpPort(String ftpPort) {
-            this.ftpPort = ftpPort;
-            return this;
-        }
-        public Builder ftpUsername(String ftpUsername) {
-            this.ftpUsername = ftpUsername;
-            return this;
-        }
-        public Builder ftpPassword(String ftpPassword) {
-            this.ftpPassword = ftpPassword;
-            return this;
-        }
         public Builder printerName(String printerName) {
             this.printerName = printerName;
             return this;
         }
-        public Builder printerEnabled(boolean printerEnabled) {
-            this.printerEnabled = printerEnabled;
-            return this;
-        }
-        public Builder automaticPrinting(boolean automaticPrinting) {
-            this.automaticPrinting = automaticPrinting;
-            return this;
-        }
+
         public Builder printerCopies(int printerCopies) {
             this.printerCopies = printerCopies;
             return this;
         }
-        public Builder watermark(boolean watermark) {
-            this.watermark = watermark;
+
+        public Builder watermarkPrinting(boolean watermarkPrinting) {
+            this.watermarkPrinting = watermarkPrinting;
             return this;
         }
+
+        public Builder waterMarkImage(String watermarkImage) {
+            this.watermarkImage = watermarkImage;
+            return this;
+        }
+
         public Builder qrPrinting(boolean qrPrinting) {
             this.qrPrinting = qrPrinting;
             return this;
         }
+
         public Builder qrImage(String qrImage) {
             this.qrImage = qrImage;
             return this;
         }
-        public Builder waterMarkImage(String watermarkImage) {
-            this.watermarkImage = watermarkImage;
+
+        public Builder watermarkSharing(boolean watermarkSharing) {
+            this.watermarkSharing = watermarkSharing;
             return this;
         }
 
@@ -331,18 +236,17 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
             Config build = new Config(this);
 
             build.checkAll(build.getMediaStorage(), build.getPhotoQuality(),
-                    build.getFtpIPAddress(), build.getFtpPort(),build.getFtpUsername(),build.getFtpPassword(),
-                    build.getPrinterName(),build.isPrinterEnabled(),build.isAutomaticPrinting(),build.getPrinterCopies(),
-                    build.isWatermark(), build.isQrPrinting(),build.getQrImage(),build.getWatermarkImage());
+                    build.getPrinterName(), build.getPrinterCopies(),build.getWatermarkPrinting(),build.getWatermarkImage(),
+                    build.getQrPrinting(),build.getQrImage(),build.getWatermarkSharing());
 
             return build;
         }
     }
 
-    private void checkAll(String mediaStorage, PhotoQuality photoQuality, String ftpIPAddress,String ftpPort,String ftpUsername,
-                          String ftpPassword, String printerName, boolean printerEnabled, boolean automaticPrinting, int printerCopies,
-                          boolean watermark, boolean qrPrinting, String qrImage, String watermarkImage) {
-        notNull(mediaStorage, "mediaStorage cannot be null");
+    private void checkAll(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies,
+                          boolean watermarkPrinting, String watermarkImage, boolean qrPrinting, String qrImage, boolean watermarkSharing) {
+
+        /*notNull(mediaStorage, "mediaStorage cannot be null");
         notEmpty(mediaStorage, "mediaStorage cannot be empty");
 
         notNull(photoQuality, "photoquality cannot be null");
@@ -376,7 +280,7 @@ import static com.globeshanghai.frontend.util.PreCondition.notNull;
         notNull(qrImage, "qrPrinting cannot be null");
 
         notNull(watermarkImage, "watermarkImage cannot be null");
-        notEmpty(watermarkImage, "watermarkImage cannot be empty");
+        notEmpty(watermarkImage, "watermarkImage cannot be empty");*/
 
 
     }

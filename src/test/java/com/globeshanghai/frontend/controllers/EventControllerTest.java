@@ -65,9 +65,9 @@ public class EventControllerTest {
     private String eventLogo;
     @Value("TestLogoUpdate")
     private String updatedTestLogo;
-    @Value("2017-05-09")
+    @Value("2017/05/09")
     private String eventStartDate;
-    @Value("2017-05-11")
+    @Value("2017/05/11")
     private String eventEndDate;
     @Value("TestLocation")
     private String eventLocation;
@@ -85,14 +85,6 @@ public class EventControllerTest {
     private String configurationId;
     @Value("MediaStorage")
     private String mediaStorage;
-    @Value("127.0.0.1")
-    private String ftpIPAddress;
-    @Value("8080")
-    private String ftpPort;
-    @Value("TestUser")
-    private String ftpUsername;
-    @Value("TestPassword")
-    private String ftpPassword;
     @Value("TestPrinterName")
     private String printerName;
     @Value("TestQrImage")
@@ -159,9 +151,9 @@ public class EventControllerTest {
         Event testEvent = new Event(eventName, eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
-                new Config(mediaStorage, PhotoQuality.HIGH, ftpIPAddress, ftpPort,
-                        ftpUsername, ftpPassword, printerName, true,
-                        false, 34, true, false, qrImage, watermarkImage),
+                new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
+                        true,watermarkImage,true,qrImage,
+                        true),
                 new DetailLayout(detailBackgroundColor, detailBackgroundImage, detailBtnColor,
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,
@@ -171,9 +163,9 @@ public class EventControllerTest {
         Event testEvent2 = new Event("TestEvent2", eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
-                new Config(mediaStorage, PhotoQuality.HIGH, ftpIPAddress, ftpPort,
-                        ftpUsername, ftpPassword, printerName, true,
-                        false, 34, true, false, qrImage, watermarkImage),
+                new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
+                        true,watermarkImage,true,qrImage,
+                        true),
                 new DetailLayout(detailBackgroundColor, detailBackgroundImage, detailBtnColor,
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,
@@ -202,9 +194,9 @@ public class EventControllerTest {
         Event testEvent = new Event(eventName, eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
-                new Config(mediaStorage, PhotoQuality.HIGH, ftpIPAddress, ftpPort,
-                        ftpUsername, ftpPassword, printerName, true,
-                        false, 34, true, false, qrImage, watermarkImage),
+                new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
+                        true,watermarkImage,true,qrImage,
+                        true),
                 new DetailLayout(detailBackgroundColor, detailBackgroundImage, detailBtnColor,
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,

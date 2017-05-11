@@ -71,14 +71,6 @@ public class MongoDbTest {
     private String configurationId;
     @Value("MediaStorage")
     private String mediaStorage;
-    @Value("127.0.0.1")
-    private String ftpIPAddress;
-    @Value("8080")
-    private String ftpPort;
-    @Value("TestUser")
-    private String ftpUsername;
-    @Value("TestPassword")
-    private String ftpPassword;
     @Value("TestPrinterName")
     private String printerName;
     @Value("TestQrImage")
@@ -170,9 +162,9 @@ public class MongoDbTest {
         Event e = new Event(eventName, eventLogo, eventStartDate,
                 eventEndDate,eventLocation,eventAddress,company,
                 companyAddress,contact,contactPhone,
-                new Config(mediaStorage, PhotoQuality.HIGH,ftpIPAddress,ftpPort,
-                        ftpUsername,ftpPassword,printerName,true,
-                        false,34,true,false, qrImage, watermarkImage),
+                new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
+                        true,watermarkImage,true,qrImage,
+                        true),
                 new DetailLayout(detailBackgroundColor,detailBackgroundImage,detailBtnColor,
                         detailBtnPressedColor,printBtnImage,shareBtnImage,backBtnImage,finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor,overviewBackgroundImage,overviewBtnColor,
