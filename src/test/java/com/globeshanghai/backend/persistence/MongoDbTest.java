@@ -115,6 +115,12 @@ public class MongoDbTest {
     private String textUnderPhoto;
     @Value("Links")
     private String textBottom;
+    @Value("#000000")
+    private String textColor;
+    @Value("#ffffff")
+    private String backgroundColor;
+    @Value("TestDirectory")
+    private String cloudinaryDirectory;
 
     @Autowired
     private UserRepository userRepository;
@@ -169,7 +175,7 @@ public class MongoDbTest {
                         detailBtnPressedColor,printBtnImage,shareBtnImage,backBtnImage,finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor,overviewBackgroundImage,overviewBtnColor,
                         overviewBtnPressedColor,selectBtnImage,selectionColor),
-                new EventText(textUpper,textUnderPhoto,textBottom));
+                new EventText(textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,cloudinaryDirectory));
         eventRepository.save(e);
         assertEquals((eventRepository.findEventByEventName(eventName).getEventName() + eventRepository.findEventByEventName(eventName).getEventLogo()), (e.getEventName() + e.getEventLogo()));
     }

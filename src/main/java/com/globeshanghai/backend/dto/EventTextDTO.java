@@ -12,6 +12,8 @@ public class EventTextDTO {
 
     private String textColor;
 
+    private String backgroundColor;
+
     private String cloudinaryDirectory;
 
     public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom, String textColor, String cloudinaryDirectory) {
@@ -32,6 +34,15 @@ public class EventTextDTO {
     public EventTextDTO(String textUpper, String textUnderPhoto) {
         this.textUpper = textUpper;
         this.textUnderPhoto = textUnderPhoto;
+    }
+
+    public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String cloudinaryDirectory) {
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
+        this.backgroundColor = backgroundColor;
+        this.cloudinaryDirectory = cloudinaryDirectory;
     }
 
     public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom) {
@@ -78,6 +89,14 @@ public class EventTextDTO {
         this.textColor = textColor;
     }
 
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
     public String getCloudinaryDirectory() {
         return cloudinaryDirectory;
     }
@@ -85,4 +104,6 @@ public class EventTextDTO {
     public void setCloudinaryDirectory(String cloudinaryDirectory) {
         this.cloudinaryDirectory = cloudinaryDirectory;
     }
+
+
 }
