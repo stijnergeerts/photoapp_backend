@@ -22,6 +22,8 @@ public final class EventText {
 
     private String backgroundImage;
 
+    private boolean backgroundImageToggle;
+
     private String cloudinaryDirectory;
 
     public EventText(String textUpper) {
@@ -72,6 +74,18 @@ public final class EventText {
         this.textColor = textColor;
         this.backgroundColor = backgroundColor;
         this.backgroundImage = backgroundImage;
+        this.cloudinaryDirectory = cloudinaryDirectory;
+    }
+
+    public EventText(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, boolean backgroundImageToggle, String cloudinaryDirectory) {
+        this.logo = logo;
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
+        this.backgroundColor = backgroundColor;
+        this.backgroundImage = backgroundImage;
+        this.backgroundImageToggle = backgroundImageToggle;
         this.cloudinaryDirectory = cloudinaryDirectory;
     }
 
@@ -134,6 +148,14 @@ public final class EventText {
         this.backgroundImage = backgroundImage;
     }
 
+    public boolean getBackgroundImageToggle() {
+        return backgroundImageToggle;
+    }
+
+    public void setBackgroundImageToggle(boolean backgroundImageToggle) {
+        this.backgroundImageToggle = backgroundImageToggle;
+    }
+
     public String getCloudinaryDirectory() {
         return cloudinaryDirectory;
     }
@@ -141,8 +163,4 @@ public final class EventText {
     public void setCloudinaryDirectory(String cloudinaryDirectory) {
         this.cloudinaryDirectory = cloudinaryDirectory;
     }
-
-
-
-
 }

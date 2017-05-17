@@ -18,6 +18,8 @@ public class EventTextDTO {
 
     private String backgroundImage;
 
+    private boolean backgroundImageToggle;
+
     private String cloudinaryDirectory;
 
     public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom, String textColor, String cloudinaryDirectory) {
@@ -73,6 +75,18 @@ public class EventTextDTO {
         this.textColor = textColor;
         this.backgroundColor = backgroundColor;
         this.backgroundImage = backgroundImage;
+        this.cloudinaryDirectory = cloudinaryDirectory;
+    }
+
+    public EventTextDTO(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, boolean backgroundImageToggle, String cloudinaryDirectory) {
+        this.logo = logo;
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
+        this.backgroundColor = backgroundColor;
+        this.backgroundImage = backgroundImage;
+        this.backgroundImageToggle = backgroundImageToggle;
         this.cloudinaryDirectory = cloudinaryDirectory;
     }
 
@@ -136,6 +150,14 @@ public class EventTextDTO {
 
     public void setBackgroundImage(String backgroundImage) {
         this.backgroundImage = backgroundImage;
+    }
+
+    public boolean getBackgroundImageToggle() {
+        return backgroundImageToggle;
+    }
+
+    public void setBackgroundImageToggle(boolean backgroundImageToggle) {
+        this.backgroundImageToggle = backgroundImageToggle;
     }
 
     public String getCloudinaryDirectory() {
