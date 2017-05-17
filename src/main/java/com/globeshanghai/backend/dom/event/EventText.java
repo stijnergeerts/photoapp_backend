@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "eventtext")
 public final class EventText {
 
+    private String logo;
+
     private String textUpper;
 
     private String textUnderPhoto;
@@ -17,6 +19,8 @@ public final class EventText {
     private String textColor;
 
     private String backgroundColor;
+
+    private String backgroundImage;
 
     private String cloudinaryDirectory;
 
@@ -60,7 +64,26 @@ public final class EventText {
         this.textColor = textColor;
     }
 
+    public EventText(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, String cloudinaryDirectory) {
+        this.logo = logo;
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
+        this.backgroundColor = backgroundColor;
+        this.backgroundImage = backgroundImage;
+        this.cloudinaryDirectory = cloudinaryDirectory;
+    }
+
     public EventText() {
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public String getTextUpper() {
@@ -103,6 +126,14 @@ public final class EventText {
         this.backgroundColor = backgroundColor;
     }
 
+    public String getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(String backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
     public String getCloudinaryDirectory() {
         return cloudinaryDirectory;
     }
@@ -110,6 +141,8 @@ public final class EventText {
     public void setCloudinaryDirectory(String cloudinaryDirectory) {
         this.cloudinaryDirectory = cloudinaryDirectory;
     }
+
+
 
 
 }

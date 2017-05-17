@@ -109,6 +109,8 @@ public class MongoDbTest {
     private String overviewBtnColor;
     @Value("TestOverviewBPI")
     private String overviewBtnPressedColor;
+    @Value("TestLogo")
+    private String logo;
     @Value("Title")
     private String textUpper;
     @Value("Follow on social media")
@@ -119,6 +121,8 @@ public class MongoDbTest {
     private String textColor;
     @Value("#ffffff")
     private String backgroundColor;
+    @Value("TestBGImage")
+    private String backgroundImage;
     @Value("TestDirectory")
     private String cloudinaryDirectory;
 
@@ -175,7 +179,7 @@ public class MongoDbTest {
                         detailBtnPressedColor,printBtnImage,shareBtnImage,backBtnImage,finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor,overviewBackgroundImage,overviewBtnColor,
                         overviewBtnPressedColor,selectBtnImage,selectionColor),
-                new EventText(textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,cloudinaryDirectory));
+                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,cloudinaryDirectory));
         eventRepository.save(e);
         assertEquals((eventRepository.findEventByEventName(eventName).getEventName() + eventRepository.findEventByEventName(eventName).getEventLogo()), (e.getEventName() + e.getEventLogo()));
     }
