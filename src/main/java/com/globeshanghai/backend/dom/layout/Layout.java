@@ -6,19 +6,28 @@ package com.globeshanghai.backend.dom.layout;
 
 public class Layout {
 
+    protected int number;
+
+    protected String logo;
+
+    protected Position logoPosition;
+
     protected String backgroundColor;
 
     protected String backgroundImage;
 
-    protected String btnColor;
+    protected String imageBorderColor;
 
-    protected String btnPressedColor;
+    protected int imageBorderWidth;
 
-    public Layout(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor) {
+    public Layout(int number, String logo, Position logoPosition, String backgroundColor, String backgroundImage, String imageBorderColor, int imageBorderWidth) {
+        this.number = number;
+        this.logo = logo;
+        this.logoPosition = logoPosition;
         this.backgroundColor = backgroundColor;
         this.backgroundImage = backgroundImage;
-        this.btnColor = btnColor;
-        this.btnPressedColor = btnPressedColor;
+        this.imageBorderColor = imageBorderColor;
+        this.imageBorderWidth = imageBorderWidth;
     }
 
     public Layout() {
@@ -41,19 +50,43 @@ public class Layout {
         this.backgroundImage = backgroundImage;
     }
 
-    public String getBtnColor() {
-        return btnColor;
+    public int getNumber() {
+        return number;
     }
 
-    public void setBtnColor(String btnColor) {
-        this.btnColor = btnColor;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
-    public String getBtnPressedColor() {
-        return btnPressedColor;
+    public String getLogo() {
+        return logo;
     }
 
-    public void setBtnPressedColor(String btnPressedColor) {
-        this.btnPressedColor = btnPressedColor;
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public Position getLogoPosition() {
+        return logoPosition;
+    }
+
+    public void setLogoPosition(Position logoPosition) {
+        this.logoPosition = logoPosition;
+    }
+
+    public String getImageBorderColor() {
+        return imageBorderColor;
+    }
+
+    public void setImageBorderColor(String imageBorderColor) {
+        this.imageBorderColor = imageBorderColor;
+    }
+
+    public int getImageBorderWidth() {
+        return imageBorderWidth;
+    }
+
+    public void setImageBorderWidth(int imageBorderWidth) {
+        this.imageBorderWidth = imageBorderWidth;
     }
 }

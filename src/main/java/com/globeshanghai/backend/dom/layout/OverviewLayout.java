@@ -3,6 +3,9 @@ package com.globeshanghai.backend.dom.layout;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
+import static com.globeshanghai.frontend.util.PreCondition.notNull;
+
 /**
  * Created by stijnergeerts on 14/04/17.
  */
@@ -12,35 +15,75 @@ public final class OverviewLayout extends Layout {
     @Id
     private String overviewLayoutId;
 
+    private boolean imageContainer;
+    private String imageContainerColor;
+    private String imageContainerBorderColor;
+    private int imageContainerBorderWidth;
+    private String selectionIcon;
+    private boolean selectionContainer;
+    private String selectionContainerColor;
+    private String selectionContainerBorderColor;
+    private int selectionContainerBorderWidth;
+    private String selectBtnText;
+    private String selectBtnColor;
     private String selectBtnImage;
-
-    private String selectionColor;
+    private String selectBtnBorderColor;
+    private int selectBtnBorderWidth;
 
     private OverviewLayout(OverviewLayout.Builder builder) {
+        this.imageContainer = builder.imageContainer;
+        this.imageContainerColor = builder.imageContainerColor;
+        this.imageContainerBorderColor = builder.imageContainerBorderColor;
+        this.imageContainerBorderWidth = builder.imageContainerBorderWidth;
+        this.selectionIcon = builder.selectionIcon;
+        this.selectionContainer = builder.selectionContainer;
+        this.selectionContainerColor = builder.selectionContainerColor;
+        this.selectionContainerBorderColor = builder.selectionContainerBorderColor;
+        this.selectionContainerBorderWidth = builder.selectionContainerBorderWidth;
+        this.selectBtnText = builder.selectBtnText;
+        this.selectBtnColor = builder.selectBtnColor;
         this.selectBtnImage = builder.selectBtnImage;
-        this.selectionColor = builder.selectionColor;
+        this.selectBtnBorderColor = builder.selectBtnBorderColor;
+        this.selectBtnBorderWidth = builder.selectBtnBorderWidth;
         super.backgroundColor = builder.backgroundColor;
         super.backgroundImage = builder.backgroundImage;
-        super.btnColor = builder.btnColor;
-        super.btnPressedColor = builder.btnPressedColor;
     }
 
-    public OverviewLayout(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor, String overviewLayoutId, String selectBtnImage, String selectionColor) {
-        super(backgroundColor, backgroundImage, btnColor, btnPressedColor);
+    public OverviewLayout(int number, String logo, Position logoPosition, String backgroundColor, String backgroundImage, String imageBorderColor, int imageBorderWidth, String overviewLayoutId, boolean imageContainer, String imageContainerColor, String imageContainerBorderColor, int imageContainerBorderWidth, String selectionIcon, boolean selectionContainer, String selectionContainerColor, String selectionContainerBorderColor, int selectionContainerBorderWidth, String selectBtnText, String selectBtnColor, String selectBtnImage, String selectBtnBorderColor, int selectBtnBorderWidth) {
+        super(number, logo, logoPosition, backgroundColor, backgroundImage, imageBorderColor, imageBorderWidth);
         this.overviewLayoutId = overviewLayoutId;
+        this.imageContainer = imageContainer;
+        this.imageContainerColor = imageContainerColor;
+        this.imageContainerBorderColor = imageContainerBorderColor;
+        this.imageContainerBorderWidth = imageContainerBorderWidth;
+        this.selectionIcon = selectionIcon;
+        this.selectionContainer = selectionContainer;
+        this.selectionContainerColor = selectionContainerColor;
+        this.selectionContainerBorderColor = selectionContainerBorderColor;
+        this.selectionContainerBorderWidth = selectionContainerBorderWidth;
+        this.selectBtnText = selectBtnText;
+        this.selectBtnColor = selectBtnColor;
         this.selectBtnImage = selectBtnImage;
-        this.selectionColor = selectionColor;
+        this.selectBtnBorderColor = selectBtnBorderColor;
+        this.selectBtnBorderWidth = selectBtnBorderWidth;
     }
 
-    public OverviewLayout(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor, String selectBtnImage, String selectionColor) {
-        super(backgroundColor, backgroundImage, btnColor, btnPressedColor);
+    public OverviewLayout(int number, String logo, Position logoPosition, String backgroundColor, String backgroundImage, String imageBorderColor, int imageBorderWidth, boolean imageContainer, String imageContainerColor, String imageContainerBorderColor, int imageContainerBorderWidth, String selectionIcon, boolean selectionContainer, String selectionContainerColor, String selectionContainerBorderColor, int selectionContainerBorderWidth, String selectBtnText, String selectBtnColor, String selectBtnImage, String selectBtnBorderColor, int selectBtnBorderWidth) {
+        super(number, logo, logoPosition, backgroundColor, backgroundImage, imageBorderColor, imageBorderWidth);
+        this.imageContainer = imageContainer;
+        this.imageContainerColor = imageContainerColor;
+        this.imageContainerBorderColor = imageContainerBorderColor;
+        this.imageContainerBorderWidth = imageContainerBorderWidth;
+        this.selectionIcon = selectionIcon;
+        this.selectionContainer = selectionContainer;
+        this.selectionContainerColor = selectionContainerColor;
+        this.selectionContainerBorderColor = selectionContainerBorderColor;
+        this.selectionContainerBorderWidth = selectionContainerBorderWidth;
+        this.selectBtnText = selectBtnText;
+        this.selectBtnColor = selectBtnColor;
         this.selectBtnImage = selectBtnImage;
-        this.selectionColor = selectionColor;
-    }
-
-    public OverviewLayout(String selectBtnImage, String selectionColor) {
-        this.selectBtnImage = selectBtnImage;
-        this.selectionColor = selectionColor;
+        this.selectBtnBorderColor = selectBtnBorderColor;
+        this.selectBtnBorderWidth = selectBtnBorderWidth;
     }
 
     public OverviewLayout() {
@@ -55,6 +98,94 @@ public final class OverviewLayout extends Layout {
         this.overviewLayoutId = overviewLayoutId;
     }
 
+    public boolean isImageContainer() {
+        return imageContainer;
+    }
+
+    public void setImageContainer(boolean imageContainer) {
+        this.imageContainer = imageContainer;
+    }
+
+    public String getImageContainerColor() {
+        return imageContainerColor;
+    }
+
+    public void setImageContainerColor(String imageContainerColor) {
+        this.imageContainerColor = imageContainerColor;
+    }
+
+    public String getImageContainerBorderColor() {
+        return imageContainerBorderColor;
+    }
+
+    public void setImageContainerBorderColor(String imageContainerBorderColor) {
+        this.imageContainerBorderColor = imageContainerBorderColor;
+    }
+
+    public int getImageContainerBorderWidth() {
+        return imageContainerBorderWidth;
+    }
+
+    public void setImageContainerBorderWidth(int imageContainerBorderWidth) {
+        this.imageContainerBorderWidth = imageContainerBorderWidth;
+    }
+
+    public String getSelectionIcon() {
+        return selectionIcon;
+    }
+
+    public void setSelectionIcon(String selectionIcon) {
+        this.selectionIcon = selectionIcon;
+    }
+
+    public boolean isSelectionContainer() {
+        return selectionContainer;
+    }
+
+    public void setSelectionContainer(boolean selectionContainer) {
+        this.selectionContainer = selectionContainer;
+    }
+
+    public String getSelectionContainerColor() {
+        return selectionContainerColor;
+    }
+
+    public void setSelectionContainerColor(String selectionContainerColor) {
+        this.selectionContainerColor = selectionContainerColor;
+    }
+
+    public String getSelectionContainerBorderColor() {
+        return selectionContainerBorderColor;
+    }
+
+    public void setSelectionContainerBorderColor(String selectionContainerBorderColor) {
+        this.selectionContainerBorderColor = selectionContainerBorderColor;
+    }
+
+    public int getSelectionContainerBorderWidth() {
+        return selectionContainerBorderWidth;
+    }
+
+    public void setSelectionContainerBorderWidth(int selectionContainerBorderWidth) {
+        this.selectionContainerBorderWidth = selectionContainerBorderWidth;
+    }
+
+    public String getSelectBtnText() {
+        return selectBtnText;
+    }
+
+    public void setSelectBtnText(String selectBtnText) {
+        this.selectBtnText = selectBtnText;
+    }
+
+    public String getSelectBtnColor() {
+        return selectBtnColor;
+    }
+
+    public void setSelectBtnColor(String selectBtnColor) {
+        this.selectBtnColor = selectBtnColor;
+    }
+
     public String getSelectBtnImage() {
         return selectBtnImage;
     }
@@ -63,55 +194,102 @@ public final class OverviewLayout extends Layout {
         this.selectBtnImage = selectBtnImage;
     }
 
-    public String getSelectionColor() {
-        return selectionColor;
+    public String getSelectBtnBorderColor() {
+        return selectBtnBorderColor;
     }
 
-    public void setSelectionColor(String selectionColor) {
-        this.selectionColor = selectionColor;
+    public void setSelectBtnBorderColor(String selectBtnBorderColor) {
+        this.selectBtnBorderColor = selectBtnBorderColor;
     }
 
-    public String getBackgroundColor() {
-        return super.getBackgroundColor();
+    public int getSelectBtnBorderWidth() {
+        return selectBtnBorderWidth;
     }
 
-    public void setBackgroundColor(String backgroundColor) {
-        super.setBackgroundColor(backgroundColor);
-    }
-
-    public String getBackgroundImage() {
-        return super.getBackgroundImage();
-    }
-
-    public void setBackgroundImage(String backgroundImage) {
-        super.setBackgroundImage(backgroundImage);
-    }
-
-    public String getBtnColor() {
-        return super.getBtnColor();
-    }
-
-    public void setBtnColor(String btnColor) {
-        super.setBtnColor(btnColor);
-    }
-
-    public String getBtnPressedColor() {
-        return super.getBtnPressedColor();
-    }
-
-    public void setBtnPressedColor(String btnPressedColor) {
-        super.setBtnPressedColor(btnPressedColor);
+    public void setSelectBtnBorderWidth(int selectBtnBorderWidth) {
+        this.selectBtnBorderWidth = selectBtnBorderWidth;
     }
 
     public static class Builder extends Layout {
 
 
+        private boolean imageContainer;
+        private String imageContainerColor;
+        private String imageContainerBorderColor;
+        private int imageContainerBorderWidth;
+        private String selectionIcon;
+        private boolean selectionContainer;
+        private String selectionContainerColor;
+        private String selectionContainerBorderColor;
+        private int selectionContainerBorderWidth;
+        private String selectBtnText;
+        private String selectBtnColor;
         private String selectBtnImage;
-
-        private String selectionColor;
-
+        private String selectBtnBorderColor;
+        private int selectBtnBorderWidth;
 
         private Builder() {
+        }
+
+        public OverviewLayout.Builder imageContainer(boolean selectBtnImage) {
+            this.imageContainer = imageContainer;
+            return this;
+        }
+
+        public OverviewLayout.Builder imageContainerColor(String imageContainerColor) {
+            this.imageContainerColor = imageContainerColor;
+            return this;
+        }
+
+        public OverviewLayout.Builder imageContainerBorderColor(String imageContainerBorderColor) {
+            this.imageContainerBorderColor = imageContainerBorderColor;
+            return this;
+        }
+
+        public OverviewLayout.Builder imageContainerBorderWidth(int imageContainerBorderWidth) {
+            this.imageContainerBorderWidth = imageContainerBorderWidth;
+            return this;
+        }
+
+        //
+
+        public OverviewLayout.Builder selectionIcon(String selectionIcon) {
+            this.selectionIcon = selectionIcon;
+            return this;
+        }
+
+        //
+
+        public OverviewLayout.Builder selectionContainer(boolean selectionContainer) {
+            this.selectionContainer = selectionContainer;
+            return this;
+        }
+
+        public OverviewLayout.Builder selectionContainerColor(String selectionContainerColor) {
+            this.selectionContainerColor = selectionContainerColor;
+            return this;
+        }
+
+        public OverviewLayout.Builder selectionContainerBorderColor(String selectionContainerBorderColor) {
+            this.selectionContainerBorderColor = selectionContainerBorderColor;
+            return this;
+        }
+
+        public OverviewLayout.Builder selectionContainerBorderWidth(int selectionContainerBorderWidth) {
+            this.selectionContainerBorderWidth = selectionContainerBorderWidth;
+            return this;
+        }
+
+        //
+
+        public OverviewLayout.Builder selectBtnText(String selectBtnText) {
+            this.selectBtnText = selectBtnText;
+            return this;
+        }
+
+        public OverviewLayout.Builder selectBtnColor(String selectBtnColor) {
+            this.selectBtnColor = selectBtnColor;
+            return this;
         }
 
         public OverviewLayout.Builder selectBtnImage(String selectBtnImage) {
@@ -119,11 +297,17 @@ public final class OverviewLayout extends Layout {
             return this;
         }
 
-        public OverviewLayout.Builder selectionColor(String selectionColor) {
-            this.selectionColor = selectionColor;
+        public OverviewLayout.Builder selectBtnBorderColor(String selectBtnBorderColor) {
+            this.selectBtnBorderColor = selectBtnBorderColor;
             return this;
         }
 
+        public OverviewLayout.Builder selectBtnBorderWidth(int selectBtnBorderWidth) {
+            this.selectBtnBorderWidth = selectBtnBorderWidth;
+            return this;
+        }
+
+        //
 
         public OverviewLayout.Builder backgroundColor(String backgroundColor) {
             super.backgroundColor = backgroundColor;
@@ -135,45 +319,62 @@ public final class OverviewLayout extends Layout {
             return this;
         }
 
-        public OverviewLayout.Builder btnColor(String btnColor) {
-            super.btnColor = btnColor;
-            return this;
-        }
-
-        public OverviewLayout.Builder btnPressedColor(String btnPressedColor) {
-            super.btnPressedColor = btnPressedColor;
-            return this;
-        }
-
 
         public OverviewLayout build() {
             OverviewLayout build = new OverviewLayout(this);
 
-            build.checkAll(build.getBackgroundColor(), build.getBackgroundImage(), build.getBtnColor(),
-                    build.getBtnPressedColor(), build.getSelectBtnImage(), build.getSelectionColor());
+            build.checkAll(build.getLogoPosition(), build.getBackgroundColor(), build.getImageBorderColor(), build.getImageBorderWidth(), build.isImageContainer(), build.getImageContainerBorderColor(), build.getImageContainerBorderColor(), build.getImageContainerBorderWidth(), build.isSelectionContainer(), build.getSelectionContainerBorderColor(), build.getSelectionContainerColor(), build.getSelectionContainerBorderWidth(), build.getSelectBtnText(), build.getSelectBtnColor(), build.getSelectBtnBorderColor(), build.getSelectBtnBorderWidth());
 
             return build;
         }
     }
 
-    private void checkAll(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor,
-                          String selectBtnImage, String selectionColor) {
+    private void checkAll(Position logoPosition, String backgroundColor, String imageBorderColor, int imageBorderWidth,
+                          boolean imageContainer, String imageContainerColor, String imageContainerBorderColor,
+                          int imageContainerBorderWidth, boolean selectionContainer,
+                          String selectionContainerColor, String selectionContainerBorderColor,
+                          int selectionContainerBorderWidth, String selectBtnText, String selectBtnColor,
+                          String selectBtnBorderColor, int selectBtnBorderWidth) {
         {
+            notNull(logoPosition, "logoPosition cannot be null");
+
+            notNull(backgroundColor, "backgroundColor cannot be null");
             /*notNull(backgroundColor, "backgroundColor cannot be null");
             notEmpty(backgroundColor, "backgroundColor cannot be empty");
 
-            notNull(backgroundImage, "backgroundImage cannot be null");
-            notEmpty(backgroundImage, "backgroundColor cannot be empty");
+            notNull(imageBorderColor, "imageBorderColor cannot be null");
+            notEmpty(imageBorderColor, "imageBorderColor cannot be empty");
 
-            notNull(btnColor, "btnColor cannot be null");
-            notEmpty(btnColor, "btnColor cannot be empty");
+            notNull(imageBorderWidth, "imageBorderWidth cannot be null");
+            notNull(imageContainer, "imageContainer cannot be null");
 
-            notNull(btnPressedColor, "btnPressedColor cannot be null");
-            notEmpty(btnPressedColor, "btnPressedColor cannot be empty");
+            notNull(imageContainerBorderColor, "imageContainerBorderColor cannot be null");
+            notEmpty(imageContainerBorderColor, "imageContainerBorderColor cannot be empty");
 
-            notNull(selectBtnImage, "selectBtnImage cannot be null");
-            notEmpty(selectBtnImage, "selectBtnImage cannot be empty");
+            notNull(imageContainerColor, "imageContainerColor cannot be null");
+            notEmpty(imageContainerColor, "imageContainerColor cannot be empty");
 
+            notNull(imageContainerBorderWidth, "imageContainerBorderWidth cannot be null");
+            notNull(selectionContainer, "selectionContainer cannot be null");
+
+            notNull(selectionContainerColor, "selectionContainerColor cannot be null");
+            notEmpty(selectionContainerColor, "selectionContainerColor cannot be empty");
+
+            notNull(selectionContainerBorderColor, "selectionContainerBorderColor cannot be null");
+            notEmpty(selectionContainerBorderColor, "selectionContainerBorderColor cannot be empty");
+
+            notNull(selectionContainerBorderWidth, "selectionContainerBorderWidth cannot be null");
+
+            notNull(selectBtnText, "selectBtnText cannot be null");
+            notEmpty(selectBtnText, "selectBtnText cannot be empty");
+
+            notNull(selectBtnColor, "selectBtnColor cannot be null");
+            notEmpty(selectBtnColor, "selectBtnColor cannot be empty");
+
+            notNull(selectBtnBorderColor, "selectBtnBorderColor cannot be null");
+            notEmpty(selectBtnBorderColor, "selectBtnBorderColor cannot be empty");
+
+            notNull(selectBtnBorderWidth, "selectBtnBorderWidth cannot be null");
             notNull(selectionColor, "selectionColor cannot be null");
             notEmpty(selectionColor, "selectionColor cannot be empty");*/
 
