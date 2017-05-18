@@ -558,86 +558,10 @@ public final class DetailLayout extends Layout {
 
         notNull(backgroundColor, "backgroundColor cannot be null");
         notEmpty(backgroundColor, "backgroundColor cannot be empty");
-        private void checkAll(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor, String printBtnImage, String shareBtnImage, String backBtnImage, String finishBtnImage) {
-            {
-                /*notNull(backgroundColor, "backgroundColor cannot be null");
-                notEmpty(backgroundColor, "backgroundColor cannot be empty");
 
-        notNull(imageBorderColor, "imageBorderColor cannot be null");
-        notEmpty(imageBorderColor, "imageBorderColor cannot be empty");
 
-        notNull(imageBorderWidth, "imageBorderWidth cannot be null");
 
-        //
 
-        notNull(printBtnText, "printBtnText cannot be null");
-        notEmpty(printBtnText, "printBtnText cannot be empty");
-
-        notNull(printBtnColor, "printBtnColor cannot be null");
-        notEmpty(printBtnColor, "printBtnColor cannot be empty");
-
-        notNull(printBtnBorderColor, "printBtnBorderColor cannot be null");
-        notEmpty(printBtnBorderColor, "printBtnBorderColor cannot be empty");
-
-        notNull(printBtnBorderWidth, "printBtnBorderWidth cannot be null");
-
-        //
-
-        notNull(shareBtnText, "shareBtnText cannot be null");
-        notEmpty(shareBtnText, "shareBtnText cannot be empty");
-
-        notNull(shareBtnColor, "shareBtnColor cannot be null");
-        notEmpty(shareBtnColor, "shareBtnColor cannot be empty");
-
-        notNull(shareBtnBorderColor, "shareBtnBorderColor cannot be null");
-        notEmpty(shareBtnBorderColor, "shareBtnBorderColor cannot be empty");
-
-        notNull(shareBtnBorderWidth, "shareBtnBorderWidth cannot be null");
-
-        //
-
-        notNull(backBtnText, "backBtnText cannot be null");
-        notEmpty(backBtnText, "backBtnText cannot be empty");
-
-        notNull(backBtnColor, "backBtnColor cannot be null");
-        notEmpty(backBtnColor, "backBtnColor cannot be empty");
-
-        notNull(backBtnBorderColor, "backBtnBorderColor cannot be null");
-        notEmpty(backBtnBorderColor, "backBtnBorderColor cannot be empty");
-
-        notNull(backBtnBorderWidth, "backBtnBorderWidth cannot be null");
-
-        //
-
-        notNull(finishBtnText, "finishBtnText cannot be null");
-        notEmpty(finishBtnText, "finishBtnText cannot be empty");
-
-        notNull(finishBtnColor, "finishBtnColor cannot be null");
-        notEmpty(finishBtnColor, "finishBtnColor cannot be empty");
-
-        notNull(finishBtnBorderColor, "finishBtnBorderColor cannot be null");
-        notEmpty(finishBtnBorderColor, "finishBtnBorderColor cannot be empty");
-
-        notNull(finishBtnBorderWidth, "finishBtnBorderWidth cannot be null");
-
-        //
-
-        notNull(printMessageText, "printMessageText cannot be null");
-        notEmpty(printMessageText, "printMessageText cannot be empty");
-
-        notNull(printMessageColor, "printMessageColor cannot be null");
-        notEmpty(printMessageColor, "printMessageColor cannot be empty");
-
-        notNull(printMessageBorderColor, "printMessageBorderColor cannot be null");
-        notEmpty(printMessageBorderColor, "printMessageBorderColor cannot be empty");
-
-        notNull(printMessageBorderWidth, "printMessageBorderWidth cannot be null");
-
-    }
-}
-
-                notNull(finishBtnImage, "finishBtnImage cannot be null");
-                notEmpty(finishBtnImage, "finishBtnImage cannot be empty");*/
             }
-        }
     }
+

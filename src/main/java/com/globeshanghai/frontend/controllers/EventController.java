@@ -186,9 +186,9 @@ final class EventController {
         return new ResponseEntity<EventText>(eventDTO.getEventText(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/getEventTextById/{id}", method = RequestMethod.GET)
-    ResponseEntity<?> findEventTextById(@PathVariable("id") String id) {
-        LOGGER.info("Finding eventText entry with id: {}", id);
+    @RequestMapping(value = "/getEventShareById/{id}", method = RequestMethod.GET)
+    ResponseEntity<?> findEventShareById(@PathVariable("id") String id) {
+        LOGGER.info("Finding event entry with id: {}", id);
         List<EventDTO> events = eventService.findAll();
         EventDTO eventDTO = new EventDTO();
         for (int i=0; i<events.size(); i++){
@@ -200,7 +200,7 @@ final class EventController {
             throw new EventNotFoundException("Event with id "+ id +" not found!");
         }
 
-        return new ResponseEntity<EventText>(eventDTO.getEventText(), HttpStatus.OK);
+        return new ResponseEntity<EventDTO>(eventDTO, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)

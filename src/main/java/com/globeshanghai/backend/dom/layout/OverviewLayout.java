@@ -3,7 +3,6 @@ package com.globeshanghai.backend.dom.layout;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
 import static com.globeshanghai.frontend.util.PreCondition.notNull;
 
 /**
@@ -339,44 +338,6 @@ public final class OverviewLayout extends Layout {
             notNull(logoPosition, "logoPosition cannot be null");
 
             notNull(backgroundColor, "backgroundColor cannot be null");
-            /*notNull(backgroundColor, "backgroundColor cannot be null");
-            notEmpty(backgroundColor, "backgroundColor cannot be empty");
-
-            notNull(imageBorderColor, "imageBorderColor cannot be null");
-            notEmpty(imageBorderColor, "imageBorderColor cannot be empty");
-
-            notNull(imageBorderWidth, "imageBorderWidth cannot be null");
-            notNull(imageContainer, "imageContainer cannot be null");
-
-            notNull(imageContainerBorderColor, "imageContainerBorderColor cannot be null");
-            notEmpty(imageContainerBorderColor, "imageContainerBorderColor cannot be empty");
-
-            notNull(imageContainerColor, "imageContainerColor cannot be null");
-            notEmpty(imageContainerColor, "imageContainerColor cannot be empty");
-
-            notNull(imageContainerBorderWidth, "imageContainerBorderWidth cannot be null");
-            notNull(selectionContainer, "selectionContainer cannot be null");
-
-            notNull(selectionContainerColor, "selectionContainerColor cannot be null");
-            notEmpty(selectionContainerColor, "selectionContainerColor cannot be empty");
-
-            notNull(selectionContainerBorderColor, "selectionContainerBorderColor cannot be null");
-            notEmpty(selectionContainerBorderColor, "selectionContainerBorderColor cannot be empty");
-
-            notNull(selectionContainerBorderWidth, "selectionContainerBorderWidth cannot be null");
-
-            notNull(selectBtnText, "selectBtnText cannot be null");
-            notEmpty(selectBtnText, "selectBtnText cannot be empty");
-
-            notNull(selectBtnColor, "selectBtnColor cannot be null");
-            notEmpty(selectBtnColor, "selectBtnColor cannot be empty");
-
-            notNull(selectBtnBorderColor, "selectBtnBorderColor cannot be null");
-            notEmpty(selectBtnBorderColor, "selectBtnBorderColor cannot be empty");
-
-            notNull(selectBtnBorderWidth, "selectBtnBorderWidth cannot be null");
-            notNull(selectionColor, "selectionColor cannot be null");
-            notEmpty(selectionColor, "selectionColor cannot be empty");*/
 
         }
 

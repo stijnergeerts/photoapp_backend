@@ -6,6 +6,7 @@ import com.globeshanghai.backend.dom.event.Event;
 import com.globeshanghai.backend.dom.event.EventText;
 import com.globeshanghai.backend.dom.layout.DetailLayout;
 import com.globeshanghai.backend.dom.layout.OverviewLayout;
+import com.globeshanghai.backend.dom.layout.Position;
 import com.globeshanghai.backend.dom.user.User;
 import com.globeshanghai.backend.repositories.EventRepository;
 import com.globeshanghai.backend.repositories.UserRepository;
@@ -79,36 +80,75 @@ public class MongoDbTest {
     private String watermarkImage;
     @Value("11223344")
     private String detailLayoutId;
+
+    @Value("TestLogo")
+    private String layoutLogo;
+    @Value("TestBgColor")
+    private String layoutBackgroundColor;
+    @Value("TestBackgroundImage")
+    private String layoutBackgroundImage;
+    @Value("TestLayoutImageBorderColor")
+    private String layoutImageBorderColor;
     @Value("TestprintBtnImage")
     private String printBtnImage;
+    @Value("TestprintBtnText")
+    private String printBtnText;
+    @Value("TestprintBtnColor")
+    private String printBtnColor;
+    @Value("TestprintBtnBorderColor")
+    private String printBtnBorderColor;
     @Value("TestShareBtnImage")
     private String shareBtnImage;
+    @Value("TestShareBtnText")
+    private String shareBtnText;
+    @Value("TestShareBtnColor")
+    private String shareBtnColor;
+    @Value("TestShareBtnBorderColor")
+    private String shareBtnBorderColor;
     @Value("TestBackBtnImage")
     private String backBtnImage;
+    @Value("TestBackBtnText")
+    private String backBtnText;
+    @Value("TestBackBtnColor")
+    private String backBtnColor;
+    @Value("TestBackBtnBorderColor")
+    private String backBtnBorderColor;
     @Value("TestFinishBtnImage")
     private String finishBtnImage;
-    @Value("TestDetailBGC")
-    private String detailBackgroundColor;
-    @Value("TestDetailBGI")
-    private String detailBackgroundImage;
-    @Value("TestDetailBtnGC")
-    private String detailBtnColor;
-    @Value("TestDetailBPI")
-    private String detailBtnPressedColor;
+    @Value("TestFinishBtnText")
+    private String finishBtnText;
+    @Value("TestFinishBtnColor")
+    private String finishBtnColor;
+    @Value("TestFinishBtnBorderColor")
+    private String finishBtnBorderColor;
+    @Value("TestPrintMessageImage")
+    private String printMessageImage;
+    @Value("TestPrintMessageText")
+    private String printMessageText;
+    @Value("TestPrintMessageColor")
+    private String printMessageColor;
+    @Value("TestPrintMessageBorderColor")
+    private String printMessageBorderColor;
     @Value("556677")
     private String overviewLayoutId;
+    @Value("TestImageContainerColor")
+    private String imageContainerColor;
+    @Value("TestImageContainerBorderColor")
+    private String imageContainerBorderColor;
+    @Value("TestSelectionColor")
+    private String selectionIcon;
+    @Value("TestSelectionContainerColor")
+    private String selectionContainerColor;
+    @Value("TestSelectionContainerBorderColor")
+    private String selectionContainerBorderColor;
+    @Value("TestSelectBtnText")
+    private String selectBtnText;
+    @Value("TestSelectBtnColor")
+    private String selectBtnColor;
     @Value("TestSelectBtnImage")
     private String selectBtnImage;
-    @Value("TestSelectionColor")
-    private String selectionColor;
-    @Value("TestOverviewBGC")
-    private String overviewBackgroundColor;
-    @Value("TestOverviewBGI")
-    private String overviewBackgroundImage;
-    @Value("TestOverviewBtnGC")
-    private String overviewBtnColor;
-    @Value("TestOverviewBPI")
-    private String overviewBtnPressedColor;
+    @Value("TestSelectBtnBorderColor")
+    private String selectBtnBorderColor;
     @Value("TestLogo")
     private String logo;
     @Value("Title")
@@ -177,10 +217,13 @@ public class MongoDbTest {
                 new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
                         true,watermarkImage,true,qrImage,
                         true),
-                new DetailLayout(detailBackgroundColor,detailBackgroundImage,detailBtnColor,
-                        detailBtnPressedColor,printBtnImage,shareBtnImage,backBtnImage,finishBtnImage),
-                new OverviewLayout(overviewBackgroundColor,overviewBackgroundImage,overviewBtnColor,
-                        overviewBtnPressedColor,selectBtnImage,selectionColor),
+                new DetailLayout(12,layoutLogo, Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,printBtnImage,printBtnText, printBtnColor, printBtnBorderColor,34,
+                        shareBtnImage,shareBtnText, shareBtnColor, shareBtnBorderColor,34,
+                        backBtnImage, backBtnText, backBtnColor, backBtnBorderColor,34,
+                        finishBtnImage,finishBtnText, finishBtnColor, finishBtnBorderColor,34,
+                        printMessageImage, printMessageText, printMessageColor, printMessageBorderColor,34),
+                new OverviewLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,false, imageContainerColor, imageContainerBorderColor,400,selectionIcon,
+                        true,selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText,selectBtnColor,selectBtnImage,selectBtnBorderColor,400),
                 new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
         eventRepository.save(e);
         assertEquals((eventRepository.findEventByEventName(eventName).getEventName() + eventRepository.findEventByEventName(eventName).getEventLogo()), (e.getEventName() + e.getEventLogo()));
