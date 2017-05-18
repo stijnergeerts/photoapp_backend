@@ -18,42 +18,127 @@ public final class DetailLayout extends Layout {
     private String detailLayoutId;
 
     private String printBtnImage;
+    private String printBtnText;
+    private String printBtnColor;
+    private String printBtnBorderColor;
+    private int printBtnBorderWidth;
 
     private String shareBtnImage;
+    private String shareBtnText;
+    private String shareBtnColor;
+    private String shareBtnBorderColor;
+    private int shareBtnBorderWidth;
 
     private String backBtnImage;
+    private String backBtnText;
+    private String backBtnColor;
+    private String backBtnBorderColor;
+    private int backBtnBorderWidth;
 
     private String finishBtnImage;
+    private String finishBtnText;
+    private String finishBtnColor;
+    private String finishBtnBorderColor;
+    private int finishBtnBorderWidth;
+
+    private String printMessageImage;
+    private String printMessageText;
+    private String printMessageColor;
+    private String printMessageBorderColor;
+    private int printMessageBorderWidth;
 
     private DetailLayout(DetailLayout.Builder builder) {
         this.printBtnImage = builder.printBtnImage;
+        this.printBtnText = builder.printBtnText;
+        this.printBtnColor = builder.printBtnColor;
+        this.printBtnBorderColor = builder.printBtnBorderColor;
+        this.printBtnBorderWidth = builder.printBtnBorderWidth;
         this.shareBtnImage = builder.shareBtnImage;
+        this.shareBtnText = builder.shareBtnText;
+        this.shareBtnColor = builder.shareBtnColor;
+        this.shareBtnBorderColor = builder.shareBtnBorderColor;
+        this.shareBtnBorderWidth = builder.shareBtnBorderWidth;
         this.backBtnImage = builder.backBtnImage;
+        this.backBtnText = builder.backBtnText;
+        this.backBtnColor = builder.backBtnColor;
+        this.backBtnBorderColor = builder.backBtnBorderColor;
+        this.backBtnBorderWidth = builder.backBtnBorderWidth;
         this.finishBtnImage = builder.finishBtnImage;
+        this.finishBtnText = builder.finishBtnText;
+        this.finishBtnColor = builder.finishBtnColor;
+        this.finishBtnBorderColor = builder.finishBtnBorderColor;
+        this.finishBtnBorderWidth = builder.finishBtnBorderWidth;
+        this.printMessageImage = builder.printMessageImage;
+        this.printMessageText = builder.printMessageText;
+        this.printMessageColor = builder.printMessageColor;
+        this.printMessageBorderColor = builder.printMessageBorderColor;
+        this.printMessageBorderWidth = builder.printMessageBorderWidth;
         super.backgroundColor = builder.backgroundColor;
         super.backgroundImage = builder.backgroundImage;
-        super.btnColor = builder.btnColor;
-        super.btnPressedColor = builder.btnPressedColor;
     }
-    public DetailLayout(){
+
+
+    public DetailLayout() {
 
     }
-    public DetailLayout(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor, String detailLayoutId, String printBtnImage, String shareBtnImage, String backBtnImage, String finishBtnImage) {
-        super(backgroundColor, backgroundImage, btnColor, btnPressedColor);
+
+    public DetailLayout(int number, String logo, Position logoPosition, String backgroundColor, String backgroundImage, String imageBorderColor, int imageBorderWidth, String detailLayoutId, String printBtnImage, String printBtnText, String printBtnColor, String printBtnBorderColor, int printBtnBorderWidth, String shareBtnImage, String shareBtnText, String shareBtnColor, String shareBtnBorderColor, int shareBtnBorderWidth, String backBtnImage, String backBtnText, String backBtnColor, String backBtnBorderColor, int backBtnBorderWidth, String finishBtnImage, String finishBtnText, String finishBtnColor, String finishBtnBorderColor, int finishBtnBorderWidth, String printMessageImage, String printMessageText, String printMessageColor, String printMessageBorderColor, int printMessageBorderWidth) {
+        super(number, logo, logoPosition, backgroundColor, backgroundImage, imageBorderColor, imageBorderWidth);
         this.detailLayoutId = detailLayoutId;
         this.printBtnImage = printBtnImage;
+        this.printBtnText = printBtnText;
+        this.printBtnColor = printBtnColor;
+        this.printBtnBorderColor = printBtnBorderColor;
+        this.printBtnBorderWidth = printBtnBorderWidth;
         this.shareBtnImage = shareBtnImage;
+        this.shareBtnText = shareBtnText;
+        this.shareBtnColor = shareBtnColor;
+        this.shareBtnBorderColor = shareBtnBorderColor;
+        this.shareBtnBorderWidth = shareBtnBorderWidth;
         this.backBtnImage = backBtnImage;
+        this.backBtnText = backBtnText;
+        this.backBtnColor = backBtnColor;
+        this.backBtnBorderColor = backBtnBorderColor;
+        this.backBtnBorderWidth = backBtnBorderWidth;
         this.finishBtnImage = finishBtnImage;
+        this.finishBtnText = finishBtnText;
+        this.finishBtnColor = finishBtnColor;
+        this.finishBtnBorderColor = finishBtnBorderColor;
+        this.finishBtnBorderWidth = finishBtnBorderWidth;
+        this.printMessageImage = printMessageImage;
+        this.printMessageText = printMessageText;
+        this.printMessageColor = printMessageColor;
+        this.printMessageBorderColor = printMessageBorderColor;
+        this.printMessageBorderWidth = printMessageBorderWidth;
     }
 
-
-    public DetailLayout(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor, String printBtnImage, String shareBtnImage, String backBtnImage, String finishBtnImage) {
-        super(backgroundColor, backgroundImage, btnColor, btnPressedColor);
+    public DetailLayout(int number, String logo, Position logoPosition, String backgroundColor, String backgroundImage, String imageBorderColor, int imageBorderWidth, String printBtnImage, String printBtnText, String printBtnColor, String printBtnBorderColor, int printBtnBorderWidth, String shareBtnImage, String shareBtnText, String shareBtnColor, String shareBtnBorderColor, int shareBtnBorderWidth, String backBtnImage, String backBtnText, String backBtnColor, String backBtnBorderColor, int backBtnBorderWidth, String finishBtnImage, String finishBtnText, String finishBtnColor, String finishBtnBorderColor, int finishBtnBorderWidth, String printMessageImage, String printMessageText, String printMessageColor, String printMessageBorderColor, int printMessageBorderWidth) {
+        super(number, logo, logoPosition, backgroundColor, backgroundImage, imageBorderColor, imageBorderWidth);
         this.printBtnImage = printBtnImage;
+        this.printBtnText = printBtnText;
+        this.printBtnColor = printBtnColor;
+        this.printBtnBorderColor = printBtnBorderColor;
+        this.printBtnBorderWidth = printBtnBorderWidth;
         this.shareBtnImage = shareBtnImage;
+        this.shareBtnText = shareBtnText;
+        this.shareBtnColor = shareBtnColor;
+        this.shareBtnBorderColor = shareBtnBorderColor;
+        this.shareBtnBorderWidth = shareBtnBorderWidth;
         this.backBtnImage = backBtnImage;
+        this.backBtnText = backBtnText;
+        this.backBtnColor = backBtnColor;
+        this.backBtnBorderColor = backBtnBorderColor;
+        this.backBtnBorderWidth = backBtnBorderWidth;
         this.finishBtnImage = finishBtnImage;
+        this.finishBtnText = finishBtnText;
+        this.finishBtnColor = finishBtnColor;
+        this.finishBtnBorderColor = finishBtnBorderColor;
+        this.finishBtnBorderWidth = finishBtnBorderWidth;
+        this.printMessageImage = printMessageImage;
+        this.printMessageText = printMessageText;
+        this.printMessageColor = printMessageColor;
+        this.printMessageBorderColor = printMessageBorderColor;
+        this.printMessageBorderWidth = printMessageBorderWidth;
     }
 
     public String getDetailLayoutId() {
@@ -72,12 +157,76 @@ public final class DetailLayout extends Layout {
         this.printBtnImage = printBtnImage;
     }
 
+    public String getPrintBtnText() {
+        return printBtnText;
+    }
+
+    public void setPrintBtnText(String printBtnText) {
+        this.printBtnText = printBtnText;
+    }
+
+    public String getPrintBtnColor() {
+        return printBtnColor;
+    }
+
+    public void setPrintBtnColor(String printBtnColor) {
+        this.printBtnColor = printBtnColor;
+    }
+
+    public String getPrintBtnBorderColor() {
+        return printBtnBorderColor;
+    }
+
+    public void setPrintBtnBorderColor(String printBtnBorderColor) {
+        this.printBtnBorderColor = printBtnBorderColor;
+    }
+
+    public int getPrintBtnBorderWidth() {
+        return printBtnBorderWidth;
+    }
+
+    public void setPrintBtnBorderWidth(int printBtnBorderWidth) {
+        this.printBtnBorderWidth = printBtnBorderWidth;
+    }
+
     public String getShareBtnImage() {
         return shareBtnImage;
     }
 
     public void setShareBtnImage(String shareBtnImage) {
         this.shareBtnImage = shareBtnImage;
+    }
+
+    public String getShareBtnText() {
+        return shareBtnText;
+    }
+
+    public void setShareBtnText(String shareBtnText) {
+        this.shareBtnText = shareBtnText;
+    }
+
+    public String getShareBtnColor() {
+        return shareBtnColor;
+    }
+
+    public void setShareBtnColor(String shareBtnColor) {
+        this.shareBtnColor = shareBtnColor;
+    }
+
+    public String getShareBtnBorderColor() {
+        return shareBtnBorderColor;
+    }
+
+    public void setShareBtnBorderColor(String shareBtnBorderColor) {
+        this.shareBtnBorderColor = shareBtnBorderColor;
+    }
+
+    public int getShareBtnBorderWidth() {
+        return shareBtnBorderWidth;
+    }
+
+    public void setShareBtnBorderWidth(int shareBtnBorderWidth) {
+        this.shareBtnBorderWidth = shareBtnBorderWidth;
     }
 
     public String getBackBtnImage() {
@@ -88,59 +237,150 @@ public final class DetailLayout extends Layout {
         this.backBtnImage = backBtnImage;
     }
 
+    public String getBackBtnText() {
+        return backBtnText;
+    }
+
+    public void setBackBtnText(String backBtnText) {
+        this.backBtnText = backBtnText;
+    }
+
+    public String getBackBtnColor() {
+        return backBtnColor;
+    }
+
+    public void setBackBtnColor(String backBtnColor) {
+        this.backBtnColor = backBtnColor;
+    }
+
+    public String getBackBtnBorderColor() {
+        return backBtnBorderColor;
+    }
+
+    public void setBackBtnBorderColor(String backBtnBorderColor) {
+        this.backBtnBorderColor = backBtnBorderColor;
+    }
+
+    public int getBackBtnBorderWidth() {
+        return backBtnBorderWidth;
+    }
+
+    public void setBackBtnBorderWidth(int backBtnBorderWidth) {
+        this.backBtnBorderWidth = backBtnBorderWidth;
+    }
+
     public String getFinishBtnImage() {
         return finishBtnImage;
     }
 
     public void setFinishBtnImage(String finishBtnImage) {
         this.finishBtnImage = finishBtnImage;
-
     }
 
-    public String getBackgroundColor() {
-        return super.getBackgroundColor();
+    public String getFinishBtnText() {
+        return finishBtnText;
     }
 
-    public void setBackgroundColor(String backgroundColor) {
-        super.setBackgroundColor(backgroundColor);
+    public void setFinishBtnText(String finishBtnText) {
+        this.finishBtnText = finishBtnText;
     }
 
-    public String getBackgroundImage() {
-        return super.getBackgroundImage();
+    public String getFinishBtnColor() {
+        return finishBtnColor;
     }
 
-    public void setBackgroundImage(String backgroundImage) {
-        super.setBackgroundImage(backgroundImage);
+    public void setFinishBtnColor(String finishBtnColor) {
+        this.finishBtnColor = finishBtnColor;
     }
 
-    public String getBtnColor() {
-        return super.getBtnColor();
+    public String getFinishBtnBorderColor() {
+        return finishBtnBorderColor;
     }
 
-    public void setBtnColor(String btnColor) {
-        super.setBtnColor(btnColor);
+    public void setFinishBtnBorderColor(String finishBtnBorderColor) {
+        this.finishBtnBorderColor = finishBtnBorderColor;
     }
 
-    public String getBtnPressedColor() {
-        return super.getBtnPressedColor();
+    public int getFinishBtnBorderWidth() {
+        return finishBtnBorderWidth;
     }
 
-    public void setBtnPressedColor(String btnPressedColor) {
-        super.setBtnPressedColor(btnPressedColor);
+    public void setFinishBtnBorderWidth(int finishBtnBorderWidth) {
+        this.finishBtnBorderWidth = finishBtnBorderWidth;
+    }
+
+    public String getPrintMessageImage() {
+        return printMessageImage;
+    }
+
+    public void setPrintMessageImage(String printMessageImage) {
+        this.printMessageImage = printMessageImage;
+    }
+
+    public String getPrintMessageText() {
+        return printMessageText;
+    }
+
+    public void setPrintMessageText(String printMessageText) {
+        this.printMessageText = printMessageText;
+    }
+
+    public String getPrintMessageColor() {
+        return printMessageColor;
+    }
+
+    public void setPrintMessageColor(String printMessageColor) {
+        this.printMessageColor = printMessageColor;
+    }
+
+    public String getPrintMessageBorderColor() {
+        return printMessageBorderColor;
+    }
+
+    public void setPrintMessageBorderColor(String printMessageBorderColor) {
+        this.printMessageBorderColor = printMessageBorderColor;
+    }
+
+    public int getPrintMessageBorderWidth() {
+        return printMessageBorderWidth;
+    }
+
+    public void setPrintMessageBorderWidth(int printMessageBorderWidth) {
+        this.printMessageBorderWidth = printMessageBorderWidth;
     }
 
 
-
-    public static class Builder extends Layout{
-
+    public static class Builder extends Layout {
 
         private String printBtnImage;
+        private String printBtnText;
+        private String printBtnColor;
+        private String printBtnBorderColor;
+        private int printBtnBorderWidth;
 
         private String shareBtnImage;
+        private String shareBtnText;
+        private String shareBtnColor;
+        private String shareBtnBorderColor;
+        private int shareBtnBorderWidth;
 
         private String backBtnImage;
+        private String backBtnText;
+        private String backBtnColor;
+        private String backBtnBorderColor;
+        private int backBtnBorderWidth;
 
         private String finishBtnImage;
+        private String finishBtnText;
+        private String finishBtnColor;
+        private String finishBtnBorderColor;
+        private int finishBtnBorderWidth;
+
+        private String printMessageImage;
+        private String printMessageText;
+        private String printMessageColor;
+        private String printMessageBorderColor;
+        private int printMessageBorderWidth;
 
 
         private Builder() {
@@ -151,20 +391,108 @@ public final class DetailLayout extends Layout {
             return this;
         }
 
+        public DetailLayout.Builder printBtnText(String printBtnText) {
+            this.printBtnText = printBtnText;
+            return this;
+        }
+
+        public DetailLayout.Builder printBtnColor(String printBtnColor) {
+            this.printBtnColor = printBtnColor;
+            return this;
+        }
+
+        public DetailLayout.Builder printBtnBorderColor(String printBtnBorderColor) {
+            this.printBtnBorderColor = printBtnBorderColor;
+            return this;
+        }
+
+        public DetailLayout.Builder printBtnBorderWidth(int printBtnBorderWidth) {
+            this.printBtnBorderWidth = printBtnBorderWidth;
+            return this;
+        }
+
+        //
+
         public DetailLayout.Builder shareBtnImage(String shareBtnImage) {
             this.shareBtnImage = shareBtnImage;
             return this;
         }
+
+        public DetailLayout.Builder shareBtnText(String shareBtnText) {
+            this.shareBtnText = shareBtnText;
+            return this;
+        }
+
+        public DetailLayout.Builder shareBtnColor(String shareBtnColor) {
+            this.shareBtnColor = shareBtnColor;
+            return this;
+        }
+
+        public DetailLayout.Builder shareBtnBorderColor(String shareBtnBorderColor) {
+            this.shareBtnBorderColor = shareBtnBorderColor;
+            return this;
+        }
+
+        public DetailLayout.Builder shareBtnBorderWidth(int shareBtnBorderWidth) {
+            this.shareBtnBorderWidth = shareBtnBorderWidth;
+            return this;
+        }
+
+        //
 
         public DetailLayout.Builder backBtnImage(String backBtnImage) {
             this.backBtnImage = backBtnImage;
             return this;
         }
 
+        public DetailLayout.Builder backBtnText(String backBtnText) {
+            this.backBtnText = backBtnText;
+            return this;
+        }
+
+        public DetailLayout.Builder backBtnColor(String backBtnColor) {
+            this.backBtnColor = backBtnColor;
+            return this;
+        }
+
+        public DetailLayout.Builder backBtnBorderColor(String backBtnBorderColor) {
+            this.backBtnBorderColor = backBtnBorderColor;
+            return this;
+        }
+
+        public DetailLayout.Builder backBtnBorderWidth(int backBtnBorderWidth) {
+            this.backBtnBorderWidth = backBtnBorderWidth;
+            return this;
+        }
+
+        //
+
         public DetailLayout.Builder finishBtnEvent(String finishBtnImage) {
             this.finishBtnImage = finishBtnImage;
             return this;
         }
+
+        public DetailLayout.Builder finishBtnText(String finishBtnText) {
+            this.finishBtnText = finishBtnText;
+            return this;
+        }
+
+        public DetailLayout.Builder finishBtnColor(String finishBtnColor) {
+            this.finishBtnColor = finishBtnColor;
+            return this;
+        }
+
+        public DetailLayout.Builder finishBtnBorderColor(String finishBtnBorderColor) {
+            this.finishBtnBorderColor = finishBtnBorderColor;
+            return this;
+        }
+
+        public DetailLayout.Builder finishBtnBorderWidth(int finishBtnBorderWidth) {
+            this.finishBtnBorderWidth = finishBtnBorderWidth;
+            return this;
+        }
+
+        //
 
         public DetailLayout.Builder backgroundColor(String backgroundColor) {
             super.backgroundColor = backgroundColor;
@@ -172,17 +500,34 @@ public final class DetailLayout extends Layout {
         }
 
         public DetailLayout.Builder backGroundImage(String backgroundImage) {
-            super.backgroundImage=backgroundImage;
+            super.backgroundImage = backgroundImage;
             return this;
         }
 
-        public DetailLayout.Builder btnColor(String btnColor) {
-            super.btnColor = btnColor;
+        //
+
+        public DetailLayout.Builder printMessageImage(String printMessageImage) {
+            this.printMessageImage = printMessageImage;
             return this;
         }
 
-        public DetailLayout.Builder btnPressedColor(String btnPressedColor) {
-            super.btnPressedColor = btnPressedColor;
+        public DetailLayout.Builder printMessageText(String printMessageText) {
+            this.printMessageText = printMessageText;
+            return this;
+        }
+
+        public DetailLayout.Builder printMessageColor(String printMessageColor) {
+            this.printMessageColor = printMessageColor;
+            return this;
+        }
+
+        public DetailLayout.Builder printMessageBorderColor(String printMessageBorderColor) {
+            this.printMessageBorderColor = printMessageBorderColor;
+            return this;
+        }
+
+        public DetailLayout.Builder printMessageBorderWidth(int printMessageBorderWidth) {
+            this.printMessageBorderWidth = printMessageBorderWidth;
             return this;
         }
 
@@ -190,39 +535,100 @@ public final class DetailLayout extends Layout {
         public DetailLayout build() {
             DetailLayout build = new DetailLayout(this);
 
-            build.checkAll(build.getBackgroundColor(), build.getBackgroundImage(), build.getBtnColor(),
-                    build.getBtnPressedColor(), build.getPrintBtnImage(), build.getShareBtnImage(), build.getBackBtnImage(),
-                    build.getFinishBtnImage());
+            build.checkAll(build.getLogoPosition(), build.getBackgroundColor(), build.getImageBorderColor(), build.getImageBorderWidth(), build.getPrintBtnText(),
+                    build.getPrintBtnColor(), build.getPrintBtnBorderColor(), build.getPrintBtnBorderWidth(), build.getShareBtnText(),
+                    build.getShareBtnColor(), build.getShareBtnBorderColor(), build.getShareBtnBorderWidth(), build.getBackBtnText(), build.getBackBtnColor(),
+                    build.getBackBtnBorderColor(), build.getBackBtnBorderWidth(), build.getFinishBtnText(), build.getFinishBtnBorderColor(), build.getFinishBtnColor(),
+                    build.getFinishBtnBorderWidth(), build.getPrintMessageText(), build.getPrintMessageColor(), build.getPrintMessageBorderColor(), build.getPrintMessageBorderWidth());
 
             return build;
         }
     }
 
-        private void checkAll(String backgroundColor, String backgroundImage, String btnColor, String btnPressedColor, String printBtnImage, String shareBtnImage, String backBtnImage, String finishBtnImage) {
-            {
-                notNull(backgroundColor, "backgroundColor cannot be null");
-                notEmpty(backgroundColor, "backgroundColor cannot be empty");
+    private void checkAll(Position logoPosition, String backgroundColor,
+                          String imageBorderColor, int imageBorderWidth, String printBtnText,
+                          String printBtnColor, String printBtnBorderColor, int printBtnBorderWidth,
+                          String shareBtnText, String shareBtnColor, String shareBtnBorderColor,
+                          int shareBtnBorderWidth, String backBtnText, String backBtnColor,
+                          String backBtnBorderColor, int backBtnBorderWidth, String finishBtnText,
+                          String finishBtnBorderColor, String finishBtnColor, int finishBtnBorderWidth,
+                          String printMessageText, String printMessageColor, String printMessageBorderColor,
+                          int printMessageBorderWidth) {
+        notNull(logoPosition, "logoPosition cannot be null");
 
-                notNull(backgroundImage, "backgroundImage cannot be null");
-                notEmpty(backgroundImage, "backgroundColor cannot be empty");
+        notNull(backgroundColor, "backgroundColor cannot be null");
+        notEmpty(backgroundColor, "backgroundColor cannot be empty");
 
-                notNull(btnColor, "btnColor cannot be null");
-                notEmpty(btnColor, "btnColor cannot be empty");
+        notNull(imageBorderColor, "imageBorderColor cannot be null");
+        notEmpty(imageBorderColor, "imageBorderColor cannot be empty");
 
-                notNull(btnPressedColor, "btnPressedColor cannot be null");
-                notEmpty(btnPressedColor, "btnPressedColor cannot be empty");
+        notNull(imageBorderWidth, "imageBorderWidth cannot be null");
 
-                notNull(printBtnImage, "printBtnImage cannot be null");
-                notEmpty(printBtnImage, "printBtnImage cannot be empty");
+        //
 
-                notNull(shareBtnImage, "shareBtnImage cannot be null");
-                notEmpty(shareBtnImage, "shareBtnImage cannot be empty");
+        notNull(printBtnText, "printBtnText cannot be null");
+        notEmpty(printBtnText, "printBtnText cannot be empty");
 
-                notNull(backBtnImage, "backBtnImage cannot be null");
-                notEmpty(backBtnImage, "backBtnImage cannot be empty");
+        notNull(printBtnColor, "printBtnColor cannot be null");
+        notEmpty(printBtnColor, "printBtnColor cannot be empty");
 
-                notNull(finishBtnImage, "finishBtnImage cannot be null");
-                notEmpty(finishBtnImage, "finishBtnImage cannot be empty");
-            }
-        }
+        notNull(printBtnBorderColor, "printBtnBorderColor cannot be null");
+        notEmpty(printBtnBorderColor, "printBtnBorderColor cannot be empty");
+
+        notNull(printBtnBorderWidth, "printBtnBorderWidth cannot be null");
+
+        //
+
+        notNull(shareBtnText, "shareBtnText cannot be null");
+        notEmpty(shareBtnText, "shareBtnText cannot be empty");
+
+        notNull(shareBtnColor, "shareBtnColor cannot be null");
+        notEmpty(shareBtnColor, "shareBtnColor cannot be empty");
+
+        notNull(shareBtnBorderColor, "shareBtnBorderColor cannot be null");
+        notEmpty(shareBtnBorderColor, "shareBtnBorderColor cannot be empty");
+
+        notNull(shareBtnBorderWidth, "shareBtnBorderWidth cannot be null");
+
+        //
+
+        notNull(backBtnText, "backBtnText cannot be null");
+        notEmpty(backBtnText, "backBtnText cannot be empty");
+
+        notNull(backBtnColor, "backBtnColor cannot be null");
+        notEmpty(backBtnColor, "backBtnColor cannot be empty");
+
+        notNull(backBtnBorderColor, "backBtnBorderColor cannot be null");
+        notEmpty(backBtnBorderColor, "backBtnBorderColor cannot be empty");
+
+        notNull(backBtnBorderWidth, "backBtnBorderWidth cannot be null");
+
+        //
+
+        notNull(finishBtnText, "finishBtnText cannot be null");
+        notEmpty(finishBtnText, "finishBtnText cannot be empty");
+
+        notNull(finishBtnColor, "finishBtnColor cannot be null");
+        notEmpty(finishBtnColor, "finishBtnColor cannot be empty");
+
+        notNull(finishBtnBorderColor, "finishBtnBorderColor cannot be null");
+        notEmpty(finishBtnBorderColor, "finishBtnBorderColor cannot be empty");
+
+        notNull(finishBtnBorderWidth, "finishBtnBorderWidth cannot be null");
+
+        //
+
+        notNull(printMessageText, "printMessageText cannot be null");
+        notEmpty(printMessageText, "printMessageText cannot be empty");
+
+        notNull(printMessageColor, "printMessageColor cannot be null");
+        notEmpty(printMessageColor, "printMessageColor cannot be empty");
+
+        notNull(printMessageBorderColor, "printMessageBorderColor cannot be null");
+        notEmpty(printMessageBorderColor, "printMessageBorderColor cannot be empty");
+
+        notNull(printMessageBorderWidth, "printMessageBorderWidth cannot be null");
+
     }
+}
+
