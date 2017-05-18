@@ -18,6 +18,8 @@ public final class EventText {
 
     private String cloudinaryDirectory;
 
+    private String qrCodeImage;
+
     public EventText(String textUpper) {
         this.textUpper = textUpper;
     }
@@ -47,6 +49,15 @@ public final class EventText {
         this.textUnderPhoto = textUnderPhoto;
         this.textBottom = textBottom;
         this.textColor = textColor;
+    }
+
+    public EventText(String textUpper, String textUnderPhoto, String textBottom, String textColor, String cloudinaryDirectory, String qrCodeImage) {
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
+        this.cloudinaryDirectory = cloudinaryDirectory;
+        this.qrCodeImage = qrCodeImage;
     }
 
     public EventText() {
@@ -90,5 +101,13 @@ public final class EventText {
 
     public void setCloudinaryDirectory(String cloudinaryDirectory) {
         this.cloudinaryDirectory = cloudinaryDirectory;
+    }
+
+    public String getQrCodeImage() {
+        return qrCodeImage;
+    }
+
+    public void setQrCodeImage(String qrCodeImage) {
+        this.qrCodeImage = qrCodeImage;
     }
 }
