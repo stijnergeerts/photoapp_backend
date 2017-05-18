@@ -59,11 +59,15 @@ public class EventTextDTO {
         this.textBottom = textBottom;
     }
 
-    public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom, String textColor, String cloudinaryDirectory, String qrCodeImage) {
+    public EventTextDTO(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, boolean backgroundImageToggle, String cloudinaryDirectory, String qrCodeImage) {
+        this.logo = logo;
         this.textUpper = textUpper;
         this.textUnderPhoto = textUnderPhoto;
         this.textBottom = textBottom;
         this.textColor = textColor;
+        this.backgroundColor = backgroundColor;
+        this.backgroundImage = backgroundImage;
+        this.backgroundImageToggle = backgroundImageToggle;
         this.cloudinaryDirectory = cloudinaryDirectory;
         this.qrCodeImage = qrCodeImage;
     }

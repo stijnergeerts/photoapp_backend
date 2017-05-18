@@ -139,6 +139,8 @@ public class EventControllerTest {
     private String backgroundImage;
     @Value("TestDirectory")
     private String cloudinaryDirectory;
+    @Value("TestQR")
+    private String qrCodeImage;
 
     private String testToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODY" +
             "3MzE5MzgsImV4cCI6MTUxODI2NzkzOCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoidGVz" +
@@ -168,7 +170,7 @@ public class EventControllerTest {
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,
                         overviewBtnPressedColor, selectBtnImage, selectionColor),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory));
+                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
 
         Event testEvent2 = new Event("TestEvent2", eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
@@ -180,7 +182,7 @@ public class EventControllerTest {
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,
                         overviewBtnPressedColor, selectBtnImage, selectionColor),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory));
+                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
 
         this.mockMvc.perform(post("/api/user/createUser").content(mapper.writeValueAsString(testUser)).header("token", testToken).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -211,7 +213,7 @@ public class EventControllerTest {
                         detailBtnPressedColor, printBtnImage, shareBtnImage, backBtnImage, finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor, overviewBackgroundImage, overviewBtnColor,
                         overviewBtnPressedColor, selectBtnImage, selectionColor),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory));
+                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
 
         this.mockMvc.perform(post("/api/event/createEvent").header("token", testToken).content(mapper.writeValueAsString(testEvent)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isConflict());

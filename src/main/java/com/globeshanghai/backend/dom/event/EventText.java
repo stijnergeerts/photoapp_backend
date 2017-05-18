@@ -68,15 +68,6 @@ public final class EventText {
         this.textColor = textColor;
     }
 
-    public EventText(String textUpper, String textUnderPhoto, String textBottom, String textColor, String cloudinaryDirectory, String qrCodeImage) {
-        this.textUpper = textUpper;
-        this.textUnderPhoto = textUnderPhoto;
-        this.textBottom = textBottom;
-        this.textColor = textColor;
-        this.cloudinaryDirectory = cloudinaryDirectory;
-        this.qrCodeImage = qrCodeImage;
-    }
-
     public EventText(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, String cloudinaryDirectory) {
         this.logo = logo;
         this.textUpper = textUpper;
@@ -100,7 +91,24 @@ public final class EventText {
         this.cloudinaryDirectory = cloudinaryDirectory;
     }
 
+    public EventText(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, boolean backgroundImageToggle, String cloudinaryDirectory, String qrCodeImage) {
+        this.logo = logo;
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
+        this.backgroundColor = backgroundColor;
+        this.backgroundImage = backgroundImage;
+        this.backgroundImageToggle = backgroundImageToggle;
+        this.cloudinaryDirectory = cloudinaryDirectory;
+        this.qrCodeImage = qrCodeImage;
+    }
+
     public EventText() {
+    }
+
+    public boolean isBackgroundImageToggle() {
+        return backgroundImageToggle;
     }
 
     public String getLogo() {

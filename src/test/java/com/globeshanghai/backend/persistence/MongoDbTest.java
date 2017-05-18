@@ -125,6 +125,8 @@ public class MongoDbTest {
     private String backgroundImage;
     @Value("TestDirectory")
     private String cloudinaryDirectory;
+    @Value("TestQR")
+    private String qrCodeImage;
 
     @Autowired
     private UserRepository userRepository;
@@ -179,7 +181,7 @@ public class MongoDbTest {
                         detailBtnPressedColor,printBtnImage,shareBtnImage,backBtnImage,finishBtnImage),
                 new OverviewLayout(overviewBackgroundColor,overviewBackgroundImage,overviewBtnColor,
                         overviewBtnPressedColor,selectBtnImage,selectionColor),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory));
+                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
         eventRepository.save(e);
         assertEquals((eventRepository.findEventByEventName(eventName).getEventName() + eventRepository.findEventByEventName(eventName).getEventLogo()), (e.getEventName() + e.getEventLogo()));
     }
