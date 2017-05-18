@@ -22,6 +22,8 @@ public class EventTextDTO {
 
     private String cloudinaryDirectory;
 
+    private String qrCodeImage;
+
     public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom, String textColor, String cloudinaryDirectory) {
         this.textUpper = textUpper;
         this.textUnderPhoto = textUnderPhoto;
@@ -55,6 +57,15 @@ public class EventTextDTO {
         this.textUpper = textUpper;
         this.textUnderPhoto = textUnderPhoto;
         this.textBottom = textBottom;
+    }
+
+    public EventTextDTO(String textUpper, String textUnderPhoto, String textBottom, String textColor, String cloudinaryDirectory, String qrCodeImage) {
+        this.textUpper = textUpper;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
+        this.cloudinaryDirectory = cloudinaryDirectory;
+        this.qrCodeImage = qrCodeImage;
     }
 
     public EventTextDTO(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String cloudinaryDirectory) {
@@ -168,5 +179,11 @@ public class EventTextDTO {
         this.cloudinaryDirectory = cloudinaryDirectory;
     }
 
+    public String getQrCodeImage() {
+        return qrCodeImage;
+    }
 
+    public void setQrCodeImage(String qrCodeImage) {
+        this.qrCodeImage = qrCodeImage;
+    }
 }
