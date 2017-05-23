@@ -164,8 +164,12 @@ public class EventControllerTest {
     private String selectBtnBorderColor;
     @Value("TestLogo")
     private String logo;
+    @Value("TestTabTitle")
+    private String tabTitle;
     @Value("Title")
     private String textUpper;
+    @Value("Text above photo")
+    private String textAbovePhoto;
     @Value("Follow on social media")
     private String textUnderPhoto;
     @Value("Links")
@@ -211,7 +215,7 @@ public class EventControllerTest {
                         printMessageImage, printMessageText, printMessageColor, printMessageBorderColor,34),
                 new OverviewLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,false, imageContainerColor, imageContainerBorderColor,400,selectionIcon,
                         true,selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText,selectBtnColor,selectBtnImage,selectBtnBorderColor,400),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
+                new EventText(logo,tabTitle,textUpper,textAbovePhoto,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
 
         Event testEvent2 = new Event("TestEvent2", eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
@@ -226,7 +230,7 @@ public class EventControllerTest {
                         printMessageImage, printMessageText, printMessageColor, printMessageBorderColor,34),
                 new OverviewLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,false, imageContainerColor, imageContainerBorderColor,400,selectionIcon,
                         true,selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText,selectBtnColor,selectBtnImage,selectBtnBorderColor,400),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
+                new EventText(logo,tabTitle,textUpper,textAbovePhoto,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
 
         this.mockMvc.perform(post("/api/user/createUser").content(mapper.writeValueAsString(testUser)).header("token", testToken).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -260,7 +264,7 @@ public class EventControllerTest {
                         printMessageImage, printMessageText, printMessageColor, printMessageBorderColor,34),
                 new OverviewLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,false, imageContainerColor, imageContainerBorderColor,400,selectionIcon,
                         true,selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText,selectBtnColor,selectBtnImage,selectBtnBorderColor,400),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
+                new EventText(logo,tabTitle,textUpper,textAbovePhoto,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
 
         this.mockMvc.perform(post("/api/event/createEvent").header("token", testToken).content(mapper.writeValueAsString(testEvent)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isConflict());

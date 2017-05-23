@@ -80,7 +80,6 @@ public class MongoDbTest {
     private String watermarkImage;
     @Value("11223344")
     private String detailLayoutId;
-
     @Value("TestLogo")
     private String layoutLogo;
     @Value("TestBgColor")
@@ -151,8 +150,12 @@ public class MongoDbTest {
     private String selectBtnBorderColor;
     @Value("TestLogo")
     private String logo;
+    @Value("TestTabTitle")
+    private String tabTitle;
     @Value("Title")
     private String textUpper;
+    @Value("Text above photo")
+    private String textAbovePhoto;
     @Value("Follow on social media")
     private String textUnderPhoto;
     @Value("Links")
@@ -224,7 +227,7 @@ public class MongoDbTest {
                         printMessageImage, printMessageText, printMessageColor, printMessageBorderColor,34),
                 new OverviewLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,false, imageContainerColor, imageContainerBorderColor,400,selectionIcon,
                         true,selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText,selectBtnColor,selectBtnImage,selectBtnBorderColor,400),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
+                new EventText(logo,tabTitle,textUpper,textAbovePhoto,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
         eventRepository.save(e);
         assertEquals((eventRepository.findEventByEventName(eventName).getEventName() + eventRepository.findEventByEventName(eventName).getEventLogo()), (e.getEventName() + e.getEventLogo()));
     }

@@ -10,7 +10,11 @@ public final class EventText {
 
     private String logo;
 
+    private String tabTitle;
+
     private String textUpper;
+
+    private String textAbovePhoto;
 
     private String textUnderPhoto;
 
@@ -104,6 +108,21 @@ public final class EventText {
         this.qrCodeImage = qrCodeImage;
     }
 
+    public EventText(String logo, String tabTitle, String textUpper, String textAbovePhoto, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, boolean backgroundImageToggle, String cloudinaryDirectory, String qrCodeImage) {
+        this.logo = logo;
+        this.tabTitle = tabTitle;
+        this.textUpper = textUpper;
+        this.textAbovePhoto = textAbovePhoto;
+        this.textUnderPhoto = textUnderPhoto;
+        this.textBottom = textBottom;
+        this.textColor = textColor;
+        this.backgroundColor = backgroundColor;
+        this.backgroundImage = backgroundImage;
+        this.backgroundImageToggle = backgroundImageToggle;
+        this.cloudinaryDirectory = cloudinaryDirectory;
+        this.qrCodeImage = qrCodeImage;
+    }
+
     public EventText() {
     }
 
@@ -119,12 +138,28 @@ public final class EventText {
         this.logo = logo;
     }
 
+    public String getTabTitle() {
+        return tabTitle;
+    }
+
+    public void setTabTitle(String tabTitle) {
+        this.tabTitle = tabTitle;
+    }
+
     public String getTextUpper() {
         return textUpper;
     }
 
     public void setTextUpper(String textUpper) {
         this.textUpper = textUpper;
+    }
+
+    public String getTextAbovePhoto() {
+        return textAbovePhoto;
+    }
+
+    public void setTextAbovePhoto(String textAbovePhoto) {
+        this.textAbovePhoto = textAbovePhoto;
     }
 
     public String getTextUnderPhoto() {
