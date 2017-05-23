@@ -15,18 +15,31 @@ public final class OverviewLayout extends Layout {
     private String overviewLayoutId;
 
     private boolean imageContainer;
+
     private String imageContainerColor;
+    
     private String imageContainerBorderColor;
+
     private int imageContainerBorderWidth;
+
     private String selectionIcon;
+
     private boolean selectionContainer;
+
     private String selectionContainerColor;
+
     private String selectionContainerBorderColor;
+
     private int selectionContainerBorderWidth;
+
     private String selectBtnText;
+
     private String selectBtnColor;
+
     private String selectBtnImage;
+
     private String selectBtnBorderColor;
+
     private int selectBtnBorderWidth;
 
     private OverviewLayout(OverviewLayout.Builder builder) {
