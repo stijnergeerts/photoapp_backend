@@ -223,8 +223,7 @@ public class MongoDbTest {
                 companyAddress,contact,contactPhone,
                 new Config(mediaStorage, PhotoQuality.HIGH, printerName, 34, true, true, qrImage,
                         new ImageWatermark(true,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100),
-                        new ImageWatermark(false,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100), true)
-                ,
+                        new ImageWatermark(false,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100), true),
                 new DetailLayout(12,layoutLogo, Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,printBtnImage,printBtnText, printBtnColor, printBtnBorderColor,34,
                         shareBtnImage,shareBtnText, shareBtnColor, shareBtnBorderColor,34,
                         backBtnImage, backBtnText, backBtnColor, backBtnBorderColor,34,

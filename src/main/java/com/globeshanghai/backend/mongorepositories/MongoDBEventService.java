@@ -93,7 +93,6 @@ import java.util.stream.Collectors;
         return convertToDTO(updated);
     }
 
-
     private EventDTO convertToDTO(Event model) {
         EventDTO dto = new EventDTO();
         dto.setEventId(model.getEventId());
@@ -139,12 +138,10 @@ import java.util.stream.Collectors;
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
+
     private Event findEventById(String id) {
         Optional<Event> result = eventRepository.findOne(id);
         return result.orElseThrow(() -> new EventNotFoundException(id));
 
     }
-
-
-
 }
