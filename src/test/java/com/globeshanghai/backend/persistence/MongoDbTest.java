@@ -1,6 +1,7 @@
 package com.globeshanghai.backend.persistence;
 
 import com.globeshanghai.backend.dom.configuration.Config;
+import com.globeshanghai.backend.dom.configuration.ImageWatermark;
 import com.globeshanghai.backend.dom.configuration.PhotoQuality;
 import com.globeshanghai.backend.dom.event.Event;
 import com.globeshanghai.backend.dom.event.EventText;
@@ -76,8 +77,6 @@ public class MongoDbTest {
     private String printerName;
     @Value("TestQrImage")
     private String qrImage;
-    @Value("TestWatermarkImage")
-    private String watermarkImage;
     @Value("11223344")
     private String detailLayoutId;
     @Value("TestLogo")
@@ -171,6 +170,11 @@ public class MongoDbTest {
     @Value("TestQR")
     private String qrCodeImage;
 
+    @Value("TestLogoLocation")
+    private String logoLocation;
+    @Value("TestOverlayLocation")
+    private String overlayLocation;
+
     @Autowired
     private UserRepository userRepository;
 
@@ -217,9 +221,10 @@ public class MongoDbTest {
         Event e = new Event(eventName, eventLogo, eventStartDate,
                 eventEndDate,eventLocation,eventAddress,company,
                 companyAddress,contact,contactPhone,
-                new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
-                        true,watermarkImage,true,qrImage,
-                        true),
+                new Config(mediaStorage, PhotoQuality.HIGH, printerName, 34, true, true, qrImage,
+                        new ImageWatermark(true,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100),
+                        new ImageWatermark(false,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100), true)
+                ,
                 new DetailLayout(12,layoutLogo, Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,printBtnImage,printBtnText, printBtnColor, printBtnBorderColor,34,
                         shareBtnImage,shareBtnText, shareBtnColor, shareBtnBorderColor,34,
                         backBtnImage, backBtnText, backBtnColor, backBtnBorderColor,34,

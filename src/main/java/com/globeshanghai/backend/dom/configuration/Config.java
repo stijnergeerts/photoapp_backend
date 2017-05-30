@@ -3,13 +3,16 @@ package com.globeshanghai.backend.dom.configuration;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
+import static com.globeshanghai.frontend.util.PreCondition.notNull;
+
 
 /**
  * Created by stijnergeerts on 14/04/17.
  */
 
 @Document(collection = "configuration")
- public final class Config {
+public final class Config {
 
     @Id
     private String configurationId;
@@ -24,11 +27,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
     private boolean watermarkPrinting;
 
-    private String watermarkImage;
-
     private boolean qrPrinting;
 
     private String qrImage;
+
+    private ImageWatermark printWatermark;
+
+    private ImageWatermark webWatermark;
 
     private boolean watermarkSharing;
 
@@ -37,25 +42,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
         this.photoQuality = builder.photoQuality;
         this.printerName = builder.printerName;
         this.printerCopies = builder.printerCopies;
-        this.watermarkPrinting = builder.watermarkPrinting;
-        this.watermarkImage = builder.watermarkImage;
         this.qrPrinting = builder.qrPrinting;
         this.qrImage = builder.qrImage;
+        this.printWatermark = builder.printWatermark;
+        this.webWatermark = builder.webWatermark;
         this.watermarkSharing = builder.watermarkSharing;
     }
 
-    public Config(){
-    };
+    public Config() {
+    }
 
-    public Config(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies, boolean watermarkPrinting, String watermarkImage, boolean qrPrinting, String qrImage, boolean watermarkSharing) {
+    public Config(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies, boolean watermarkPrinting, boolean qrPrinting, String qrImage, ImageWatermark printWatermark, ImageWatermark webWatermark, boolean watermarkSharing) {
         this.mediaStorage = mediaStorage;
         this.photoQuality = photoQuality;
         this.printerName = printerName;
         this.printerCopies = printerCopies;
         this.watermarkPrinting = watermarkPrinting;
-        this.watermarkImage = watermarkImage;
         this.qrPrinting = qrPrinting;
         this.qrImage = qrImage;
+        this.printWatermark = printWatermark;
+        this.webWatermark = webWatermark;
         this.watermarkSharing = watermarkSharing;
     }
 
@@ -87,7 +93,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
         this.photoQuality = photoQuality;
     }
 
-
     public String getPrinterName() {
         return printerName;
     }
@@ -95,7 +100,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
     public void setPrinterName(String printerName) {
         this.printerName = printerName;
     }
-
 
     public int getPrinterCopies() {
         return printerCopies;
@@ -105,7 +109,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
         this.printerCopies = printerCopies;
     }
 
-    public boolean getWatermarkPrinting() {
+    public boolean isWatermarkPrinting() {
         return watermarkPrinting;
     }
 
@@ -113,15 +117,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
         this.watermarkPrinting = watermarkPrinting;
     }
 
-    public String getWatermarkImage() {
-        return watermarkImage;
-    }
-
-    public void setWatermarkImage(String watermarkImage) {
-        this.watermarkImage = watermarkImage;
-    }
-
-    public boolean getQrPrinting() {
+    public boolean isQrPrinting() {
         return qrPrinting;
     }
 
@@ -137,7 +133,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
         this.qrImage = qrImage;
     }
 
-    public boolean getWatermarkSharing() {
+    public ImageWatermark getPrintWatermark() {
+        return printWatermark;
+    }
+
+    public void setPrintWatermark(ImageWatermark printWatermark) {
+        this.printWatermark = printWatermark;
+    }
+
+    public ImageWatermark getWebWatermark() {
+        return webWatermark;
+    }
+
+    public boolean isWatermarkSharing() {
         return watermarkSharing;
     }
 
@@ -145,20 +153,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
         this.watermarkSharing = watermarkSharing;
     }
 
-    public void update(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies,
-                       boolean watermarkPrinting, String watermarkImage, boolean qrPrinting, String qrImage, boolean watermarkSharing) {
-
-        checkAll(mediaStorage, photoQuality, printerName, printerCopies, watermarkPrinting,
-                watermarkImage,  qrPrinting, qrImage, watermarkSharing);
+    public void update(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies, boolean watermarkPrinting, boolean qrPrinting, String qrImage, ImageWatermark printWatermark, ImageWatermark webWatermark, boolean watermarkSharing) {
+        checkAll(mediaStorage, photoQuality, printerName, printerCopies, watermarkPrinting, qrPrinting, qrImage, printWatermark, webWatermark, watermarkSharing);
 
         this.mediaStorage = mediaStorage;
         this.photoQuality = photoQuality;
         this.printerName = printerName;
         this.printerCopies = printerCopies;
         this.watermarkPrinting = watermarkPrinting;
-        this.watermarkImage = watermarkImage;
         this.qrPrinting = qrPrinting;
         this.qrImage = qrImage;
+        this.printWatermark = printWatermark;
+        this.webWatermark = webWatermark;
         this.watermarkSharing = watermarkSharing;
     }
 
@@ -175,15 +181,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
         private boolean watermarkPrinting;
 
-        private String watermarkImage;
-
         private boolean qrPrinting;
 
         private String qrImage;
 
         private boolean watermarkSharing;
 
-        private Builder() {}
+        private ImageWatermark printWatermark;
+
+        private ImageWatermark webWatermark;
+
+        private Builder() {
+        }
 
         public Builder mediaStorage(String mediaStorage) {
             this.mediaStorage = mediaStorage;
@@ -210,11 +219,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
             return this;
         }
 
-        public Builder waterMarkImage(String watermarkImage) {
-            this.watermarkImage = watermarkImage;
-            return this;
-        }
-
         public Builder qrPrinting(boolean qrPrinting) {
             this.qrPrinting = qrPrinting;
             return this;
@@ -230,58 +234,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
             return this;
         }
 
+        public Builder printWatermark(ImageWatermark printWatermark) {
+            this.printWatermark = printWatermark;
+            return this;
+        }
 
+        public Builder webWatermark(ImageWatermark webWatermark) {
+            this.webWatermark = webWatermark;
+            return this;
+        }
 
         public Config build() {
             Config build = new Config(this);
 
-            build.checkAll(build.getMediaStorage(), build.getPhotoQuality(),
-                    build.getPrinterName(), build.getPrinterCopies(),build.getWatermarkPrinting(),build.getWatermarkImage(),
-                    build.getQrPrinting(),build.getQrImage(),build.getWatermarkSharing());
+            build.checkAll(build.mediaStorage, build.photoQuality, build.printerName, build.printerCopies, build.watermarkPrinting, build.qrPrinting, build.qrImage, build.printWatermark, build.webWatermark, build.watermarkSharing);
 
             return build;
         }
     }
 
-    private void checkAll(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies,
-                          boolean watermarkPrinting, String watermarkImage, boolean qrPrinting, String qrImage, boolean watermarkSharing) {
-
-        /*notNull(mediaStorage, "mediaStorage cannot be null");
-        notEmpty(mediaStorage, "mediaStorage cannot be empty");
-
-        notNull(photoQuality, "photoquality cannot be null");
-
-        notNull(ftpIPAddress, "ftpIPAddress cannot be null");
-        notEmpty(ftpIPAddress, "ftpIPAddress cannot be empty");
-
-        notNull(ftpPort, "ftpPort cannot be null");
-        notEmpty(ftpPort, "ftpPort cannot be empty");
-
-        notNull(ftpUsername, "ftpUsername cannot be null");
-        notEmpty(ftpUsername, "ftpUsername cannot be empty");
-
-        notNull(ftpPassword, "ftpPassword cannot be null");
-        notEmpty(ftpPassword, "ftpPassword cannot be empty");
-
-        notNull(printerName, "printerName cannot be null");
-        notEmpty(printerName, "printerName cannot be empty");
-
-        notNull(printerEnabled, "printerEnabled cannot be null");
-
-        notNull(automaticPrinting, "automaticPrinting cannot be null");
-
-        notNull(printerCopies, "printerCopies cannot be null");
-
-        notNull(watermark, "watermark cannot be null");
-
-        notNull(qrPrinting, "qrPrinting cannot be null");
-
-        notEmpty(qrImage, "qrPrinting cannot be empty");
-        notNull(qrImage, "qrPrinting cannot be null");
-
-        notNull(watermarkImage, "watermarkImage cannot be null");
-        notEmpty(watermarkImage, "watermarkImage cannot be empty");*/
-
-
+    private void checkAll(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies, boolean watermarkPrinting, boolean qrPrinting, String qrImage, ImageWatermark printWatermark, ImageWatermark webWatermark, boolean watermarkSharing) {
+        //TODO
     }
 }
