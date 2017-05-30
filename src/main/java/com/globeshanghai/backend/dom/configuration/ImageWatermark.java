@@ -196,6 +196,27 @@ public final class ImageWatermark {
         this.imageScale = imageScale;
     }
 
+    public void update(boolean print, int height, int width, String logoLocation, int logoX, int logoY, int logoScale, String overlayLocation, int overlayX, int overlayY, int overlayScale, int imageWidth, int imageHeight, int imageX, int imageY, int imageScale) {
+        checkAll(print, height, width, imageWidth, imageHeight, imageX, imageY, imageScale);
+
+        this.print = print;
+        this.height = height;
+        this.width = width;
+        this.logoLocation = logoLocation;
+        this.logoX = logoX;
+        this.logoY = logoY;
+        this.logoScale = logoScale;
+        this.overlayLocation = overlayLocation;
+        this.overlayX = overlayX;
+        this.overlayY = overlayY;
+        this.overlayScale = overlayScale;
+        this.imageWidth = imageWidth;
+        this.imageHeight = imageHeight;
+        this.imageX = imageX;
+        this.imageY = imageY;
+        this.imageScale = imageScale;
+    }
+
     public static class Builder {
         private boolean print;
         private int height;
