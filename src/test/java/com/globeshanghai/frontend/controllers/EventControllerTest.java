@@ -3,6 +3,7 @@ package com.globeshanghai.frontend.controllers;
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.globeshanghai.backend.dom.configuration.Config;
+import com.globeshanghai.backend.dom.configuration.ImageWatermark;
 import com.globeshanghai.backend.dom.configuration.PhotoQuality;
 import com.globeshanghai.backend.dom.event.Event;
 import com.globeshanghai.backend.dom.event.EventText;
@@ -90,8 +91,6 @@ public class EventControllerTest {
     private String printerName;
     @Value("TestQrImage")
     private String qrImage;
-    @Value("TestWatermarkImage")
-    private String watermarkImage;
     @Value("11223344")
     private String detailLayoutId;
     @Value("TestLogo")
@@ -181,12 +180,17 @@ public class EventControllerTest {
     @Value("TestQR")
     private String qrCodeImage;
 
+    @Value("TestLogoLocation")
+    private String logoLocation;
+    @Value("TestOverlayLocation")
+    private String overlayLocation;
+
     private String testToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE0ODY" +
             "3MzE5MzgsImV4cCI6MTUxODI2NzkzOCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoidGVz" +
             "dDYifQ.X8l82QUd7sXLuqNxiTJaQZDhU9V7_4fIi3MKNxYHOQU";
 
     @Before
-    public void setup(){
+    public void setup() {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
         this.mapper = new ObjectMapper();
     }
@@ -201,32 +205,34 @@ public class EventControllerTest {
         Event testEvent = new Event(eventName, eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
-                new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
-                        true,watermarkImage,true,qrImage,
-                        true),
-                new DetailLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,printBtnImage,printBtnText, printBtnColor, printBtnBorderColor,34,
-                        shareBtnImage,shareBtnText, shareBtnColor, shareBtnBorderColor,34,
-                        backBtnImage, backBtnText, backBtnColor, backBtnBorderColor,34,
-                        finishBtnImage,finishBtnText, finishBtnColor, finishBtnBorderColor,34,
-                        printMessageImage, printMessageText, printMessageColor, printMessageBorderColor,34),
-                new OverviewLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,false, imageContainerColor, imageContainerBorderColor,400,selectionIcon,
-                        true,selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText,selectBtnColor,selectBtnImage,selectBtnBorderColor,400),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
+                new Config(mediaStorage, PhotoQuality.HIGH, printerName, 34, true, true, qrImage,
+                        new ImageWatermark(true,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100),
+                        new ImageWatermark(false,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100), true)
+                ,
+                new DetailLayout(12, layoutLogo, Position.CENTER, layoutBackgroundColor, layoutBackgroundImage, layoutImageBorderColor, 400, printBtnImage, printBtnText, printBtnColor, printBtnBorderColor, 34,
+                        shareBtnImage, shareBtnText, shareBtnColor, shareBtnBorderColor, 34,
+                        backBtnImage, backBtnText, backBtnColor, backBtnBorderColor, 34,
+                        finishBtnImage, finishBtnText, finishBtnColor, finishBtnBorderColor, 34,
+                        printMessageImage, printMessageText, printMessageColor, printMessageBorderColor, 34),
+                new OverviewLayout(12, layoutLogo, Position.CENTER, layoutBackgroundColor, layoutBackgroundImage, layoutImageBorderColor, 400, false, imageContainerColor, imageContainerBorderColor, 400, selectionIcon,
+                        true, selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText, selectBtnColor, selectBtnImage, selectBtnBorderColor, 400),
+                new EventText(logo, textUpper, textUnderPhoto, textBottom, textColor, backgroundColor, backgroundImage, false, cloudinaryDirectory, qrCodeImage));
 
         Event testEvent2 = new Event("TestEvent2", eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
-                new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
-                        true,watermarkImage,true,qrImage,
-                        true),
-                new DetailLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,printBtnImage,printBtnText, printBtnColor, printBtnBorderColor,34,
-                        shareBtnImage,shareBtnText, shareBtnColor, shareBtnBorderColor,34,
-                        backBtnImage, backBtnText, backBtnColor, backBtnBorderColor,34,
-                        finishBtnImage,finishBtnText, finishBtnColor, finishBtnBorderColor,34,
-                        printMessageImage, printMessageText, printMessageColor, printMessageBorderColor,34),
-                new OverviewLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,false, imageContainerColor, imageContainerBorderColor,400,selectionIcon,
-                        true,selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText,selectBtnColor,selectBtnImage,selectBtnBorderColor,400),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
+                new Config(mediaStorage, PhotoQuality.HIGH, printerName, 34, true, true, qrImage,
+                        new ImageWatermark(true,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100),
+                        new ImageWatermark(false,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100), true)
+                ,
+                new DetailLayout(12, layoutLogo, Position.CENTER, layoutBackgroundColor, layoutBackgroundImage, layoutImageBorderColor, 400, printBtnImage, printBtnText, printBtnColor, printBtnBorderColor, 34,
+                        shareBtnImage, shareBtnText, shareBtnColor, shareBtnBorderColor, 34,
+                        backBtnImage, backBtnText, backBtnColor, backBtnBorderColor, 34,
+                        finishBtnImage, finishBtnText, finishBtnColor, finishBtnBorderColor, 34,
+                        printMessageImage, printMessageText, printMessageColor, printMessageBorderColor, 34),
+                new OverviewLayout(12, layoutLogo, Position.CENTER, layoutBackgroundColor, layoutBackgroundImage, layoutImageBorderColor, 400, false, imageContainerColor, imageContainerBorderColor, 400, selectionIcon,
+                        true, selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText, selectBtnColor, selectBtnImage, selectBtnBorderColor, 400),
+                new EventText(logo, textUpper, textUnderPhoto, textBottom, textColor, backgroundColor, backgroundImage, false, cloudinaryDirectory, qrCodeImage));
 
         this.mockMvc.perform(post("/api/user/createUser").content(mapper.writeValueAsString(testUser)).header("token", testToken).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -250,17 +256,18 @@ public class EventControllerTest {
         Event testEvent = new Event(eventName, eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,
-                new Config(mediaStorage, PhotoQuality.HIGH,printerName,34,
-                        true,watermarkImage,true,qrImage,
-                        true),
-                new DetailLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,printBtnImage,printBtnText, printBtnColor, printBtnBorderColor,34,
-                        shareBtnImage,shareBtnText, shareBtnColor, shareBtnBorderColor,34,
-                        backBtnImage, backBtnText, backBtnColor, backBtnBorderColor,34,
-                        finishBtnImage,finishBtnText, finishBtnColor, finishBtnBorderColor,34,
-                        printMessageImage, printMessageText, printMessageColor, printMessageBorderColor,34),
-                new OverviewLayout(12,layoutLogo,Position.CENTER,layoutBackgroundColor,layoutBackgroundImage,layoutImageBorderColor,400,false, imageContainerColor, imageContainerBorderColor,400,selectionIcon,
-                        true,selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText,selectBtnColor,selectBtnImage,selectBtnBorderColor,400),
-                new EventText(logo,textUpper,textUnderPhoto,textBottom,textColor,backgroundColor,backgroundImage,false,cloudinaryDirectory,qrCodeImage));
+                new Config(mediaStorage, PhotoQuality.HIGH, printerName, 34, true, true, qrImage,
+                        new ImageWatermark(true,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100),
+                        new ImageWatermark(false,1000,1000,logoLocation,0,0,100,overlayLocation,0,0,100,1000,1000,0,0,100), true)
+                ,
+                new DetailLayout(12, layoutLogo, Position.CENTER, layoutBackgroundColor, layoutBackgroundImage, layoutImageBorderColor, 400, printBtnImage, printBtnText, printBtnColor, printBtnBorderColor, 34,
+                        shareBtnImage, shareBtnText, shareBtnColor, shareBtnBorderColor, 34,
+                        backBtnImage, backBtnText, backBtnColor, backBtnBorderColor, 34,
+                        finishBtnImage, finishBtnText, finishBtnColor, finishBtnBorderColor, 34,
+                        printMessageImage, printMessageText, printMessageColor, printMessageBorderColor, 34),
+                new OverviewLayout(12, layoutLogo, Position.CENTER, layoutBackgroundColor, layoutBackgroundImage, layoutImageBorderColor, 400, false, imageContainerColor, imageContainerBorderColor, 400, selectionIcon,
+                        true, selectionContainerColor, selectionContainerBorderColor, 400, selectBtnText, selectBtnColor, selectBtnImage, selectBtnBorderColor, 400),
+                new EventText(logo, textUpper, textUnderPhoto, textBottom, textColor, backgroundColor, backgroundImage, false, cloudinaryDirectory, qrCodeImage));
 
         this.mockMvc.perform(post("/api/event/createEvent").header("token", testToken).content(mapper.writeValueAsString(testEvent)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isConflict());
@@ -271,7 +278,7 @@ public class EventControllerTest {
     public void bCheckIfUserHasEvent() throws Exception {
         this.mockMvc.perform(get("/api/user/getUser").header("token", testToken))
                 .andDo(print())
-                .andExpect((ResultMatcher) jsonPath("$.userEvents", hasSize(2) ))
+                .andExpect((ResultMatcher) jsonPath("$.userEvents", hasSize(2)))
                 .andExpect(status().isOk());
     }
 
@@ -285,7 +292,7 @@ public class EventControllerTest {
 
     @Test
     public void eTestGetEventByName() throws Exception {
-        this.mockMvc.perform(get("/api/event/getEventByName/"+eventName).header("token", testToken))
+        this.mockMvc.perform(get("/api/event/getEventByName/" + eventName).header("token", testToken))
                 .andDo(print())
                 .andExpect(content().string(org.hamcrest.Matchers.containsString("TestEvent")))
                 .andExpect(status().isOk());
@@ -332,7 +339,7 @@ public class EventControllerTest {
     public void hCheckIfUserHasNoEventAndDeleteUser() throws Exception {
         this.mockMvc.perform(get("/api/user/getUser").header("token", testToken))
                 .andDo(print())
-                .andExpect((ResultMatcher) jsonPath("$.userEvents", hasSize(0) ))
+                .andExpect((ResultMatcher) jsonPath("$.userEvents", hasSize(0)))
                 .andExpect(status().isOk());
 
         this.mockMvc.perform(delete("/api/user/deleteUser").header("token", testToken).contentType(MediaType.APPLICATION_JSON))
