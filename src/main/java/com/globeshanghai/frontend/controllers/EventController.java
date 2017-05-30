@@ -43,6 +43,7 @@ final class EventController {
      * Create a {@link com.globeshanghai.backend.dom.event.Event}.
      * @param token Token
      * @param eventEntry Event
+     * @return EventDTO
      * @return HTTP Status Created
      */
     @RequestMapping(value = "/createEvent",method = RequestMethod.POST)

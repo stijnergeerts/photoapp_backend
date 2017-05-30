@@ -26,6 +26,11 @@ import java.util.stream.Collectors;
         this.eventRepository = eventRepository;
     }
 
+    /**
+     * Save a {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param event EventDTO
+     * @return EventDTO
+     */
     @Override
     public EventDTO create(EventDTO event) {
         Event persisted =  Event.getBuilder()
@@ -48,6 +53,11 @@ import java.util.stream.Collectors;
         return convertToDTO(persisted);
     }
 
+    /**
+     * Delete a {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param id Event eventId
+     * @return EventDTO
+     */
     @Override
     public EventDTO delete(String id) {
         Event event = findEventById(id);
@@ -55,6 +65,11 @@ import java.util.stream.Collectors;
         return convertToDTO(event);
     }
 
+    /**
+     * Delete a {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param eventName Event eventName
+     * @return EventDTO
+     */
     @Override
     public EventDTO deleteByEventName(String eventName) {
         EventDTO eventDTO = findByEventName(eventName);
@@ -63,18 +78,32 @@ import java.util.stream.Collectors;
         return convertToDTO(event);
     }
 
+    /**
+     * Find all {@link com.globeshanghai.backend.dom.event.Event}.
+     * @return List of EventDTO
+     */
     @Override
     public List<EventDTO> findAll() {
         List<Event> configurationEntries = eventRepository.findAll();
         return convertToDTOs(configurationEntries);
     }
 
+    /**
+     * Find a {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param id Event eventId
+     * @return EventDTO
+     */
     @Override
     public EventDTO findById(String id) {
         Event found = findEventById(id);
         return convertToDTO(found);
     }
 
+    /**
+     * Find a {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param eventName Event eventName
+     * @return EventDTO
+     */
     @Override
     public EventDTO findByEventName(String eventName) {
         Event event = this.eventRepository.findEventByEventName(String.valueOf(eventName));
@@ -83,6 +112,11 @@ import java.util.stream.Collectors;
         return null;
     }
 
+    /**
+     * Update an existing {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param event Event
+     * @return EventDTO
+     */
     @Override
     public EventDTO update(EventDTO event) {
         Event updated = findEventById(event.getEventId());
@@ -93,6 +127,11 @@ import java.util.stream.Collectors;
         return convertToDTO(updated);
     }
 
+    /**
+     * Convert a {@link com.globeshanghai.backend.dom.event.Event} to a {@link com.globeshanghai.backend.dto.EventDTO}
+     * @param model Event
+     * @return EventDTO
+     */
     private EventDTO convertToDTO(Event model) {
         EventDTO dto = new EventDTO();
         dto.setEventId(model.getEventId());
@@ -113,6 +152,11 @@ import java.util.stream.Collectors;
         return dto;
     }
 
+    /**
+     * Convert a {@link com.globeshanghai.backend.dto.EventDTO} to a {@link com.globeshanghai.backend.dom.event.Event}
+     * @param model EventDTO
+     * @return EventDTO
+     */
     private Event convertToObject(EventDTO model) {
         Event event = new Event();
         event.setEventId(model.getEventId());
@@ -133,6 +177,11 @@ import java.util.stream.Collectors;
         return event;
     }
 
+    /**
+     * Convert a list of {@link com.globeshanghai.backend.dom.event.Event} to a list of {@link com.globeshanghai.backend.dto.EventDTO}
+     * @param models List of Event
+     * @return EventDTO
+     */
     private List<EventDTO> convertToDTOs(List<Event> models) {
         return models.stream()
                 .map(this::convertToDTO)
@@ -142,6 +191,7 @@ import java.util.stream.Collectors;
     private Event findEventById(String id) {
         Optional<Event> result = eventRepository.findOne(id);
         return result.orElseThrow(() -> new EventNotFoundException(id));
-
     }
+
+
 }

@@ -25,6 +25,11 @@ public class MongoDBUserService implements UserService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Save a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param user UserDTO
+     * @return UserDTO
+     */
     @Override
     public UserDTO create(UserDTO user) {
         User persisted =  User.getBuilder()
@@ -38,6 +43,11 @@ public class MongoDBUserService implements UserService {
         return convertToDTO(persisted);
     }
 
+    /**
+     * Delete a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param id User userId
+     * @return UserDTO
+     */
     @Override
     public UserDTO delete(String id) {
         User user = findUserById(id);
@@ -45,17 +55,31 @@ public class MongoDBUserService implements UserService {
         return convertToDTO(user);
     }
 
+    /**
+     * Find all {@link com.globeshanghai.backend.dom.user.User}.
+     * @return List of UserDTO
+     */
     @Override
     public List<UserDTO> findAll() {
         List<User> configurationEntries = userRepository.findAll();
         return convertToDTOs(configurationEntries);
     }
 
+    /**
+     * Find a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param id User userId
+     * @return UserDTO
+     */
     @Override
     public UserDTO findById(String id) {
         return null;
     }
 
+    /**
+     * Find a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param authId User authId
+     * @return UserDTO
+     */
     @Override
     public UserDTO findUserByAuthId(String authId) {
         List<User> users = userRepository.findAll();
@@ -67,6 +91,11 @@ public class MongoDBUserService implements UserService {
         return null;
     }
 
+    /**
+     * Find a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param username User username
+     * @return UserDTO
+     */
     @Override
     public UserDTO findUserByUsername(String username) {
         List<User> users = userRepository.findAll();
@@ -78,6 +107,11 @@ public class MongoDBUserService implements UserService {
         return null;
     }
 
+    /**
+     * Update an existing {@link com.globeshanghai.backend.dom.user.User}.
+     * @param user User
+     * @return UserDTO
+     */
     @Override
     public UserDTO update(UserDTO user) {
 
@@ -87,6 +121,11 @@ public class MongoDBUserService implements UserService {
         return convertToDTO(updated);
     }
 
+    /**
+     * Convert a {@link com.globeshanghai.backend.dom.user.User} to a {@link com.globeshanghai.backend.dto.UserDTO}
+     * @param model User
+     * @return UserDTO
+     */
     private UserDTO convertToDTO(User model) {
         UserDTO dto = new UserDTO();
         dto.setUserId(model.getUserId());
@@ -97,11 +136,18 @@ public class MongoDBUserService implements UserService {
         dto.setUserEvents(model.getUserEvents());
         return dto;
     }
+
+    /**
+     * Convert a list of {@link com.globeshanghai.backend.dom.user.User} to a list of {@link com.globeshanghai.backend.dto.UserDTO}
+     * @param models List of Event
+     * @return EventDTO
+     */
     private List<UserDTO> convertToDTOs(List<User> models) {
         return models.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
+
     private User findUserById(String id) {
         Optional<User> result = userRepository.findOne(id);
         return result.orElseThrow(() -> new UserNotFoundException(id));
