@@ -37,7 +37,12 @@ final class UserController {
         this.eventService = eventService;
     }
 
-
+    /**
+     * Create a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param token Token
+     * @param userEntry UserDTO
+     * @return HTTP Status Created
+     */
     @RequestMapping(value = "/createUser", method = RequestMethod.POST)
     public ResponseEntity<?> create( @RequestHeader("token") String token, @RequestBody @Valid UserDTO userEntry) {
         LOGGER.info("Creating a new user entry with information: {}", userEntry);
@@ -57,6 +62,12 @@ final class UserController {
         return new ResponseEntity<UserDTO>(new UserDTO(userEntry), HttpStatus.CREATED);
     }
 
+    /**
+     * Delete a specific {@link com.globeshanghai.backend.dom.user.User}.
+     * @param token Token
+     * @param id User userId
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@RequestHeader("token") String token, @PathVariable("id") String id) {
         LOGGER.info("Deleting user entry with authId: {}", JWT.decode(token).getSubject());
@@ -73,6 +84,11 @@ final class UserController {
         return new ResponseEntity<UserDTO>(new UserDTO(userEntry), HttpStatus.OK);
     }
 
+    /**
+     * Delete a specific {@link com.globeshanghai.backend.dom.event.Event} based on authId
+     * @param token Token
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@RequestHeader("token") String token) {
         LOGGER.info("Deleting user entry with authId: {}", JWT.decode(token).getSubject());
@@ -89,6 +105,12 @@ final class UserController {
         return new  ResponseEntity<UserDTO>(new UserDTO(userEntry), HttpStatus.OK);
     }
 
+    /**
+     * Get all {@link com.globeshanghai.backend.dom.user.User}
+     * @param token
+     * @return all {@link com.globeshanghai.backend.dto.UserDTO} entries
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/getUsers", method = RequestMethod.GET)
     public ResponseEntity<?> findAll(@RequestHeader("token") String token) {
         LOGGER.info("Finding all user entries");
@@ -96,14 +118,17 @@ final class UserController {
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
         List<UserDTO> userEntries = userService.findAll();
-        /*for (int i = 0; i<userEntries.size(); i++){
-            userEntries.get(i).setAuthId("");
-        }*/
 
         return new ResponseEntity<List<UserDTO>>(userEntries, HttpStatus.OK);
 
     }
 
+    /**
+     * Get a specific {@link com.globeshanghai.backend.dom.event.Event} based on authId
+     * @param token Token
+     * @return UserDTO
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
     public ResponseEntity<?> findById(@RequestHeader("token") String token) {
         LOGGER.info("Finding user entry with id: {}");
@@ -115,6 +140,12 @@ final class UserController {
         return new ResponseEntity<UserDTO>(userEntry, HttpStatus.OK);
     }
 
+    /**
+     * Update an existing {@link com.globeshanghai.backend.dom.user.User}.
+     * @param token Token
+     * @param userDTO UserDTO
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/updateUser", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestHeader("token") String token, @RequestBody @Valid UserDTO userDTO) {
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());

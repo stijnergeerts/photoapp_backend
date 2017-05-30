@@ -1,7 +1,9 @@
 package com.globeshanghai.backend.dto;
 
 /**
- * Created by stijnergeerts on 27/04/17.
+ * This data transfer object contains the information of a single shortEvent
+ * entry and specifies validation rules that are used to ensure that only
+ * valid information can be saved to the used database.
  */
 public class ShortEventDTO {
     private String eventId;

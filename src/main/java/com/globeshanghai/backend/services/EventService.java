@@ -13,7 +13,7 @@ public interface EventService {
 
     EventDTO delete(String id);
 
-    EventDTO deleteByEventName(String id);
+    EventDTO deleteByEventName(String eventName);
 
     List<EventDTO> findAll();
 

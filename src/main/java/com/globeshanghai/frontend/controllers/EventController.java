@@ -39,9 +39,17 @@ final class EventController {
         this.userService = userService;
     }
 
+    /**
+     * Create a {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param token Token
+     * @param eventEntry Event
+     * @return HTTP Status Created
+     */
     @RequestMapping(value = "/createEvent",method = RequestMethod.POST)
     ResponseEntity<?> create(@RequestHeader("token") String token, @RequestBody @Valid EventDTO eventEntry) {
         LOGGER.info("Creating a new event entry with information: {}", eventEntry);
+
+        /* Check if the user is authorised */
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         List<ShortEvent> shortEvents = new LinkedList<>();
         if (userEntry == null)
@@ -63,9 +71,17 @@ final class EventController {
         return new ResponseEntity<EventDTO>(created, HttpStatus.CREATED);
     }
 
+    /**
+     * Delete a specific {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param token Token
+     * @param id Event eventId
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/deleteEventById/{id}", method = RequestMethod.DELETE)
     ResponseEntity<?> deleteById(@RequestHeader("token") String token, @PathVariable("id") String id) {
         LOGGER.info("Deleting event entry with id: {}", id);
+
+        /* Check if the user is authorised */
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
@@ -89,9 +105,17 @@ final class EventController {
         return new ResponseEntity<EventDTO>(deleted, HttpStatus.OK);
     }
 
+    /**
+     * Delete a specific {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param token Token
+     * @param eventName Event eventName
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/deleteEventByName/{eventName}", method = RequestMethod.DELETE)
     ResponseEntity<?> deleteByName(@RequestHeader("token") String token, @PathVariable("eventName") String eventName) {
         LOGGER.info("Deleting event entry with id: {}", eventName);
+
+        /* Check if the user is authorised */
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
@@ -115,6 +139,13 @@ final class EventController {
         return new ResponseEntity<EventDTO>(deleted, HttpStatus.OK);
     }
 
+    /**
+     * Get all {@link com.globeshanghai.backend.dom.event.Event} entries from a certain {@link com.globeshanghai.backend.dom.user.User}
+     * @param token
+     * @return all {@link com.globeshanghai.backend.dto.EventDTO} entries
+     * @return HTTP status OK
+     */
+
     @RequestMapping(value = "/getEvents", method = RequestMethod.GET)
     ResponseEntity<?> findAll(@RequestHeader("token") String token) {
         LOGGER.info("Finding all event entries");
@@ -131,9 +162,18 @@ final class EventController {
 
     }
 
+    /**
+     * Get a specific {@link com.globeshanghai.backend.dom.event.Event} from a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param token Token
+     * @param id Event id
+     * @return EventDTO
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/getEventById/{id}", method = RequestMethod.GET)
     ResponseEntity<?> findById(@RequestHeader("token") String token, @PathVariable("id") String id) {
         LOGGER.info("Finding event entry with id: {}", id);
+
+        /* Check if the user is authorised */
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
@@ -150,9 +190,18 @@ final class EventController {
         return new ResponseEntity<EventDTO>(eventEntry, HttpStatus.OK);
     }
 
+    /**
+     * Get a specific {@link com.globeshanghai.backend.dom.event.Event} from a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param token Token
+     * @param eventName Event eventName
+     * @return EventDTO
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/getEventByName/{eventName}", method = RequestMethod.GET)
     ResponseEntity<?> findByEventName(@RequestHeader("token") String token, @PathVariable("eventName") String eventName) {
         LOGGER.info("Finding event entry with name: {}", eventName);
+
+        /* Check if the user is authorised */
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
@@ -169,6 +218,12 @@ final class EventController {
         return new ResponseEntity<EventDTO>(eventEntry, HttpStatus.OK);
     }
 
+    /**
+     * Get a specific {@link com.globeshanghai.backend.dom.event.Event}
+     * @param eventName Event eventName
+     * @return EventDTO
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/getEventTextByName/{eventName}", method = RequestMethod.GET)
     ResponseEntity<?> findEventTextByEventName(@PathVariable("eventName") String eventName) {
         LOGGER.info("Finding eventText entry with name: {}", eventName);
@@ -186,6 +241,12 @@ final class EventController {
         return new ResponseEntity<EventText>(eventDTO.getEventText(), HttpStatus.OK);
     }
 
+    /**
+     * Get a specific {@link com.globeshanghai.backend.dom.event.Event}
+     * @param id Event eventId
+     * @return EventDTO
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/getEventShareById/{id}", method = RequestMethod.GET)
     ResponseEntity<?> findEventShareById(@PathVariable("id") String id) {
         LOGGER.info("Finding event entry with id: {}", id);
@@ -203,9 +264,17 @@ final class EventController {
         return new ResponseEntity<EventDTO>(eventDTO, HttpStatus.OK);
     }
 
+    /**
+     * Update an existing {@link com.globeshanghai.backend.dom.event.Event}.
+     * @param token Token
+     * @param eventEntry EventDTO
+     * @return HTTP status OK
+     */
     @RequestMapping(value = "/updateEvent", method = RequestMethod.PUT)
     ResponseEntity<?> update(@RequestHeader("token") String token, @RequestBody @Valid EventDTO eventEntry) {
         LOGGER.info("Updating event entry with information: {}", eventEntry);
+
+        /* Check if the user is authorised */
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         EventDTO currentEvent = eventService.findById(eventEntry.getEventId());
         if (userEntry == null)
@@ -236,9 +305,17 @@ final class EventController {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleTodoNotFound(EventNotFoundException ex) {
+    public void handleEventNotFound(EventNotFoundException ex) {
         LOGGER.error("Handling error with message: {}", ex.getMessage());
     }
+
+    /**
+     * Update an the {@link com.globeshanghai.backend.dom.event.ShortEvent} of a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param userEventId Event eventId
+     * @param userEventName Event eventName
+     * @param userEventLogo Event eventLogo
+     * @param userEntry UserDTO
+     */
     public void updateUserEvents(String userEventId, String userEventName, String userEventLogo, UserDTO userEntry){
         List<ShortEvent> shortEvents = new LinkedList<>();
         shortEvents = userEntry.getUserEvents();

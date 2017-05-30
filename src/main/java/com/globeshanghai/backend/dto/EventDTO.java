@@ -6,7 +6,9 @@ import com.globeshanghai.backend.dom.layout.DetailLayout;
 import com.globeshanghai.backend.dom.layout.OverviewLayout;
 
 /**
- * Created by stijnergeerts on 19/04/17.
+ * This data transfer object contains the information of a single event
+ * entry and specifies validation rules that are used to ensure that only
+ * valid information can be saved to the used database.
  */
 public class EventDTO {
 

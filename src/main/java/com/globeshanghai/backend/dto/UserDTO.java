@@ -5,7 +5,9 @@ import com.globeshanghai.backend.dom.event.ShortEvent;
 import java.util.List;
 
 /**
- * Created by stijnergeerts on 23/04/17.
+ * This data transfer object contains the information of a single user
+ * entry and specifies validation rules that are used to ensure that only
+ * valid information can be saved to the used database.
  */
 public class UserDTO {
     private String userId;

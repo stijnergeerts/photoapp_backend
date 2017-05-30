@@ -3,7 +3,9 @@ package com.globeshanghai.backend.dto;
 import com.globeshanghai.backend.dom.configuration.PhotoQuality;
 
 /**
- * Created by stijnergeerts on 17/04/17.
+ * This data transfer object contains the information of a single configuration
+ * entry and specifies validation rules that are used to ensure that only
+ * valid information can be saved to the used database.
  */
 public class ConfigurationDTO {
 
