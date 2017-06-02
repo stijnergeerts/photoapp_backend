@@ -217,6 +217,7 @@ public final class ImageWatermark {
         this.imageScale = imageScale;
     }
 
+ 
     /**
      * Using the builder pattern because we are creating a complex object.
      * This makes the code clearer and easier to read.
