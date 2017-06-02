@@ -101,7 +101,6 @@ public final class User implements Serializable {
     }
 
     public void update(String username, String authId, String firstname, String lastname, List<ShortEvent> userEvents) {
-
         checkAll(username, authId, firstname, lastname, userEvents);
 
         this.username = username;
@@ -111,6 +110,10 @@ public final class User implements Serializable {
         this.userEvents = userEvents;
     }
 
+    /**
+     * Using the builder pattern because we are creating a complex object.
+     * This makes the code clearer and easier to read.
+     */
     public static class Builder {
 
         private String username;
@@ -149,6 +152,10 @@ public final class User implements Serializable {
             return this;
         }
 
+        /**
+         * Building the actual {@link com.globeshanghai.backend.dom.user.User} object.
+         * @return {@link com.globeshanghai.backend.dom.user.User}
+         */
         public User build() {
             User build = new User(this);
 
@@ -159,6 +166,10 @@ public final class User implements Serializable {
         }
     }
 
+    /**
+     * If there are variables that can't be empty or null, it can be checked in this method using the
+     * {@link com.globeshanghai.frontend.util.PreCondition} notNull and notEmpty methods
+     */
     private void checkAll(String username, String authId, String firstname, String lastname, List<ShortEvent> userEvents) {
         notNull(username, "username cannot be null");
         notEmpty(username, "username cannot be empty");

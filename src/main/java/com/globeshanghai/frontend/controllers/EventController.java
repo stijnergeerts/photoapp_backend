@@ -249,8 +249,13 @@ final class EventController {
      * @return HTTP status OK
      */
     @RequestMapping(value = "/getEventShareById/{id}", method = RequestMethod.GET)
-    ResponseEntity<?> findEventShareById(@PathVariable("id") String id) {
+    ResponseEntity<?> findEventShareById(@RequestHeader("token") String token,@PathVariable("id") String id) {
         LOGGER.info("Finding event entry with id: {}", id);
+
+        /* Check if the user is authorised */
+        UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
+        if (userEntry == null)
+            throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
         List<EventDTO> events = eventService.findAll();
         EventDTO eventDTO = new EventDTO();
         for (int i=0; i<events.size(); i++){

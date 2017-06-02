@@ -32,69 +32,6 @@ public final class EventText {
 
     private String qrCodeImage;
 
-    public EventText(String textUpper) {
-        this.textUpper = textUpper;
-    }
-
-    public EventText(String textUpper, String textUnderPhoto, String textBottom) {
-        this.textUpper = textUpper;
-        this.textUnderPhoto = textUnderPhoto;
-        this.textBottom = textBottom;
-
-    }
-
-    public EventText(String textUnderPhoto, String textBottom) {
-        this.textUnderPhoto = textUnderPhoto;
-        this.textBottom = textBottom;
-    }
-
-    public EventText(String textUpper, String textUnderPhoto, String textBottom, String textColor, String cloudinaryDirectory) {
-        this.textUpper = textUpper;
-        this.textUnderPhoto = textUnderPhoto;
-        this.textBottom = textBottom;
-        this.textColor = textColor;
-        this.cloudinaryDirectory = cloudinaryDirectory;
-    }
-
-    public EventText(String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String cloudinaryDirectory) {
-        this.textUpper = textUpper;
-        this.textUnderPhoto = textUnderPhoto;
-        this.textBottom = textBottom;
-        this.textColor = textColor;
-        this.backgroundColor = backgroundColor;
-        this.cloudinaryDirectory = cloudinaryDirectory;
-    }
-
-    public EventText(String textUpper, String textUnderPhoto, String textBottom, String textColor) {
-        this.textUpper = textUpper;
-        this.textUnderPhoto = textUnderPhoto;
-        this.textBottom = textBottom;
-        this.textColor = textColor;
-    }
-
-    public EventText(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, String cloudinaryDirectory) {
-        this.logo = logo;
-        this.textUpper = textUpper;
-        this.textUnderPhoto = textUnderPhoto;
-        this.textBottom = textBottom;
-        this.textColor = textColor;
-        this.backgroundColor = backgroundColor;
-        this.backgroundImage = backgroundImage;
-        this.cloudinaryDirectory = cloudinaryDirectory;
-    }
-
-    public EventText(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, boolean backgroundImageToggle, String cloudinaryDirectory) {
-        this.logo = logo;
-        this.textUpper = textUpper;
-        this.textUnderPhoto = textUnderPhoto;
-        this.textBottom = textBottom;
-        this.textColor = textColor;
-        this.backgroundColor = backgroundColor;
-        this.backgroundImage = backgroundImage;
-        this.backgroundImageToggle = backgroundImageToggle;
-        this.cloudinaryDirectory = cloudinaryDirectory;
-    }
-
     public EventText(String logo, String textUpper, String textUnderPhoto, String textBottom, String textColor, String backgroundColor, String backgroundImage, boolean backgroundImageToggle, String cloudinaryDirectory, String qrCodeImage) {
         this.logo = logo;
         this.textUpper = textUpper;

@@ -349,7 +349,10 @@ public final class DetailLayout extends Layout {
         this.printMessageBorderWidth = printMessageBorderWidth;
     }
 
-
+    /**
+     * Using the builder pattern because we are creating a complex object.
+     * This makes the code clearer and easier to read.
+     */
     public static class Builder extends Layout {
 
         private String printBtnImage;
@@ -531,7 +534,10 @@ public final class DetailLayout extends Layout {
             return this;
         }
 
-
+        /**
+         * Building the actual {@link com.globeshanghai.backend.dom.layout.DetailLayout} object.
+         * @return {@link com.globeshanghai.backend.dom.layout.DetailLayout}
+         */
         public DetailLayout build() {
             DetailLayout build = new DetailLayout(this);
 
@@ -545,6 +551,10 @@ public final class DetailLayout extends Layout {
         }
     }
 
+    /**
+     * If there are variables that can't be empty or null, it can be checked in this method using the
+     * {@link com.globeshanghai.frontend.util.PreCondition} notNull and notEmpty methods
+     */
     private void checkAll(Position logoPosition, String backgroundColor,
                           String imageBorderColor, int imageBorderWidth, String printBtnText,
                           String printBtnColor, String printBtnBorderColor, int printBtnBorderWidth,

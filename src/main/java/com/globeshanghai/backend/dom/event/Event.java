@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
-import static com.globeshanghai.frontend.util.PreCondition.isDate;
 import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
 import static com.globeshanghai.frontend.util.PreCondition.notNull;
 
@@ -255,7 +254,10 @@ public final class Event implements Serializable {
         this.eventText = eventText;
     }
 
-
+    /**
+     * Using the builder pattern because we are creating a complex object.
+     * This makes the code clearer and easier to read.
+     */
     public static class Builder {
 
         private String eventName;
@@ -350,8 +352,10 @@ public final class Event implements Serializable {
             return this;
         }
 
-
-
+        /**
+         * Building the actual {@link com.globeshanghai.backend.dom.event.Event} object.
+         * @return {@link com.globeshanghai.backend.dom.event.Event}
+         */
         public Event build() {
             Event build = new Event(this);
 
@@ -363,45 +367,14 @@ public final class Event implements Serializable {
         }
     }
 
+    /**
+     * If there are variables that can't be empty or null, it can be checked in this method using the
+     * {@link com.globeshanghai.frontend.util.PreCondition} notNull and notEmpty methods
+     */
     private void checkAll(String eventName, String eventLogo, String eventStartDate,  String eventEndDate, String eventLocation,String eventAddress,String company,
                           String companyAddress, String contact, String contactPhone, Config config, DetailLayout detailLayout,
                           OverviewLayout overviewLayout, EventText eventText) {
         notNull(eventName, "eventName cannot be null");
         notEmpty(eventName, "eventName cannot be empty");
-/*
-        notNull(eventLogo, "eventLogo cannot be null");
-        notEmpty(eventLogo, "eventLogo cannot be empty");
-
-        notNull(eventStartDate, "eventStartDate cannot be null");
-        isDate(eventStartDate,"eventStartDate has to be a YYYY-MM-DD dateformat");
-
-        notNull(eventEndDate, "eventEndDate cannot be null");
-        isDate(eventEndDate,"eventEndDate has to be a YYYY-MM-DD dateformat");
-
-        notNull(eventLocation, "eventLocation cannot be null");
-        notEmpty(eventLocation, "eventLocation cannot be empty");
-
-        notNull(eventAddress, "eventAddress cannot be null");
-        notEmpty(eventAddress, "eventAddress cannot be empty");
-
-        notNull(company, "company cannot be null");
-        notEmpty(company, "company cannot be empty");
-
-        notNull(companyAddress, "companyAddress cannot be null");
-        notEmpty(companyAddress, "companyAddress cannot be empty");
-
-        notNull(contact, "contact cannot be null");
-        notEmpty(contact, "contact cannot be empty");
-
-        notNull(contactPhone, "contactPhone cannot be null");
-        notEmpty(contactPhone, "contactPhone cannot be empty");
-
-        notNull(config, "config cannot be null");
-
-        notNull(detailLayout, "detailLayout cannot be null");
-
-        notNull(overviewLayout, "overviewLayout cannot be null");
-
-        notNull(eventText, "eventText cannot be null");*/
     }
 }

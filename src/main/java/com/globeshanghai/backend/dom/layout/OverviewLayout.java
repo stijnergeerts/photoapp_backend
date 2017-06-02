@@ -61,25 +61,6 @@ public final class OverviewLayout extends Layout {
         super.backgroundImage = builder.backgroundImage;
     }
 
-    public OverviewLayout(int number, String logo, Position logoPosition, String backgroundColor, String backgroundImage, String imageBorderColor, int imageBorderWidth, String overviewLayoutId, boolean imageContainer, String imageContainerColor, String imageContainerBorderColor, int imageContainerBorderWidth, String selectionIcon, boolean selectionContainer, String selectionContainerColor, String selectionContainerBorderColor, int selectionContainerBorderWidth, String selectBtnText, String selectBtnColor, String selectBtnImage, String selectBtnBorderColor, int selectBtnBorderWidth) {
-        super(number, logo, logoPosition, backgroundColor, backgroundImage, imageBorderColor, imageBorderWidth);
-        this.overviewLayoutId = overviewLayoutId;
-        this.imageContainer = imageContainer;
-        this.imageContainerColor = imageContainerColor;
-        this.imageContainerBorderColor = imageContainerBorderColor;
-        this.imageContainerBorderWidth = imageContainerBorderWidth;
-        this.selectionIcon = selectionIcon;
-        this.selectionContainer = selectionContainer;
-        this.selectionContainerColor = selectionContainerColor;
-        this.selectionContainerBorderColor = selectionContainerBorderColor;
-        this.selectionContainerBorderWidth = selectionContainerBorderWidth;
-        this.selectBtnText = selectBtnText;
-        this.selectBtnColor = selectBtnColor;
-        this.selectBtnImage = selectBtnImage;
-        this.selectBtnBorderColor = selectBtnBorderColor;
-        this.selectBtnBorderWidth = selectBtnBorderWidth;
-    }
-
     public OverviewLayout(int number, String logo, Position logoPosition, String backgroundColor, String backgroundImage, String imageBorderColor, int imageBorderWidth, boolean imageContainer, String imageContainerColor, String imageContainerBorderColor, int imageContainerBorderWidth, String selectionIcon, boolean selectionContainer, String selectionContainerColor, String selectionContainerBorderColor, int selectionContainerBorderWidth, String selectBtnText, String selectBtnColor, String selectBtnImage, String selectBtnBorderColor, int selectBtnBorderWidth) {
         super(number, logo, logoPosition, backgroundColor, backgroundImage, imageBorderColor, imageBorderWidth);
         this.imageContainer = imageContainer;
@@ -222,22 +203,38 @@ public final class OverviewLayout extends Layout {
         this.selectBtnBorderWidth = selectBtnBorderWidth;
     }
 
+    /**
+     * Using the builder pattern because we are creating a complex object.
+     * This makes the code clearer and easier to read.
+     */
     public static class Builder extends Layout {
 
-
         private boolean imageContainer;
+
         private String imageContainerColor;
+
         private String imageContainerBorderColor;
+
         private int imageContainerBorderWidth;
+
         private String selectionIcon;
+
         private boolean selectionContainer;
+
         private String selectionContainerColor;
+
         private String selectionContainerBorderColor;
+
         private int selectionContainerBorderWidth;
+
         private String selectBtnText;
+
         private String selectBtnColor;
+
         private String selectBtnImage;
+
         private String selectBtnBorderColor;
+
         private int selectBtnBorderWidth;
 
         private Builder() {
@@ -263,14 +260,10 @@ public final class OverviewLayout extends Layout {
             return this;
         }
 
-        //
-
         public OverviewLayout.Builder selectionIcon(String selectionIcon) {
             this.selectionIcon = selectionIcon;
             return this;
         }
-
-        //
 
         public OverviewLayout.Builder selectionContainer(boolean selectionContainer) {
             this.selectionContainer = selectionContainer;
@@ -291,8 +284,6 @@ public final class OverviewLayout extends Layout {
             this.selectionContainerBorderWidth = selectionContainerBorderWidth;
             return this;
         }
-
-        //
 
         public OverviewLayout.Builder selectBtnText(String selectBtnText) {
             this.selectBtnText = selectBtnText;
@@ -319,8 +310,6 @@ public final class OverviewLayout extends Layout {
             return this;
         }
 
-        //
-
         public OverviewLayout.Builder backgroundColor(String backgroundColor) {
             super.backgroundColor = backgroundColor;
             return this;
@@ -331,7 +320,10 @@ public final class OverviewLayout extends Layout {
             return this;
         }
 
-
+        /**
+         * Building the actual {@link com.globeshanghai.backend.dom.layout.OverviewLayout} object.
+         * @return {@link com.globeshanghai.backend.dom.layout.OverviewLayout}
+         */
         public OverviewLayout build() {
             OverviewLayout build = new OverviewLayout(this);
 
@@ -341,6 +333,10 @@ public final class OverviewLayout extends Layout {
         }
     }
 
+    /**
+     * If there are variables that can't be empty or null, it can be checked in this method using the
+     * {@link com.globeshanghai.frontend.util.PreCondition} notNull and notEmpty methods
+     */
     private void checkAll(Position logoPosition, String backgroundColor, String imageBorderColor, int imageBorderWidth,
                           boolean imageContainer, String imageContainerColor, String imageContainerBorderColor,
                           int imageContainerBorderWidth, boolean selectionContainer,

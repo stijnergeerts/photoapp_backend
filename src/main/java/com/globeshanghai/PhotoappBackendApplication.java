@@ -13,12 +13,12 @@ import org.springframework.context.annotation.Configuration;
 /**
  * This configuration class has three responsibilities:
  *
- *--It enables the auto configuration of the Spring application context.
+ *It enables the auto configuration of the Spring application context.
  *
- *--It ensures that Spring looks for other components (controllers, services, and repositories) from the
+ *It ensures that Spring looks for other components (controllers, services, and repositories) from the
  *	com.javaadvent.bootrest package.
  *
- *--It launches our application in the main() method.
+ *It launches our application in the main() method.
  *
  */
 

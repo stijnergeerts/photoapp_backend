@@ -217,6 +217,10 @@ public final class ImageWatermark {
         this.imageScale = imageScale;
     }
 
+    /**
+     * Using the builder pattern because we are creating a complex object.
+     * This makes the code clearer and easier to read.
+     */
     public static class Builder {
         private boolean print;
         private int height;
@@ -318,6 +322,10 @@ public final class ImageWatermark {
             return this;
         }
 
+        /**
+         * Building the actual {@link com.globeshanghai.backend.dom.configuration.ImageWatermark} object.
+         * @return {@link com.globeshanghai.backend.dom.configuration.ImageWatermark}
+         */
         public ImageWatermark build() {
             ImageWatermark build = new ImageWatermark(this);
 
@@ -327,6 +335,10 @@ public final class ImageWatermark {
         }
     }
 
+    /**
+     * If there are variables that can't be empty or null, it can be checked in this method using the
+     * {@link com.globeshanghai.frontend.util.PreCondition} notNull and notEmpty methods
+     */
     private void checkAll(boolean print, int height, int width, int imageWidth, int imageHeight, int imageX, int imageY, int imageScale) {
         notNull(print, "print cannot be null");
 

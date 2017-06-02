@@ -3,9 +3,6 @@ package com.globeshanghai.backend.dom.configuration;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
-import static com.globeshanghai.frontend.util.PreCondition.notNull;
-
 
 /**
  * Created by stijnergeerts on 14/04/17.
@@ -42,6 +39,7 @@ public final class Config {
         this.photoQuality = builder.photoQuality;
         this.printerName = builder.printerName;
         this.printerCopies = builder.printerCopies;
+        this.watermarkPrinting = builder.watermarkPrinting;
         this.qrPrinting = builder.qrPrinting;
         this.qrImage = builder.qrImage;
         this.printWatermark = builder.printWatermark;
@@ -168,7 +166,10 @@ public final class Config {
         this.watermarkSharing = watermarkSharing;
     }
 
-
+    /**
+     * Using the builder pattern because we are creating a complex object.
+     * This makes the code clearer and easier to read.
+     */
     public static class Builder {
 
         private String mediaStorage;
@@ -244,15 +245,22 @@ public final class Config {
             return this;
         }
 
+        /**
+         * Building the actual {@link com.globeshanghai.backend.dom.configuration.Config} object.
+         * @return {@link com.globeshanghai.backend.dom.configuration.Config}
+         */
         public Config build() {
             Config build = new Config(this);
-
             build.checkAll(build.mediaStorage, build.photoQuality, build.printerName, build.printerCopies, build.watermarkPrinting, build.qrPrinting, build.qrImage, build.printWatermark, build.webWatermark, build.watermarkSharing);
 
             return build;
         }
     }
 
+    /**
+     * If there are variables that can't be empty or null, it can be checked in this method using the
+     * {@link com.globeshanghai.frontend.util.PreCondition} notNull and notEmpty methods
+     */
     private void checkAll(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies, boolean watermarkPrinting, boolean qrPrinting, String qrImage, ImageWatermark printWatermark, ImageWatermark webWatermark, boolean watermarkSharing) {
         //TODO
     }

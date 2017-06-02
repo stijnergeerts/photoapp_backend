@@ -12,9 +12,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Created by stijnergeerts on 23/04/17.
- */
 @Service
 public class MongoDBUserService implements UserService {
 
