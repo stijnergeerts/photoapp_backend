@@ -1,7 +1,6 @@
 package com.globeshanghai.frontend.controllers;
 
 import com.auth0.jwt.JWT;
-import com.globeshanghai.backend.dom.event.EventText;
 import com.globeshanghai.backend.dom.event.ShortEvent;
 import com.globeshanghai.backend.dto.EventDTO;
 import com.globeshanghai.backend.dto.UserDTO;
@@ -217,29 +216,6 @@ final class EventController {
         LOGGER.info("Found event entry with information: {}", eventEntry.getEventName());
 
         return new ResponseEntity<EventDTO>(eventEntry, HttpStatus.OK);
-    }
-
-    /**
-     * Get a specific {@link com.globeshanghai.backend.dom.event.Event}
-     * @param eventName Event eventName
-     * @return EventDTO
-     * @return HTTP status OK
-     */
-    @RequestMapping(value = "/getEventTextByName/{eventName}", method = RequestMethod.GET)
-    ResponseEntity<?> findEventTextByEventName(@PathVariable("eventName") String eventName) {
-        LOGGER.info("Finding eventText entry with name: {}", eventName);
-        List<EventDTO> events = eventService.findAll();
-        EventDTO eventDTO = new EventDTO();
-        for (int i=0; i<events.size(); i++){
-            if (events.get(i).getEventName().equals(eventName)){
-                eventDTO=events.get(i);
-            }
-        }
-        if (eventDTO.getEventId()==null){
-            throw new EventNotFoundException("Event with name "+ eventName +" not found!");
-        }
-
-        return new ResponseEntity<EventText>(eventDTO.getEventText(), HttpStatus.OK);
     }
 
     /**
