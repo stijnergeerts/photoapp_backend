@@ -2,14 +2,12 @@ package com.globeshanghai.backend.mongorepositories;
 
 import com.globeshanghai.backend.dom.user.User;
 import com.globeshanghai.backend.dto.UserDTO;
-import com.globeshanghai.backend.exceptions.UserNotFoundException;
 import com.globeshanghai.backend.repositories.UserRepository;
 import com.globeshanghai.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,9 +45,15 @@ public class MongoDBUserService implements UserService {
      */
     @Override
     public UserDTO delete(String id) {
-        User user = findUserById(id);
+        User user = userRepository.findOne(id);
         userRepository.delete(user);
         return convertToDTO(user);
+    }
+
+    @Override
+    public UserDTO findById(String id) {
+        User found = userRepository.findOne(id);
+        return convertToDTO(found);
     }
 
     /**
@@ -60,16 +64,6 @@ public class MongoDBUserService implements UserService {
     public List<UserDTO> findAll() {
         List<User> configurationEntries = userRepository.findAll();
         return convertToDTOs(configurationEntries);
-    }
-
-    /**
-     * Find a {@link com.globeshanghai.backend.dom.user.User}.
-     * @param id User userId
-     * @return UserDTO
-     */
-    @Override
-    public UserDTO findById(String id) {
-        return null;
     }
 
     /**
@@ -112,7 +106,7 @@ public class MongoDBUserService implements UserService {
     @Override
     public UserDTO update(UserDTO user) {
 
-        User updated = findUserById(user.getUserId());
+        User updated = userRepository.findOne(user.getUserId());
         updated.update(user.getUsername(), user.getAuthId(), user.getFirstname(),user.getLastname(),user.getUserEvents());
         updated = userRepository.save(updated);
         return convertToDTO(updated);
@@ -143,11 +137,5 @@ public class MongoDBUserService implements UserService {
         return models.stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
-    }
-
-    private User findUserById(String id) {
-        Optional<User> result = userRepository.findOne(id);
-        return result.orElseThrow(() -> new UserNotFoundException(id));
-
     }
 }

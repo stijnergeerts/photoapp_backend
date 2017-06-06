@@ -45,6 +45,8 @@ public class UserControllerTest {
     @Autowired
     private UserRepository userRepository;
 
+
+
     private MockMvc mockMvc;
     private ObjectMapper mapper;
 
@@ -65,7 +67,7 @@ public class UserControllerTest {
         testUser.setAuthId(JWT.decode(testToken).getSubject());
         testUser.setFirstname("Test");
         testUser.setLastname("User");
-        testUser.setUsername("TestUser");
+        testUser.setUsername("TestUser2");
 
         this.mockMvc.perform(post("/api/user/createUser").content(mapper.writeValueAsString(testUser)).header("token", testToken).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -78,7 +80,7 @@ public class UserControllerTest {
         testUser.setAuthId(JWT.decode(testToken).getSubject());
         testUser.setFirstname("Test");
         testUser.setLastname("User");
-        testUser.setUsername("TestUser");
+        testUser.setUsername("TestUser2");
 
         this.mockMvc.perform(post("/api/user/createUser").header("token", testToken).content(mapper.writeValueAsString(testUser)).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isConflict());

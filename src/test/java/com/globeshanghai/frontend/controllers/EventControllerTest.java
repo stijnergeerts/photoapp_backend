@@ -205,7 +205,7 @@ public class EventControllerTest {
         testUser.setAuthId(JWT.decode(testToken).getSubject());
         testUser.setFirstname("Test");
         testUser.setLastname("User");
-        testUser.setUsername("TestUser");
+        testUser.setUsername("TestUser2");
         Event testEvent = new Event(eventName, eventLogo, eventStartDate,
                 eventEndDate, eventLocation, eventAddress, company,
                 companyAddress, contact, contactPhone,

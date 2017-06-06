@@ -124,20 +124,38 @@ final class UserController {
     }
 
     /**
-     * Get a specific {@link com.globeshanghai.backend.dom.event.Event} based on authId
+     * Get a specific {@link com.globeshanghai.backend.dom.user.User} based on authId
      * @param token Token
      * @return UserDTO
      * @return HTTP status OK
      */
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
-    public ResponseEntity<?> findById(@RequestHeader("token") String token) {
-        LOGGER.info("Finding user entry with id: {}");
+    public ResponseEntity<?> findUserByAuthId(@RequestHeader("token") String token) {
+        LOGGER.info("Finding user entry with authId: {}");
         UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
         if (userEntry == null)
             throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
         LOGGER.info("Found user entry with information: {}", userEntry);
 
         return new ResponseEntity<UserDTO>(userEntry, HttpStatus.OK);
+    }
+
+    /**
+     * Get a specific {@link com.globeshanghai.backend.dom.user.User} based on userId
+     * @param token Token
+     * @return UserDTO
+     * @return HTTP status OK
+     */
+    @RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> findById(@RequestHeader("token") String token, @PathVariable("id") String id) {
+        LOGGER.info("Finding user entry with id: {}");
+        UserDTO userEntry = userService.findUserByAuthId(JWT.decode(token).getSubject());
+        if (userEntry == null)
+            throw  new UserNotFoundException("User with token " + JWT.decode(token).getSubject() + " not found!");
+        UserDTO userDTO = userService.findById(id);
+        LOGGER.info("Found user entry with information: {}", userEntry);
+
+        return new ResponseEntity<UserDTO>(userDTO, HttpStatus.OK);
     }
 
     /**

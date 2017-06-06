@@ -43,17 +43,4 @@ public final class PreCondition {
             throw new NullPointerException(errorMessage);
         }
     }
-
-    /**
-     * Ensures that the object given as a method parameter is a valid date notation.
-     * @param string A string to the given date.
-     * @param errorMessage The error message that is passed forward to the exception that is thrown if
-     * the object given as a method parameter is null.
-     * @throws IllegalArgumentException If the object given as a method parameter is not the right date format.
-     */
-    public static void isDate(String string, String errorMessage){
-        if (!string.matches("\\d{4}/\\d{2}/\\d{2}")){
-            throw new IllegalArgumentException(errorMessage);
-        }
-    }
 }

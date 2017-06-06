@@ -262,6 +262,6 @@ public final class Config {
      * {@link com.globeshanghai.frontend.util.PreCondition} notNull and notEmpty methods
      */
     private void checkAll(String mediaStorage, PhotoQuality photoQuality, String printerName, int printerCopies, boolean watermarkPrinting, boolean qrPrinting, String qrImage, ImageWatermark printWatermark, ImageWatermark webWatermark, boolean watermarkSharing) {
-        //TODO
+        //No variables that need to be checked at the moment
     }
 }

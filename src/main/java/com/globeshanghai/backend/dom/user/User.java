@@ -4,17 +4,13 @@ import com.globeshanghai.backend.dom.event.ShortEvent;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
 import java.util.List;
 
 import static com.globeshanghai.frontend.util.PreCondition.notEmpty;
 import static com.globeshanghai.frontend.util.PreCondition.notNull;
 
-/**
- * Created by stijnergeerts on 23/04/17.
- */
 @Document(collection = "user")
-public final class User implements Serializable {
+public final class User {
 
     @Id
     private String userId;
@@ -111,8 +107,11 @@ public final class User implements Serializable {
     }
 
     /**
-     * Using the builder pattern because we are creating a complex object.
-     * This makes the code clearer and easier to read.
+     * We are using the builder pattern because we are creating a complex object.
+     * Instead of using numerous constructors with different parameter combinations,
+     * this pattern uses a builder object that receives each parameter separately
+     * and returns the created object at once.
+     * This also makes the code clearer and easier to read.
      */
     public static class Builder {
 
@@ -181,8 +180,6 @@ public final class User implements Serializable {
 
         notNull(lastname, "lastname cannot be null");
         notEmpty(lastname, "lastname cannot be empty");
-
-
     }
 
 }

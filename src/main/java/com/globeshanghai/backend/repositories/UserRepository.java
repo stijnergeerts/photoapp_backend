@@ -4,7 +4,6 @@ import com.globeshanghai.backend.dom.user.User;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -30,7 +29,7 @@ public interface UserRepository extends Repository<User, String> {
      * @return      The information of the found user entry. If no event entry
      *              is found, this method returns an empty {@link java.util.Optional} object.
      */
-    Optional<User> findOne(String id);
+    User findOne(String id);
 
     /**
      * Finds the information of a single user entry.
@@ -39,14 +38,6 @@ public interface UserRepository extends Repository<User, String> {
      *                  is found, this method returns an empty {@link com.globeshanghai.backend.dom.user.User} object.
      */
     User findUserByAuthId(String authId);
-
-    /**
-     * Finds the information of a single user entry.
-     * @param username  The userName of the requested event entry.
-     * @return          The information of the found event entry. If no event entry
-     *                  is found, this method returns an {@link com.globeshanghai.backend.dom.user.User} object.
-     */
-    User findUserByUsername(String username);
 
     /**
      * Saves a new user entry to the database.
