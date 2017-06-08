@@ -50,6 +50,11 @@ public class MongoDBUserService implements UserService {
         return convertToDTO(user);
     }
 
+    /**
+     * Find a {@link com.globeshanghai.backend.dom.user.User}.
+     * @param id User userId
+     * @return UserDTO
+     */
     @Override
     public UserDTO findById(String id) {
         User found = userRepository.findOne(id);
@@ -105,7 +110,6 @@ public class MongoDBUserService implements UserService {
      */
     @Override
     public UserDTO update(UserDTO user) {
-
         User updated = userRepository.findOne(user.getUserId());
         updated.update(user.getUsername(), user.getAuthId(), user.getFirstname(),user.getLastname(),user.getUserEvents());
         updated = userRepository.save(updated);

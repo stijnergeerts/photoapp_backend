@@ -18,9 +18,6 @@ import javax.validation.Valid;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by stijnergeerts on 23/04/17.
- */
 @RestController
 @CrossOrigin
 @RequestMapping("api/user")
@@ -50,7 +47,7 @@ final class UserController {
         userEntry.setAuthId(JWT.decode(token).getSubject());
         for (UserDTO userDTO : userDTOS){
             if (userDTO.getUsername().equals(userEntry.getUsername())||userDTO.getAuthId().equals(userEntry.getAuthId())) {
-                return new ResponseEntity("A User with name " + userEntry.getFirstname() + " " + userEntry.getLastname() + " already exists!",
+                return new ResponseEntity("A User with username: " + userEntry.getUsername() + " already exists!",
                         HttpStatus.CONFLICT
                 );
             }

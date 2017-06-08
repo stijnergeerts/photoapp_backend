@@ -145,7 +145,6 @@ final class EventController {
      * @return all {@link com.globeshanghai.backend.dto.EventDTO} entries
      * @return HTTP status OK
      */
-
     @RequestMapping(value = "/getEvents", method = RequestMethod.GET)
     ResponseEntity<?> findAll(@RequestHeader("token") String token) {
         LOGGER.info("Finding all event entries");
@@ -285,12 +284,6 @@ final class EventController {
         return new ResponseEntity<EventDTO>(updated, HttpStatus.OK);
     }
 
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleEventNotFound(EventNotFoundException ex) {
-        LOGGER.error("Handling error with message: {}", ex.getMessage());
-    }
-
     /**
      * Update an the {@link com.globeshanghai.backend.dom.event.ShortEvent} of a {@link com.globeshanghai.backend.dom.user.User}.
      * @param userEventId Event eventId
@@ -310,5 +303,11 @@ final class EventController {
         }
         userEntry.setUserEvents(shortEvents);
         userService.update(userEntry);
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleEventNotFound(EventNotFoundException ex) {
+        LOGGER.error("Handling error with message: {}", ex.getMessage());
     }
 }

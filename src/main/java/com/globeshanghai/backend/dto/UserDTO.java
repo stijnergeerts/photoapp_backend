@@ -25,23 +25,6 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String username, String authId, String firstname, String lastname, List<ShortEvent> userEvents) {
-        this.username = username;
-        this.authId = authId;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.userEvents = userEvents;
-    }
-
-    public UserDTO(String userId, String username, String authId, String firstname, String lastname, List<ShortEvent> userEvents) {
-        this.userId = userId;
-        this.username = username;
-        this.authId = authId;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.userEvents = userEvents;
-    }
-
     public UserDTO(UserDTO userEntry) {
         this.userId = userEntry.getUserId();
         this.username = userEntry.getUsername();
